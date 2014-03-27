@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+
+{% load i18n %}
+
+{% block title %}{{ profile.get_name }}{% endblock %}
+
+{% block content %}
+    {% include 'users/userbar.html' %}
+    <div class="tabs">
+        <ul>
+            <li class="current"><a href="{{ profile.get_absolute_url }}">{% trans "Own Rides" %}</a></li>
+            <li><a href="{% url 'involved' profile.username %}">{% trans "Involved" %}</a></li>
+            <li><a href="{% url 'favorite' profile.username %}">{% trans "Favorites" %}</a></li>
+        </ul>
+    </div>
+    {% if rides %}
+        <ul class="rides-grid clearfix">
+            {% for ride in rides %}
+                <li>
+                    <a href="{{ ride.get_absolute_url }}">
+                        <img src="{{ ride.static_url }}" alt="{{ ride.title }}">
+                    </a>
+                    <div class="details">
+                        <a class="title" href="{{ ride.get_absolute_url }}" title="{{ ride.title }}">{{ ride.title }}</a>
+                        <ul class="tools clearfix">
+                            <li class="members">
+                                <a href="{{ ride.get_absolute_url }}#members" title="{% trans "See members of this ride" %}">{{ ride.members.count }}</a>
+                            </li>
+                            <li class="comments">
+                                <a href="{{ ride.get_absolute_url }}#comments" title="{% trans "View comments on this ride" %}">{{ ride.comments.count }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="null-message">
+            <h2>{% trans "None" %}</h2>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block overlay %}
+    <div id="overlay">
+        <div id="overlay-bg"></div>
+        <div id="lightbox">
+            <div class="full lightbox-title">
+                <h2>{% trans "Send a Message" %}</h2>
+            </div>
+        </div>
+    </div>
+{% endblock %}

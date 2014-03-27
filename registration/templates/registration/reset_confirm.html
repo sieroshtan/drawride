@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% block content %}
+    <div class="centered">
+        <div class="full">
+            <h1>{% trans "Set new password" %}</h1>
+        </div>
+        <form action="." method="post">
+            {% csrf_token %}
+            <div class="form-field">
+                <fieldset>
+                    {{ form.new_password1.label_tag }}
+                    {{ form.new_password1 }}
+                </fieldset>
+                <span class="help-text">{{ form.new_password1.help_text }}</span>
+                {% for error in form.new_password1.errors %}
+                    <p class="error">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div class="form-field">
+                <fieldset>
+                    {{ form.new_password2.label_tag }}
+                    {{ form.new_password2 }}
+                </fieldset>
+                {% for error in form.new_password2.errors %}
+                    <p class="error">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <input type="submit" value="{% trans "Change Password" %}">
+        </form>
+    </div>
+{% endblock %}

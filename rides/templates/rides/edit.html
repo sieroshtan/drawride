@@ -1,0 +1,78 @@
+{% extends 'layout.html' %}
+
+{% load i18n static %}
+
+{% block title %}{% trans "Edit" %}{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/jquery-ui.css">
+{% endblock %}
+
+{% block content %}
+    <div class="full">
+        <h1>{% trans "Editing" %} <span class="silver">{{ ride.title }}</span></h1>
+    </div>
+    <div id="col-left">
+        <div id="map-block">
+            <div id="map"></div>
+        </div>
+    </div>
+    <div id="col-right">
+        {{ form.errors }}
+        <form action="{% url 'edit' ride.id %}" method="post">
+            {% csrf_token %}
+            <div class="form-field">
+                {{ form.title.label_tag }}
+                {{ form.title }}
+                {% for error in form.title.errors %}
+                    <p class="error">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div class="form-field">
+                {{ form.start_time.label_tag }}
+                {{ form.start_time }}
+                {% for error in form.start_time.errors %}
+                    <p class="error">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div class="form-field">
+                {{ form.end_time.label_tag }}
+                {{ form.end_time }}
+                <span class="help-text">{{ form.end_time.help_text }}</span>
+                {% for error in form.end_time.errors %}
+                    <p class="error">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div class="form-field">
+                {{ form.description.label_tag }}
+                {{ form.description }}
+                {% for error in form.description.errors %}
+                    <p class="error">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div class="form-field">
+                {{ form.distance.label_tag }}
+                {{ form.distance }}
+                {{ form.points }}
+            </div>
+            <a href="" class="button silver">{% trans "Cancel" %}</a>
+            <input type="submit" value="{% trans "Save" %}">
+        </form>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="{% static 'js/jquery-ui-timepicker-addon.min.js' %}"></script>
+    <script>
+        $('.datetime').datetimepicker({
+            dateFormat: 'yy-mm-dd',
+            showButtonPanel: false,
+            timeFormat: 'HH:mm', stepMinute: 10
+        });
+        ymaps.ready(function () {
+            initMap([{{ user.city.lng }}, {{ user.city.lat }}]);
+            addPolyline('{{ form.points.value|default:"" }}', true);
+        });
+    </script>
+{% endblock %}

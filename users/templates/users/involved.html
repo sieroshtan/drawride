@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% load i18n %}
+
+{% block title %}{{ profile.get_name }}{% endblock %}
+
+{% block content %}
+    {% include 'users/userbar.html' %}
+    <div class="tabs">
+        <ul>
+            <li><a href="{{ profile.get_absolute_url }}">{% trans "Own Rides" %}</a></li>
+            <li class="current"><a href="{% url 'involved' profile.username %}">{% trans "Involved" %}</a></li>
+            <li><a href="{% url 'favorite' profile.username %}">{% trans "Favorites" %}</a></li>
+        </ul>
+    </div>
+    {% if rides %}
+        <ul class="rides-grid clearfix">
+            {% include 'rides/grid.html' %}
+        </ul>
+    {% else %}
+        <div class="null-message">
+            <h2>{% trans "None" %}</h2>
+        </div>
+    {% endif %}
+{% endblock %}

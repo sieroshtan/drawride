@@ -1,0 +1,21 @@
+{% load i18n %}
+
+{% for comment in comments %}
+    <li id="comment-{{ comment.id }}" class="clearfix">
+        <a href="{{ comment.user.get_absolute_url }}">
+            <img class="photo" src="{{ comment.user.get_photo }}" alt="{{ comment.user.get_name }}">
+        </a>
+        <div class="rightside">
+            <div class="comment-meta">
+                <a href="{{ comment.user.get_absolute_url }}" class="name">{{ comment.user.get_name }}</a>
+                <span class="posted">{{ comment.date_created }}</span>
+            </div>
+            <div class="comment-body">
+                {{ comment.text|urlize|linebreaksbr }}
+            </div>
+        </div>
+        <div class="permalink">
+            <a href="#comment-{{ comment.id }}" title="{% trans "Permalink to this comment" %}">#</a>
+        </div>
+    </li>
+{% endfor %}

@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Select Your City" %}{% endblock %}
+
+{% block content %}
+    <div class="full">
+        <h1>{% trans "Select Your City" %}</h1>
+    </div>
+    {% for country in countries %}
+        <div class="country">
+            <h2>{{ country.name }}</h2>
+            <ul>
+                {% for city in country.cities.all %}
+                    <li><a href="{% url 'set_city' city.id %}">{{ city.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% empty %}
+        <div class="null-message">
+            <h2>{% trans "None" %}</h2>
+        </div>
+    {% endfor %}
+{% endblock %}

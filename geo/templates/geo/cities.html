@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Cities" %}{% endblock %}
+
+{% block content %}
+    {% for country in countries %}
+        <h1>{{ country.name }}</h1>
+        <ul class="grid-list clearfix">
+            {% for city in country.cities.all %}
+                <li><a href="{% url 'city' city.id %}">{{ city.name }}</a> {{ city.rides.count|default:"" }}</li>
+            {% endfor %}
+        </ul>
+    {% empty %}
+        <div class="null-message">
+            <h2>{% trans "None" %}</h2>
+        </div>
+    {% endfor %}
+{% endblock %}

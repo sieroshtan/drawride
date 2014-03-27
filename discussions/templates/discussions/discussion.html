@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% load i18n %}
+{% load discussions_tags %}
+
+{% block title %}{% trans "Dialog" %}{% endblock %}
+
+{% block content %}
+    <div class="full">
+        <h1>
+            {% url 'discussions' as discussions_link %}
+            {% blocktrans %}<a href="{{ discussions_link }}">My Messages</a> with{% endblocktrans %} <a href="{{ contact.get_absolute_url }}">{{ contact.get_name }}</a>
+        </h1>
+    </div>
+    <div class="messages-section">
+        {% if messages_list %}
+            <ul class="messages">
+            {% for message in messages_list %}
+                <li class="clearfix">
+                    <a href="{{ message.from_user.get_absolute_url }}">
+                        <img class="photo" src="{{ message.from_user.get_photo }}" alt="{{ message.from_user.get_name }}">
+                    </a>
+                    <div class="rightside">
+                        <div class="message-meta">
+                            <a href="{{ message.from_user.get_absolute_url }}" class="name">{{ message.from_user.get_name }}</a>
+                            <span class="posted">{{ message.date_created }}</span>
+                        </div>
+                        <div class="comment-body">
+                            {{ message.text }}
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        <form action="{% url 'discussion' contact.username %}" method="post" class="simple-form">
+            {% csrf_token %}
+            <div class="form-field">
+                {{ form.text }}
+                {% for error in form.text.errors %}
+                    <p class="error">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <input type="submit" value="{% trans "Send message" %}">
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% load i18n %}
+
+{% block title %}{{ profile.get_name }} / {% trans "Followers" %}{% endblock %}
+
+{% block content %}
+    {% include 'users/userbar.html' %}
+    <div class="tabs">
+        <ul>
+            <li class="current"><a href="{% url 'followers' profile.username %}">{% trans "Followers" %}</a></li>
+            <li><a href="{% url 'following' profile.username %}">{% trans "Following" %}</a></li>
+        </ul>
+    </div>
+    {% if followers %}
+        <table class="data">
+            <thead>
+                <tr>
+                    <th>{% trans "User" %}</th>
+                    <th>{% trans "Location" %}</th>
+                    <th>{% trans "Rides" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for f in followers %}
+                <tr>
+                    <td>
+                        <a href="{{ f.get_absolute_url }}">
+                            <img class="photo" src="{{ f.get_photo }}">{{ f.get_name }}
+                        </a>
+                    </td>
+                    <td>
+                        {% if f.city %}
+                            <a href="{% url 'city' f.city.id %}">{{ f.city.country.name }}, {{ f.city.name }}</a>
+                        {% else %}
+                            {% trans "Earth" %}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{ f.his_rides.count }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="null-message">
+            <h2>{% trans "None" %}</h2>
+        </div>
+    {% endif %}
+{% endblock %}

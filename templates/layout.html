@@ -1,0 +1,140 @@
+{% load i18n %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1240">
+    {% block meta %}{% endblock %}
+    <link rel="stylesheet" href="{% static 'css/master.css' %}">
+    {% block css %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<nav class="header">
+    <div class="wrapper header-wrapper clearfix">
+        <a class="logo" href="{% url 'home' %}"></a>
+        <ul class="main">
+            <li class="dropdown">
+                <a href="{% url 'home' %}">{% trans "Rides" %}</a>
+                <ul>
+                    {% if user.is_authenticated %}
+                        <li>
+                            <a href="">{% trans "Following" %}</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'upcoming' %}">{% trans "Upcoming" %}</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="{% url 'home' %}">{% trans "Upcoming" %}</a>
+                        </li>
+                    {% endif %}
+                    <li>
+                        <a href="{% url 'popular' %}">{% trans "Popular" %}</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="{% url 'cities' %}">{% trans "Cities" %}</a>
+            </li>
+            <li>
+                <a href="{% url 'users' %}">{% trans "People" %}</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li>
+                <a href="{% url 'draw' %}">{% trans "Draw" %}</a>
+            </li>
+            {% endif %}
+        </ul>
+        <div class="right clearfix">
+            {% if user.is_authenticated %}
+                <ul class="main user">
+                    <li>
+                        <a href="{{ user.get_absolute_url }}">
+                            <span class="name">{{ user.get_name }}</span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="{{ user.get_absolute_url }}">{% trans "Rides" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'discussions' %}">{% trans "Messages" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'settings' %}">{% trans "Settings" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'logout' %}">{% trans "Logout" %}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            {% else %}
+                <ul class="main">
+                    <li>
+                        <a href="{% url 'login' %}">{% trans "Login" %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'register' %}">{% trans "Register" %}</a>
+                    </li>
+                </ul>
+            {% endif %}
+            <div class="search">
+                <form action="{% url 'search' %}" method="get">
+                    <input id="query" name="q" placeholder="Search" type="text" value="{% block search_q %}{% endblock %}">
+                </form>
+            </div>
+        </div>
+    </div>
+</nav>
+{% if messages %}
+    <script>window.onload = function() {$('#notices').delay(3000).slideUp();}</script>
+    <ul id="notices">
+    {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+            {{ message }}
+        </li>
+    {% endfor %}
+    </ul>
+{% endif %}
+<div id="wrapper">
+    <div id="content" class="clearfix">
+        {% block content %}{% endblock %}
+    </div>
+</div>
+<footer>
+    <div class="wrapper">
+        <ul>
+            <li><a href="{% url 'about' %}">{% trans "About" %}</a></li>
+            <li class="bullet">•</li>
+            <li><a href="">{% trans "FAQ" %}</a></li>
+            <li class="bullet">•</li>
+            <li><a href="">{% trans "Contact" %}</a></li>
+            <li class="bullet">•</li>
+            <li><a href="https://twitter.com/drawride">Twitter</a></li>
+            <li class="bullet">•</li>
+            <li><a href="https://facebook.com/drawride">Facebook</a></li>
+            {% if user.is_authenticated %}
+            <li class="last">
+                <a href="{% url 'change_city' %}">{{ user.city.name|default:_("Select a city") }}</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</footer>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="//api-maps.yandex.ru/2.1-dev/?lang=ru-RU&load=package.full"></script>
+<script src="{% static 'js/app.js' %}"></script>
+{% block js %}{% endblock %}
+{% block overlay %}{% endblock %}
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-12999572-4', 'drawride.com');
+    ga('send', 'pageview');
+</script>
+</body>
+</html>

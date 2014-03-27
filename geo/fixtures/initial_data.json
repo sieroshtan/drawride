@@ -1,0 +1,1270 @@
+[
+{
+    "pk": 1, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "\u0411\u0435\u043b\u0430\u0440\u0443\u0441\u044c"
+    }
+},
+{
+    "pk": 2, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "\u041a\u0430\u0437\u0430\u0445\u0441\u0442\u0430\u043d"
+    }
+},
+{
+    "pk": 3, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "\u0420\u043e\u0441\u0441\u0438\u044f"
+    }
+},
+{
+    "pk": 4, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "\u0423\u043a\u0440\u0430\u0438\u043d\u0430"
+    }
+},
+{
+    "pk": 1, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 23.704591, 
+        "country": 1, 
+        "lng": 52.117938, 
+        "name": "\u0411\u0440\u0435\u0441\u0442"
+    }
+},
+{
+    "pk": 2, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 30.179971, 
+        "country": 1, 
+        "lng": 55.196752, 
+        "name": "\u0412\u0438\u0442\u0435\u0431\u0441\u043a"
+    }
+},
+{
+    "pk": 3, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 30.983837, 
+        "country": 1, 
+        "lng": 52.426192, 
+        "name": "\u0413\u043e\u043c\u0435\u043b\u044c"
+    }
+},
+{
+    "pk": 4, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 23.825684, 
+        "country": 1, 
+        "lng": 53.675855, 
+        "name": "\u0413\u0440\u043e\u0434\u043d\u043e"
+    }
+},
+{
+    "pk": 5, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 27.547099, 
+        "country": 1, 
+        "lng": 53.904098, 
+        "name": "\u041c\u0438\u043d\u0441\u043a"
+    }
+},
+{
+    "pk": 6, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 30.323126, 
+        "country": 1, 
+        "lng": 53.893641, 
+        "name": "\u041c\u043e\u0433\u0438\u043b\u0451\u0432"
+    }
+},
+{
+    "pk": 7, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 69.392843, 
+        "country": 2, 
+        "lng": 53.284323, 
+        "name": "\u041a\u043e\u043a\u0448\u0435\u0442\u0430\u0443"
+    }
+},
+{
+    "pk": 8, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 57.183733, 
+        "country": 2, 
+        "lng": 50.28778, 
+        "name": "\u0410\u043a\u0442\u043e\u0431\u0435"
+    }
+},
+{
+    "pk": 9, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 78.376122, 
+        "country": 2, 
+        "lng": 45.021029, 
+        "name": "\u0422\u0430\u043b\u0434\u044b\u043a\u043e\u0440\u0433\u0430\u043d"
+    }
+},
+{
+    "pk": 10, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 51.92592, 
+        "country": 2, 
+        "lng": 47.110271, 
+        "name": "\u0410\u0442\u044b\u0440\u0430\u0443"
+    }
+},
+{
+    "pk": 11, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 82.618748, 
+        "country": 2, 
+        "lng": 49.966691, 
+        "name": "\u0423\u0441\u0442\u044c-\u041a\u0430\u043c\u0435\u043d\u043e\u0433\u043e\u0440\u0441\u043a"
+    }
+},
+{
+    "pk": 12, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 71.396338, 
+        "country": 2, 
+        "lng": 42.890457, 
+        "name": "\u0422\u0430\u0440\u0430\u0437"
+    }
+},
+{
+    "pk": 13, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 51.404817, 
+        "country": 2, 
+        "lng": 51.224319, 
+        "name": "\u0423\u0440\u0430\u043b\u044c\u0441\u043a"
+    }
+},
+{
+    "pk": 14, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 73.105248, 
+        "country": 2, 
+        "lng": 49.874558, 
+        "name": "\u041a\u0430\u0440\u0430\u0433\u0430\u043d\u0434\u0430"
+    }
+},
+{
+    "pk": 15, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 63.635514, 
+        "country": 2, 
+        "lng": 53.220681, 
+        "name": "\u041a\u043e\u0441\u0442\u0430\u043d\u0430\u0439"
+    }
+},
+{
+    "pk": 16, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 65.497254, 
+        "country": 2, 
+        "lng": 44.850315, 
+        "name": "\u041a\u044b\u0437\u044b\u043b\u043e\u0440\u0434\u0430"
+    }
+},
+{
+    "pk": 17, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 51.230058, 
+        "country": 2, 
+        "lng": 43.644656, 
+        "name": "\u0410\u043a\u0442\u0430\u0443"
+    }
+},
+{
+    "pk": 18, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 76.969567, 
+        "country": 2, 
+        "lng": 52.313296, 
+        "name": "\u041f\u0430\u0432\u043b\u043e\u0434\u0430\u0440"
+    }
+},
+{
+    "pk": 19, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 69.151574, 
+        "country": 2, 
+        "lng": 54.879987, 
+        "name": "\u041f\u0435\u0442\u0440\u043e\u043f\u0430\u0432\u043b\u043e\u0432\u0441\u043a"
+    }
+},
+{
+    "pk": 20, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 69.606229, 
+        "country": 2, 
+        "lng": 42.30896, 
+        "name": "\u0428\u044b\u043c\u043a\u0435\u043d\u0442"
+    }
+},
+{
+    "pk": 21, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 71.480124, 
+        "country": 2, 
+        "lng": 51.151817, 
+        "name": "\u0410\u0441\u0442\u0430\u043d\u0430"
+    }
+},
+{
+    "pk": 22, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 76.912335, 
+        "country": 2, 
+        "lng": 43.28081, 
+        "name": "\u0410\u043b\u043c\u0430\u0442\u044b"
+    }
+},
+{
+    "pk": 23, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 63.283518, 
+        "country": 2, 
+        "lng": 45.609793, 
+        "name": "\u0411\u0430\u0439\u043a\u043e\u043d\u0443\u0440"
+    }
+},
+{
+    "pk": 24, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 37.609218, 
+        "country": 3, 
+        "lng": 55.753559, 
+        "name": "\u041c\u043e\u0441\u043a\u0432\u0430"
+    }
+},
+{
+    "pk": 25, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 40.102348, 
+        "country": 3, 
+        "lng": 44.609539, 
+        "name": "\u041c\u0430\u0439\u043a\u043e\u043f"
+    }
+},
+{
+    "pk": 26, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 85.945084, 
+        "country": 3, 
+        "lng": 51.945754, 
+        "name": "\u0413\u043e\u0440\u043d\u043e-\u0410\u043b\u0442\u0430\u0439\u0441\u043a"
+    }
+},
+{
+    "pk": 27, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 55.983161, 
+        "country": 3, 
+        "lng": 54.738437, 
+        "name": "\u0423\u0444\u0430"
+    }
+},
+{
+    "pk": 28, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 107.614524, 
+        "country": 3, 
+        "lng": 51.825108, 
+        "name": "\u0423\u043b\u0430\u043d-\u0423\u0434\u044d"
+    }
+},
+{
+    "pk": 29, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 47.484326, 
+        "country": 3, 
+        "lng": 42.976722, 
+        "name": "\u041c\u0430\u0445\u0430\u0447\u043a\u0430\u043b\u0430"
+    }
+},
+{
+    "pk": 30, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 44.816671, 
+        "country": 3, 
+        "lng": 43.173073, 
+        "name": "\u041c\u0430\u0433\u0430\u0441"
+    }
+},
+{
+    "pk": 31, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 43.625936, 
+        "country": 3, 
+        "lng": 43.492649, 
+        "name": "\u041d\u0430\u043b\u044c\u0447\u0438\u043a"
+    }
+},
+{
+    "pk": 32, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 44.262833, 
+        "country": 3, 
+        "lng": 46.33079, 
+        "name": "\u042d\u043b\u0438\u0441\u0442\u0430"
+    }
+},
+{
+    "pk": 33, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 42.058825, 
+        "country": 3, 
+        "lng": 44.219841, 
+        "name": "\u0427\u0435\u0440\u043a\u0435\u0441\u0441\u043a"
+    }
+},
+{
+    "pk": 34, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 34.364692, 
+        "country": 3, 
+        "lng": 61.787569, 
+        "name": "\u041f\u0435\u0442\u0440\u043e\u0437\u0430\u0432\u043e\u0434\u0441\u043a"
+    }
+},
+{
+    "pk": 35, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 50.837189, 
+        "country": 3, 
+        "lng": 61.669587, 
+        "name": "\u0421\u044b\u043a\u0442\u044b\u0432\u043a\u0430\u0440"
+    }
+},
+{
+    "pk": 36, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 47.874509, 
+        "country": 3, 
+        "lng": 56.636382, 
+        "name": "\u0419\u043e\u0448\u043a\u0430\u0440-\u041e\u043b\u0430"
+    }
+},
+{
+    "pk": 37, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 45.186031, 
+        "country": 3, 
+        "lng": 54.186284, 
+        "name": "\u0421\u0430\u0440\u0430\u043d\u0441\u043a"
+    }
+},
+{
+    "pk": 38, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 129.701779, 
+        "country": 3, 
+        "lng": 62.028191, 
+        "name": "\u042f\u043a\u0443\u0442\u0441\u043a"
+    }
+},
+{
+    "pk": 39, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 44.680172, 
+        "country": 3, 
+        "lng": 43.018678, 
+        "name": "\u0412\u043b\u0430\u0434\u0438\u043a\u0430\u0432\u043a\u0430\u0437"
+    }
+},
+{
+    "pk": 40, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 49.122853, 
+        "country": 3, 
+        "lng": 55.786764, 
+        "name": "\u041a\u0430\u0437\u0430\u043d\u044c"
+    }
+},
+{
+    "pk": 41, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 94.435592, 
+        "country": 3, 
+        "lng": 51.723845, 
+        "name": "\u041a\u044b\u0437\u044b\u043b"
+    }
+},
+{
+    "pk": 42, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 53.201285, 
+        "country": 3, 
+        "lng": 56.855708, 
+        "name": "\u0418\u0436\u0435\u0432\u0441\u043a"
+    }
+},
+{
+    "pk": 43, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 91.442423, 
+        "country": 3, 
+        "lng": 53.720976, 
+        "name": "\u0410\u0431\u0430\u043a\u0430\u043d"
+    }
+},
+{
+    "pk": 44, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 45.644864, 
+        "country": 3, 
+        "lng": 43.33183, 
+        "name": "\u0413\u0440\u043e\u0437\u043d\u044b\u0439"
+    }
+},
+{
+    "pk": 45, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 47.23596, 
+        "country": 3, 
+        "lng": 56.135403, 
+        "name": "\u0427\u0435\u0431\u043e\u043a\u0441\u0430\u0440\u044b"
+    }
+},
+{
+    "pk": 46, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 83.74962, 
+        "country": 3, 
+        "lng": 53.356132, 
+        "name": "\u0411\u0430\u0440\u043d\u0430\u0443\u043b"
+    }
+},
+{
+    "pk": 47, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 113.401983, 
+        "country": 3, 
+        "lng": 52.063317, 
+        "name": "\u0427\u0438\u0442\u0430"
+    }
+},
+{
+    "pk": 48, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 158.622474, 
+        "country": 3, 
+        "lng": 53.061561, 
+        "name": "\u041f\u0435\u0442\u0440\u043e\u043f\u0430\u0432\u043b\u043e\u0432\u0441\u043a-\u041a\u0430\u043c\u0447\u0430\u0442\u0441\u043a\u0438\u0439"
+    }
+},
+{
+    "pk": 49, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 38.976032, 
+        "country": 3, 
+        "lng": 45.034942, 
+        "name": "\u041a\u0440\u0430\u0441\u043d\u043e\u0434\u0430\u0440"
+    }
+},
+{
+    "pk": 50, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 92.870412, 
+        "country": 3, 
+        "lng": 56.008711, 
+        "name": "\u041a\u0440\u0430\u0441\u043d\u043e\u044f\u0440\u0441\u043a"
+    }
+},
+{
+    "pk": 51, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 56.237654, 
+        "country": 3, 
+        "lng": 58.004785, 
+        "name": "\u041f\u0435\u0440\u043c\u044c"
+    }
+},
+{
+    "pk": 52, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 131.928478, 
+        "country": 3, 
+        "lng": 43.134091, 
+        "name": "\u0412\u043b\u0430\u0434\u0438\u0432\u043e\u0441\u0442\u043e\u043a"
+    }
+},
+{
+    "pk": 53, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 41.965167, 
+        "country": 3, 
+        "lng": 45.042935, 
+        "name": "\u0421\u0442\u0430\u0432\u0440\u043e\u043f\u043e\u043b\u044c"
+    }
+},
+{
+    "pk": 54, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 135.056475, 
+        "country": 3, 
+        "lng": 48.460732, 
+        "name": "\u0425\u0430\u0431\u0430\u0440\u043e\u0432\u0441\u043a"
+    }
+},
+{
+    "pk": 55, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 127.536255, 
+        "country": 3, 
+        "lng": 50.327366, 
+        "name": "\u0411\u043b\u0430\u0433\u043e\u0432\u0435\u0449\u0435\u043d\u0441\u043a"
+    }
+},
+{
+    "pk": 56, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 40.551776, 
+        "country": 3, 
+        "lng": 64.545818, 
+        "name": "\u0410\u0440\u0445\u0430\u043d\u0433\u0435\u043b\u044c\u0441\u043a"
+    }
+},
+{
+    "pk": 57, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 48.03034, 
+        "country": 3, 
+        "lng": 46.349636, 
+        "name": "\u0410\u0441\u0442\u0440\u0430\u0445\u0430\u043d\u044c"
+    }
+},
+{
+    "pk": 58, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 36.598155, 
+        "country": 3, 
+        "lng": 50.600486, 
+        "name": "\u0411\u0435\u043b\u0433\u043e\u0440\u043e\u0434"
+    }
+},
+{
+    "pk": 59, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 34.376235, 
+        "country": 3, 
+        "lng": 53.281039, 
+        "name": "\u0411\u0440\u044f\u043d\u0441\u043a"
+    }
+},
+{
+    "pk": 60, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 40.407892, 
+        "country": 3, 
+        "lng": 56.139928, 
+        "name": "\u0412\u043b\u0430\u0434\u0438\u043c\u0438\u0440"
+    }
+},
+{
+    "pk": 61, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 44.515942, 
+        "country": 3, 
+        "lng": 48.707793, 
+        "name": "\u0412\u043e\u043b\u0433\u043e\u0433\u0440\u0430\u0434"
+    }
+},
+{
+    "pk": 62, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 39.883869, 
+        "country": 3, 
+        "lng": 59.223043, 
+        "name": "\u0412\u043e\u043b\u043e\u0433\u0434\u0430"
+    }
+},
+{
+    "pk": 63, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 39.204096, 
+        "country": 3, 
+        "lng": 51.662496, 
+        "name": "\u0412\u043e\u0440\u043e\u043d\u0435\u0436"
+    }
+},
+{
+    "pk": 64, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 40.996702, 
+        "country": 3, 
+        "lng": 57.008607, 
+        "name": "\u0418\u0432\u0430\u043d\u043e\u0432\u043e"
+    }
+},
+{
+    "pk": 65, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 104.284891, 
+        "country": 3, 
+        "lng": 52.276547, 
+        "name": "\u0418\u0440\u043a\u0443\u0442\u0441\u043a"
+    }
+},
+{
+    "pk": 66, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 20.500803, 
+        "country": 3, 
+        "lng": 54.7197, 
+        "name": "\u041a\u0430\u043b\u0438\u043d\u0438\u043d\u0433\u0440\u0430\u0434"
+    }
+},
+{
+    "pk": 67, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 36.237041, 
+        "country": 3, 
+        "lng": 54.533832, 
+        "name": "\u041a\u0430\u043b\u0443\u0433\u0430"
+    }
+},
+{
+    "pk": 68, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 86.087781, 
+        "country": 3, 
+        "lng": 55.359594, 
+        "name": "\u041a\u0435\u043c\u0435\u0440\u043e\u0432\u043e"
+    }
+},
+{
+    "pk": 69, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 49.662283, 
+        "country": 3, 
+        "lng": 58.581576, 
+        "name": "\u041a\u0438\u0440\u043e\u0432"
+    }
+},
+{
+    "pk": 70, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 40.926984, 
+        "country": 3, 
+        "lng": 57.767256, 
+        "name": "\u041a\u043e\u0441\u0442\u0440\u043e\u043c\u0430"
+    }
+},
+{
+    "pk": 71, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 65.346508, 
+        "country": 3, 
+        "lng": 55.453085, 
+        "name": "\u041a\u0443\u0440\u0433\u0430\u043d"
+    }
+},
+{
+    "pk": 72, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 36.181714, 
+        "country": 3, 
+        "lng": 51.717189, 
+        "name": "\u041a\u0443\u0440\u0441\u043a"
+    }
+},
+{
+    "pk": 73, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 30.313622, 
+        "country": 3, 
+        "lng": 59.93772, 
+        "name": "\u0421\u0430\u043d\u043a\u0442-\u041f\u0435\u0442\u0435\u0440\u0431\u0443\u0440\u0433"
+    }
+},
+{
+    "pk": 74, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 39.597603, 
+        "country": 3, 
+        "lng": 52.603587, 
+        "name": "\u041b\u0438\u043f\u0435\u0446\u043a"
+    }
+},
+{
+    "pk": 75, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 150.813078, 
+        "country": 3, 
+        "lng": 59.55632, 
+        "name": "\u041c\u0430\u0433\u0430\u0434\u0430\u043d"
+    }
+},
+{
+    "pk": 76, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 33.077918, 
+        "country": 3, 
+        "lng": 68.963254, 
+        "name": "\u041c\u0443\u0440\u043c\u0430\u043d\u0441\u043a"
+    }
+},
+{
+    "pk": 77, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 44.002672, 
+        "country": 3, 
+        "lng": 56.324117, 
+        "name": "\u041d\u0438\u0436\u043d\u0438\u0439 \u041d\u043e\u0432\u0433\u043e\u0440\u043e\u0434"
+    }
+},
+{
+    "pk": 78, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 31.270337, 
+        "country": 3, 
+        "lng": 58.522711, 
+        "name": "\u0412\u0435\u043b\u0438\u043a\u0438\u0439 \u041d\u043e\u0432\u0433\u043e\u0440\u043e\u0434"
+    }
+},
+{
+    "pk": 79, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 82.906928, 
+        "country": 3, 
+        "lng": 55.028739, 
+        "name": "\u041d\u043e\u0432\u043e\u0441\u0438\u0431\u0438\u0440\u0441\u043a"
+    }
+},
+{
+    "pk": 80, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 73.365535, 
+        "country": 3, 
+        "lng": 54.990215, 
+        "name": "\u041e\u043c\u0441\u043a"
+    }
+},
+{
+    "pk": 81, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 55.09735, 
+        "country": 3, 
+        "lng": 51.768099, 
+        "name": "\u041e\u0440\u0435\u043d\u0431\u0443\u0440\u0433"
+    }
+},
+{
+    "pk": 82, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 36.083061, 
+        "country": 3, 
+        "lng": 52.968153, 
+        "name": "\u041e\u0440\u0451\u043b"
+    }
+},
+{
+    "pk": 83, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 45.020121, 
+        "country": 3, 
+        "lng": 53.199449, 
+        "name": "\u041f\u0435\u043d\u0437\u0430"
+    }
+},
+{
+    "pk": 84, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 28.332828, 
+        "country": 3, 
+        "lng": 57.819269, 
+        "name": "\u041f\u0441\u043a\u043e\u0432"
+    }
+},
+{
+    "pk": 85, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 39.744918, 
+        "country": 3, 
+        "lng": 47.227163, 
+        "name": "\u0420\u043e\u0441\u0442\u043e\u0432-\u043d\u0430-\u0414\u043e\u043d\u0443"
+    }
+},
+{
+    "pk": 86, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 39.744954, 
+        "country": 3, 
+        "lng": 54.619886, 
+        "name": "\u0420\u044f\u0437\u0430\u043d\u044c"
+    }
+},
+{
+    "pk": 87, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 50.191184, 
+        "country": 3, 
+        "lng": 53.205226, 
+        "name": "\u0421\u0430\u043c\u0430\u0440\u0430"
+    }
+},
+{
+    "pk": 88, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 46.004549, 
+        "country": 3, 
+        "lng": 51.537652, 
+        "name": "\u0421\u0430\u0440\u0430\u0442\u043e\u0432"
+    }
+},
+{
+    "pk": 89, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 142.765583, 
+        "country": 3, 
+        "lng": 46.965354, 
+        "name": "\u042e\u0436\u043d\u043e-\u0421\u0430\u0445\u0430\u043b\u0438\u043d\u0441\u043a"
+    }
+},
+{
+    "pk": 90, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 60.59734, 
+        "country": 3, 
+        "lng": 56.837982, 
+        "name": "\u0415\u043a\u0430\u0442\u0435\u0440\u0438\u043d\u0431\u0443\u0440\u0433"
+    }
+},
+{
+    "pk": 91, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 31.999095, 
+        "country": 3, 
+        "lng": 54.7798, 
+        "name": "\u0421\u043c\u043e\u043b\u0435\u043d\u0441\u043a"
+    }
+},
+{
+    "pk": 92, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 41.454241, 
+        "country": 3, 
+        "lng": 52.722032, 
+        "name": "\u0422\u0430\u043c\u0431\u043e\u0432"
+    }
+},
+{
+    "pk": 93, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 35.904539, 
+        "country": 3, 
+        "lng": 56.860477, 
+        "name": "\u0422\u0432\u0435\u0440\u044c"
+    }
+},
+{
+    "pk": 94, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 84.972128, 
+        "country": 3, 
+        "lng": 56.495116, 
+        "name": "\u0422\u043e\u043c\u0441\u043a"
+    }
+},
+{
+    "pk": 95, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 37.619028, 
+        "country": 3, 
+        "lng": 54.193802, 
+        "name": "\u0422\u0443\u043b\u0430"
+    }
+},
+{
+    "pk": 96, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 65.558412, 
+        "country": 3, 
+        "lng": 57.182631, 
+        "name": "\u0422\u044e\u043c\u0435\u043d\u044c"
+    }
+},
+{
+    "pk": 97, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 48.41216, 
+        "country": 3, 
+        "lng": 54.306953, 
+        "name": "\u0423\u043b\u044c\u044f\u043d\u043e\u0432\u0441\u043a"
+    }
+},
+{
+    "pk": 98, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 61.387103, 
+        "country": 3, 
+        "lng": 55.152161, 
+        "name": "\u0427\u0435\u043b\u044f\u0431\u0438\u043d\u0441\u043a"
+    }
+},
+{
+    "pk": 99, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 39.887714, 
+        "country": 3, 
+        "lng": 57.622506, 
+        "name": "\u042f\u0440\u043e\u0441\u043b\u0430\u0432\u043b\u044c"
+    }
+},
+{
+    "pk": 100, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 36.228301, 
+        "country": 4, 
+        "lng": 50.006174, 
+        "name": "\u0425\u0430\u0440\u044c\u043a\u043e\u0432"
+    }
+},
+{
+    "pk": 101, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 28.473702, 
+        "country": 4, 
+        "lng": 49.233571, 
+        "name": "\u0412\u0438\u043d\u043d\u0438\u0446\u0430"
+    }
+},
+{
+    "pk": 102, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 35.045408, 
+        "country": 4, 
+        "lng": 48.464567, 
+        "name": "\u0414\u043d\u0435\u043f\u0440\u043e\u043f\u0435\u0442\u0440\u043e\u0432\u0441\u043a"
+    }
+},
+{
+    "pk": 103, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 37.801898, 
+        "country": 4, 
+        "lng": 48.016058, 
+        "name": "\u0414\u043e\u043d\u0435\u0446\u043a"
+    }
+},
+{
+    "pk": 104, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 28.657443, 
+        "country": 4, 
+        "lng": 50.254617, 
+        "name": "\u0416\u0438\u0442\u043e\u043c\u0438\u0440"
+    }
+},
+{
+    "pk": 105, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 35.139588, 
+        "country": 4, 
+        "lng": 47.839497, 
+        "name": "\u0417\u0430\u043f\u043e\u0440\u043e\u0436\u044c\u0435"
+    }
+},
+{
+    "pk": 106, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 24.709402, 
+        "country": 4, 
+        "lng": 48.922837, 
+        "name": "\u0418\u0432\u0430\u043d\u043e-\u0424\u0440\u0430\u043d\u043a\u043e\u0432\u0441\u043a"
+    }
+},
+{
+    "pk": 107, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 30.522301, 
+        "country": 4, 
+        "lng": 50.451118, 
+        "name": "\u041a\u0438\u0435\u0432"
+    }
+},
+{
+    "pk": 108, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 32.266488, 
+        "country": 4, 
+        "lng": 48.510381, 
+        "name": "\u041a\u0438\u0440\u043e\u0432\u043e\u0433\u0440\u0430\u0434"
+    }
+},
+{
+    "pk": 109, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 39.307627, 
+        "country": 4, 
+        "lng": 48.572072, 
+        "name": "\u041b\u0443\u0433\u0430\u043d\u0441\u043a"
+    }
+},
+{
+    "pk": 110, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 25.344493, 
+        "country": 4, 
+        "lng": 50.756946, 
+        "name": "\u041b\u0443\u0446\u043a"
+    }
+},
+{
+    "pk": 111, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 24.0312, 
+        "country": 4, 
+        "lng": 49.842164, 
+        "name": "\u041b\u044c\u0432\u043e\u0432"
+    }
+},
+{
+    "pk": 112, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 31.987642, 
+        "country": 4, 
+        "lng": 46.965028, 
+        "name": "\u041d\u0438\u043a\u043e\u043b\u0430\u0435\u0432"
+    }
+},
+{
+    "pk": 113, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 30.739846, 
+        "country": 4, 
+        "lng": 46.469517, 
+        "name": "\u041e\u0434\u0435\u0441\u0441\u0430"
+    }
+},
+{
+    "pk": 114, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 34.55076, 
+        "country": 4, 
+        "lng": 49.589794, 
+        "name": "\u041f\u043e\u043b\u0442\u0430\u0432\u0430"
+    }
+},
+{
+    "pk": 115, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 26.250803, 
+        "country": 4, 
+        "lng": 50.61984, 
+        "name": "\u0420\u043e\u0432\u043d\u043e"
+    }
+},
+{
+    "pk": 116, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 34.097111, 
+        "country": 4, 
+        "lng": 44.952333, 
+        "name": "\u0421\u0438\u043c\u0444\u0435\u0440\u043e\u043f\u043e\u043b\u044c"
+    }
+},
+{
+    "pk": 117, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 34.80289, 
+        "country": 4, 
+        "lng": 50.912036, 
+        "name": "\u0421\u0443\u043c\u044b"
+    }
+},
+{
+    "pk": 118, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 25.594521, 
+        "country": 4, 
+        "lng": 49.553585, 
+        "name": "\u0422\u0435\u0440\u043d\u043e\u043f\u043e\u043b\u044c"
+    }
+},
+{
+    "pk": 119, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 22.288415, 
+        "country": 4, 
+        "lng": 48.625888, 
+        "name": "\u0423\u0436\u0433\u043e\u0440\u043e\u0434"
+    }
+},
+{
+    "pk": 120, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 32.613866, 
+        "country": 4, 
+        "lng": 46.640313, 
+        "name": "\u0425\u0435\u0440\u0441\u043e\u043d"
+    }
+},
+{
+    "pk": 121, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 26.97869, 
+        "country": 4, 
+        "lng": 49.419984, 
+        "name": "\u0425\u043c\u0435\u043b\u044c\u043d\u0438\u0446\u043a\u0438\u0439"
+    }
+},
+{
+    "pk": 122, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 32.05939, 
+        "country": 4, 
+        "lng": 49.444708, 
+        "name": "\u0427\u0435\u0440\u043a\u0430\u0441\u0441\u044b"
+    }
+},
+{
+    "pk": 123, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 31.2984, 
+        "country": 4, 
+        "lng": 51.491108, 
+        "name": "\u0427\u0435\u0440\u043d\u0438\u0433\u043e\u0432"
+    }
+},
+{
+    "pk": 124, 
+    "model": "geo.city", 
+    "fields": {
+        "lat": 25.934865, 
+        "country": 4, 
+        "lng": 48.292276, 
+        "name": "\u0427\u0435\u0440\u043d\u043e\u0432\u0446\u044b"
+    }
+}
+]

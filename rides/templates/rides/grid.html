@@ -1,0 +1,21 @@
+{% load i18n %}
+
+{% for ride in rides %}
+    <li>
+        <a href="{{ ride.get_absolute_url }}">
+            <img src="{{ ride.static_url }}" alt="{{ ride.title }}">
+        </a>
+        <div class="details">
+            <a class="title" href="{{ ride.get_absolute_url }}" title="{{ ride.title }}">{{ ride.title }}</a>
+            {% trans "by" %} <a href="{{ ride.user.get_absolute_url }}">{{ ride.user.get_name }}</a>
+            <ul class="tools clearfix">
+                <li class="members">
+                    <a href="{{ ride.get_absolute_url }}#members" title="{% trans "See members of this ride" %}">{{ ride.members.count }}</a>
+                </li>
+                <li class="comments">
+                    <a href="{{ ride.get_absolute_url }}#comments" title="{% trans "View comments on this ride" %}">{{ ride.comments.count }}</a>
+                </li>
+            </ul>
+        </div>
+    </li>
+{% endfor %}

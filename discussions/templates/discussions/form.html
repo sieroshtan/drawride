@@ -1,0 +1,12 @@
+{% load i18n %}
+
+<form action="{% url 'compose' to_user.username %}" method="post" id="form-compose" class="simple-form">
+    {% csrf_token %}
+    <div class="form-field">
+        {{ form.text }}
+        {% for error in form.text.errors %}
+            <p class="error">{{ error }}</p>
+        {% endfor %}
+    </div>
+    <input type="submit" value="{% trans "Send Message" %}">
+</form>

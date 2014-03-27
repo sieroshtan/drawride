@@ -1,0 +1,19 @@
+{% load i18n %}
+
+{% if follows %}
+    <a class="button unfollow" href="{% url 'unfollow' followee %}">
+        <span>{% trans "Following" %}</span>
+        <span class="hover-text">{% trans "Unfollow" %}</span>
+    </a>
+    <a class="button follow hidden" href="{% url 'follow' followee %}">
+        <span>{% trans "Follow" %}</span>
+    </a>
+{% else %}
+    <a class="button follow" href="{% url 'follow' followee %}">
+        <span>{% trans "Follow" %}</span>
+    </a>
+    <a class="button unfollow hidden" href="{% url 'unfollow' followee %}">
+        <span>{% trans "Following" %}</span>
+        <span class="hover-text">{% trans "Unfollow" %}</span>
+    </a>
+{% endif %}

@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% load i18n %}
+
+{% block title %}{{ ride.title }} - {% trans "Go mode" %}{% endblock %}
+
+{% block content %}
+<div id="map"></div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        ymaps.ready(function () {
+            initMap();
+            addPolyline('{{ ride.points }}', false);
+
+
+            var pin = new ymaps.Placemark([]);
+            map.geoObjects.add(pin);
+
+
+            setInterval(function() {
+                navigator.geolocation.getCurrentPosition(getLocation);
+            }, 5000)
+
+            function getLocation(position) {
+                pin.geometry.setCoordinates([position.coords.latitude, position.coords.longitude]);
+            }
+        });
+    </script>
+{% endblock %}

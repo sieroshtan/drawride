@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% load i18n %}
+
+{% block title %}{{ city.country.name }}, {{ city.name }}{% endblock %}
+
+{% block content %}
+    <div class="full">
+        <h1>{{ city.country.name }}, {{ city.name }}</h1>
+    </div>
+    <div class="tabs">
+        <ul>
+            <li class="current"><a href="{% url 'city' city.id %}">{% trans "Rides" %}</a></li>
+            <li><a href="{% url 'city_people' city.id %}">{% trans "People" %}</a></li>
+        </ul>
+    </div>
+    {% if city.rides.all %}
+        {% with city.rides.all as rides %}
+        <ul class="rides-grid clearfix">
+            {% include 'rides/grid.html' %}
+        </ul>
+        {% endwith %}
+    {% else %}
+        <div class="null-message">
+            <h2>{% trans "None" %}</h2>
+        </div>
+    {% endif %}
+{% endblock %}

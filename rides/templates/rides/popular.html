@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Rides" %}{% endblock %}
+
+{% block content %}
+    <div class="tabs">
+        <ul>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'home' %}">{% trans "Following" %}</a></li>
+                <li class="current"><a href="{% url 'popular' %}">{% trans "Popular" %}</a></li>
+            {% else %}
+                <li class="current"><a href="{% url 'home' %}">{% trans "Popular" %}</a></li>
+            {% endif %}
+            <li><a href="{% url 'upcoming' %}">{% trans "Upcoming" %}</a></li>
+        </ul>
+    </div>
+    {% if rides %}
+        <ul class="rides-grid clearfix">
+            {% include 'rides/grid.html' %}
+        </ul>
+    {% else %}
+        <div class="null-message">
+            <h2>{% trans "None" %}</h2>
+        </div>
+    {% endif %}
+{% endblock %}

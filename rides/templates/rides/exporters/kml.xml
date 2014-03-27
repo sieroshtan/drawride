@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+    <Document>
+        <Style id="street">
+            <LineStyle>
+                <color>ffffffff</color>
+                <width>10</width>
+            </LineStyle>
+        </Style>
+        <Placemark>
+            <name>{{ ride.title }}</name>
+            <description>{{ ride.description }}</description>
+            <styleUrl>#street</styleUrl>
+            <LineString>
+                <coordinates>{% for c in coords %}
+                    {{ c.1 }},{{ c.0 }}{% endfor %}
+                </coordinates>
+            </LineString>
+        </Placemark>
+    </Document>
+</kml>

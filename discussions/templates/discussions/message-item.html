@@ -1,0 +1,12 @@
+<li class="clearfix" onclick="window.location='{% url 'discussion' contact.username %}'">
+    <img class="photo" src="{{ contact.get_photo }}" alt="{{ contact.get_name }}">
+    <div class="rightside">
+        <div class="message-meta">
+            <a href="{{ contact.get_absolute_url }}" class="name">{{ contact.get_name }}</a>
+            <span class="posted">{{ message.latest_message.date_created }}</span>
+        </div>
+        <div class="comment-body">
+            {{ message.latest_message.text }}
+        </div>
+    </div>
+</li>

@@ -1,0 +1,1018 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    border: 0;
+    outline: 0;
+    background: transparent
+}
+
+ol, ul {
+    list-style: none
+}
+
+blockquote, q {
+    quotes: none
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+body {
+    background: #fff;
+    color: #333;
+    font-size: 62.5%;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+a:link, a:visited {
+    color: #4083a9;
+    outline: none;
+    text-decoration: none
+}
+
+a:hover {
+    text-decoration: none;
+    color: #205f82
+}
+
+button[type="submit"],
+input[type="submit"] {
+    cursor: pointer
+}
+
+nav {
+    position: relative;
+    z-index: 999;
+    height: 50px;
+    background: #313131;
+}
+
+nav .wrapper,
+footer .wrapper {
+    width: 1180px;
+    margin: 0 auto;
+}
+
+nav .main {
+    float: left;
+    display: block;
+}
+
+nav .main li {
+    display: inline-block;
+    height: 100%;
+    line-height: 50px;
+    position: relative;
+}
+
+nav .main li a {
+    display: block;
+    height: 100%;
+    padding: 0 15px;
+    color: #9c9c9c;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    font-weight: bold;
+    font-size: 1.6em;
+}
+
+nav .main ul {
+    display: none;
+    position: absolute;
+    background: #3c3c3c;
+    min-width: 100%;
+}
+
+nav .main li:hover {
+    background: #3c3c3c;
+}
+
+nav .main li:hover > a {
+    color: #fff;
+}
+
+nav .main li:hover ul {
+    display: block;
+}
+
+nav .main ul li {
+    height: 40px;
+    line-height: 40px;
+    display: block;
+}
+
+nav .main ul li a {
+    padding: 0 11px 0 15px;
+    height: 100%;
+}
+
+nav .main ul li a:hover {
+    background: #474747;
+    color: #fff;
+}
+
+nav .logo {
+    display: block;
+    width: 148px;
+    height: 20px;
+    background: transparent url('../img/logo.png') center center no-repeat;
+    float: left;
+    margin: 15px 25px 0 0;
+}
+
+nav .logo:hover {
+    opacity: .8;
+}
+
+nav .search {
+    float: left;
+}
+
+nav input#query {
+    margin: 13px 0 0 10px;
+    width: 200px;
+    height: 24px;
+    border: none;
+    background: #fff url('../img/search.png') no-repeat left 5px center;
+    padding: 0 0 0 22px;
+    font-weight: 400;
+}
+
+nav .right {
+    float: right;
+}
+
+#wrapper {
+    width: 1200px;
+    margin: 20px auto;
+    font-size: 1.3em;
+    position: relative;
+}
+
+.centered {
+    width: 360px;
+    margin: 0 auto;
+}
+
+/* forms */
+
+.form-inline {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.1em;
+    color: #4a5b6d;
+}
+
+.form-field {
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"],
+textarea,
+select {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    display: inline-block;
+    padding: 7px;
+    font-size: 1.2em;
+    margin: 0 0 5px 0;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 344px;
+    border: solid 1px #d6d6d6;
+    border-radius: 2px;
+}
+
+a.button,
+input[type="submit"] {
+    display: inline-block;
+    background: #f6724c;
+    border: none;
+    color: #FFF;
+    margin: 0;
+    padding: 6px 12px;
+    border-radius: 3px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.1em;
+}
+
+a.button:hover,
+input[type="submit"]:hover {
+    background: #F45647;
+}
+
+.help-text,
+.error {
+    display: block;
+    margin-bottom: 5px;
+    color: #999;
+}
+
+.error {
+    color: #f75342;
+}
+
+.simple-form .form-field {
+    margin-bottom: 7px;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.6em;
+}
+
+span.silver {
+    color: grey;
+}
+
+div.full {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+a.button.silver {
+    background: #9a9b9a;
+}
+
+a.button.silver:hover {
+    background: #898a89;
+}
+
+a.unfollow,
+a.follow:hover {
+    background: #8aba56;
+}
+
+a.unfollow:hover {
+    background: #cf3c41;
+}
+
+a.unfollow:hover span {
+    display: none;
+}
+
+a.unfollow:hover .hover-text {
+    display: block;
+}
+
+span.hover-text {
+    display: none;
+}
+
+a.hidden {
+    display: none;
+}
+
+/* tabs */
+
+a {
+    text-decoration: none;
+}
+
+.tabs {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.tabs ul {
+    display: inline-block;
+}
+
+.tabs ul li {
+    float: left;
+    display: inline-block;
+}
+
+.tabs ul li a {
+    display: block;
+    padding: 5px 15px;
+    font-size: 1.2em;
+    color: #848484;
+    border: 1px solid #848484;
+    border-right: none;
+}
+
+.tabs ul li:hover a {
+    background: #E9E9E9;
+}
+
+.tabs ul li:last-child a {
+    border-right: 1px solid #848484;
+    border-radius: 0 6px 6px 0;
+}
+
+.tabs ul li:first-child a {
+    border-radius: 6px 0 0 6px;
+}
+
+.tabs ul li.current a {
+    background: #848484;
+    color: #fff;
+}
+
+img.photo {
+    float: left;
+}
+
+/* notify */
+
+#notices li {
+    font-size: 1.4em;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 50px;
+    background: #eec645;
+    color: #927a2d;
+    position: relative;
+}
+
+#notices li {
+    color: #fff;
+}
+
+#notices li.success {
+    background: #68aee9;
+}
+
+#notices li.error {
+    background: #d7564b;
+}
+
+/* footer */
+
+footer {
+    width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 150px;
+    padding: 20px;
+    font-size: 1.2em;
+    border-top: 1px solid #ddd;
+}
+
+footer ul li {
+    display: inline;
+}
+
+footer ul li.last {
+    background: none;
+    float: right;
+    padding-right: 7px;
+}
+
+footer ul li.bullet {
+    padding: 0 7px;
+    color: #777;
+}
+
+footer a {
+    font-weight: bold;
+    color: #71767a !important;
+}
+
+footer a:hover {
+    color: #555 !important;
+}
+
+footer ul li:first-child {
+    background: none;
+    padding-left: 7px;
+}
+
+#col-left {
+    float: left;
+    width: 820px;
+}
+
+#col-right {
+    float: right;
+    width: 360px;
+}
+
+/* ride page */
+
+.ride-title-section {
+    position: relative;
+}
+
+.ride-title-section h1 {
+    margin-left: 85px;
+    line-height: 36px;
+}
+
+.ride-title-section a img.photo {
+    width: 64px;
+    height: 64px;
+}
+
+.ride-title-section .ride-byline {
+    margin-left: 85px;
+    font-size: 1.1em;
+    line-height: 28px;
+    color: #999;
+}
+
+/* maps */
+
+#map {
+    width: 100%;
+    height: 600px;
+}
+
+/* maps grid */
+
+ul.rides-grid > li {
+    float: left;
+    margin: 0 20px 20px 0;
+    width: 285px;
+}
+
+ul.rides-grid > li img {
+    display: block;
+    width: 285px;
+    height: 250px;
+}
+
+ul.rides-grid > li:nth-child(4n+4) {
+    margin-right: 0;
+}
+
+.details {
+    background: #ebebeb;
+    padding: 9px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.details .title {
+    display: block;
+    font-weight: bold;
+    font-size: 1.3em;
+    color: #777;
+    margin-bottom: 3px;
+}
+
+ul.tools {
+    margin-top: 9px;
+}
+
+ul.tools li {
+    display: inline;
+    margin-right: 10px;
+}
+
+ul.tools li a {
+    padding-left: 17px;
+    color: #aaa;
+}
+
+ul.tools li.comments a {
+    background: url('../img/comments.png') no-repeat 0 center;
+}
+
+ul.tools li.members a {
+    background: url('../img/members.png') no-repeat 0 center;
+}
+
+
+/* user page */
+
+.userbar {
+    position: relative;
+    max-width: 700px;
+}
+
+h1.name a {
+    color: #444;
+}
+
+.userbar .photo {
+    width: 94px;
+    height: 94px;
+    margin-right: 15px;
+}
+
+.userbar ul.user-details {
+    margin: 2px 0;
+}
+
+.userbar .user-details li {
+    display: inline;
+    line-height: 1.5em;
+    font-size: 1.2em;
+}
+
+/* user details */
+
+ul.profile-details {
+    margin-top: 4px;
+}
+
+ul.profile-details li {
+    display: inline;
+    font-size: 1.1em;
+    color: #777777;
+}
+
+ul.profile-details li a {
+    color: #999;
+}
+
+a.locality {
+    padding: 3px 0 3px 16px;
+    color: #999999;
+    background: url('../img/icon-geo.png') no-repeat 0 50%;
+}
+
+/* profile tabs */
+
+.profile-actions {
+    float: right;
+}
+
+ul.profile-tabs li {
+    float: left;
+    margin: 0 10px 0 0;
+    padding: 0 10px 0 0;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1;
+    color: #444;
+    border-right: 1px solid #ddd;
+}
+
+ul.profile-tabs li:last-child {
+    border-right: none;
+    margin-right: 0;
+}
+
+ul.profile-tabs li a {
+    display: block;
+    float: left;
+    color: #444;
+}
+
+ul.profile-tabs li a:hover {
+    color: #205f82;
+}
+
+ul.profile-tabs li a {
+    text-align: center;
+}
+
+ul.profile-tabs li span.meta {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
+}
+
+.profile-options {
+    margin-top: 10px;
+}
+
+.profile-options ul li {
+    float: left;
+    margin-right: 5px;
+}
+
+/* ride info */
+
+.block {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.block h4 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    padding: 7px 10px;
+    line-height: 20px;
+    background: #d7dadd;
+    color: #9ea3a6;
+    border-left: 7px solid #c5cad0;
+}
+
+.block .ride-info ul li {
+    border-bottom: 1px dotted #CCC;
+    padding: 6px 0;
+    text-align: right;
+}
+
+.block .ride-info ul li:last-child {
+    border: none;
+}
+
+.block .ride-info ul li span {
+    float: left;
+}
+
+.description p {
+    margin-bottom: 10px;
+}
+
+#members-list li {
+    float: left;
+    margin: 0 6px 6px 0;
+}
+
+#members-list li:nth-child(6n+6) {
+    margin-right: 0;
+}
+
+#members-list li img {
+    width: 55px;
+}
+
+/* ride-buttons */
+
+a.ride-action-btn {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    display: inline-block;
+    width: 48%;
+    padding: 9px 13px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+}
+
+a.ride-action-btn.join {
+    background: #1ebba6;
+    float: left;
+}
+
+a.ride-action-btn.join:hover,
+a.ride-action-btn.join.leave {
+    background: #1ec7b2;
+}
+
+a.ride-action-btn.join.leave:hover {
+    background: #1ebba6;
+}
+
+a.ride-action-btn.favorite {
+    float: right;
+    background: #eb7600;
+}
+
+a.ride-action-btn.favorite:hover,
+a.ride-action-btn.favorite.leave {
+    background: #ff7b00;
+}
+
+a.ride-action-btn.join.unfave:hover {
+    background: #eb7600;
+}
+
+a.ride-action-btn.hidden {
+    display: none;
+}
+
+/* ride options */
+
+a.ride-option-btn {
+    background: #b7b7ae;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    display: inline-block;
+    width: 48%;
+    padding: 9px 13px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+}
+
+a.ride-option-btn.export {
+    float: left;
+}
+
+a.ride-option-btn.go {
+    float: right;
+}
+
+/* social-button */
+
+a.social-button {
+    float: left;
+    width: 90px;
+    padding: 7px 10px;
+    color: #fff;
+    margin-left: 15px;
+    border-radius: 3px;
+    text-align: center;
+    font-weight: bold;
+}
+
+a.social-button.twitter {
+    background: #00aced;
+    margin-left: 0;
+}
+
+a.social-button.twitter:hover {
+    background: #12beff;
+}
+
+a.social-button.facebook {
+    background: #3b5998;
+}
+
+a.social-button.facebook:hover {
+    background: #4568b2;
+}
+
+a.social-button.vkontakte {
+    background: #36638e;
+}
+
+a.social-button.vkontakte:hover {
+    background: #396e9c;
+}
+
+/* list buttons */
+
+ul.list-buttons li {
+    margin-bottom: 10px;
+}
+
+ul.list-buttons li .button {
+    display: block;
+    padding: 10px;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+ul.list-buttons li:last-child {
+    margin-bottom: 0;
+}
+
+/* comments */
+
+#comments-section {
+    margin-top: 20px;
+    width: 820px;
+    float: left;
+}
+
+ul.comments li {
+    position: relative;
+    float: none;
+    width: auto;
+    margin: 0;
+    padding: 5px 0;
+    line-height: 1.4em;
+    color: #555;
+    border-bottom: 1px dotted #bbb;
+}
+
+ul.comments li img {
+    float: left;
+    width: 50px;
+}
+
+ul.comments.form {
+    margin-top: 20px;
+}
+
+ul.comments.form li {
+    padding: 0;
+}
+
+ul.comments.form li textarea {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+ul.comments li .permalink {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 0;
+}
+
+ul.comments li:hover .permalink {
+    display: block;
+}
+
+ul.comments li:last-child {
+    border-bottom: none;
+}
+
+ul.comments li .rightside {
+    margin-left: 60px;
+}
+
+ul.comments li .rightside .comment-meta {
+    color: #999;
+    margin-bottom: 2px;
+}
+
+ul.comments li .rightside .comment-meta a {
+    line-height: 1em;
+}
+
+ul.comments li .rightside .comment-meta a.name {
+    color: #000;
+    font-weight: bold;
+}
+
+ul.comments li .rightside .comment-meta a.name:hover {
+    color: #205f82;
+}
+
+ul.comments li .rightside .comment-meta span.posted {
+    font-size: .85em;
+    color: #777;
+}
+
+/* messages */
+
+.messages-section {
+    width: 600px;
+}
+
+.messages-section .form-field textarea {
+    margin-bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+ul.messages {
+    margin-bottom: 30px;
+}
+
+ul.messages li {
+    position: relative;
+    float: none;
+    width: auto;
+    margin: 0;
+    padding: 5px;
+    line-height: 1.4em;
+    color: #555;
+}
+
+ul.messages li:hover {
+    background: #f1f1f1;
+    cursor: pointer;
+}
+
+ul.messages li img {
+    float: left;
+    width: 40px;
+}
+
+ul.messages li .rightside {
+    margin-left: 50px;
+}
+
+ul.messages li .rightside .message-meta {
+    color: #999;
+    margin-bottom: 2px;
+}
+
+ul.messages li .rightside .message-meta .posted {
+    float: right;
+    font-size: 0.9em;
+}
+
+/* null messages */
+
+.null-message {
+    margin: 50px;
+    text-align: center;
+    color: #aaa;
+}
+
+.null-message h2 {
+    font-size: 2em;
+}
+
+.grid-list {
+    margin: 5px 0 15px;
+}
+
+.grid-list li {
+    float: left;
+    width: 20%;
+    color: #777;
+    padding: 4px 0;
+    font-size: 1.1em;
+}
+
+.country {
+    float: left;
+    width: 25%;
+}
+
+.country ul li {
+    padding: 3px 0;
+}
+
+/* tables */
+
+table.data {
+    width: 100%;
+}
+
+table.data th,
+table.data td {
+    padding: 5px 0;
+    text-align: left;
+    vertical-align: middle;
+}
+
+table.data td .photo {
+    width: 44px;
+    height: 44px;
+    margin-right: 15px;
+}
+
+table.data td a {
+    line-height: 44px;
+}
+
+/* overlay */
+
+#overlay {
+    display: none;
+    background: rgba(0, 0, 0, .75);
+    font-size: 1.3em;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+    z-index: 9999;
+}
+
+#overlay #overlay-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 3;
+}
+
+#overlay #lightbox {
+    background: #F4F4F4;
+    outline: 5px solid rgba(255, 255, 255, .2);
+    padding: 20px;
+    position: fixed;
+    left: 50%;
+    margin-left: -200px;
+    z-index: 4;
+    width: 360px;
+    top: 200px;
+}
+
+.lightbox-title {
+    color: #8E8F8D;
+    text-align: center;
+}
+
+/* self-clear floats */
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { float: left; clear:left; padding: 0 0 0 5px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 45%; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+.ui-timepicker-rtl{ direction: rtl; }
+.ui-timepicker-rtl dl { text-align: right; padding: 0 5px 0 0; }
+.ui-timepicker-rtl dl dt{ float: right; clear: right; }
+.ui-timepicker-rtl dl dd { margin: 0 45% 10px 10px; }

@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% load i18n %}
+{% load discussions_tags %}
+
+{% block title %}{% trans "Dialogs" %}{% endblock %}
+
+{% block content %}
+    <div class="full">
+        <h1>{% trans "My Messages" %}</h1>
+    </div>
+    {% if discussions %}
+        <div class="messages-section">
+            <ul class="messages">
+            {% for message in discussions %}
+                {% if message.to_user == user %}
+                    {% with message.from_user as contact %}
+                        {% include 'discussions/message-item.html' %}
+                    {% endwith %}
+                {% else %}
+                    {% with message.to_user as contact %}
+                        {% include 'discussions/message-item.html' %}
+                    {% endwith %}
+                {% endif %}
+            {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endblock %}

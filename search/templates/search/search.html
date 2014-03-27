@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Rides" %}{% endblock %}
+
+{% block search_q %}{{ search_q }}{% endblock %}
+
+{% block content %}
+    <div class="full">
+        <h1>{% trans "Search" %} / {{ search_q }}</h1>
+    </div>
+    {% if rides %}
+        <ul class="rides-grid clearfix">
+            {% include 'rides/grid.html' %}
+        </ul>
+    {% else %}
+        <div class="null-message">
+            <h2>{% trans "None" %}</h2>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,7 @@
+{% for member in members %}
+    <li>
+        <a href="{{ member.get_absolute_url }}" title="{{ member.username }}">
+            <img class="photo" src="{{ member.get_photo }}">
+        </a>
+    </li>
+{% endfor %}
