@@ -121,6 +121,10 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('.close').on('click', function() {
+        $('#notices').slideUp('fast');
+    });
 });
 
 var map = null;
