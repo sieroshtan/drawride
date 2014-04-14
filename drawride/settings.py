@@ -121,7 +121,7 @@ FORMAT_MODULE_PATH = 'formats'
 # Email settings
 EMAIL_HOST = '127.0.0.1'
 EMAIL_PORT = 25
-DEFAULT_FROM_EMAIL = 'no-reply@drawride.com'
+DEFAULT_FROM_EMAIL = 'info@drawride.com'
 
 # Local settings
 try:

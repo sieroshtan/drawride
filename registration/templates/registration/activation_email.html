@@ -1,0 +1,10 @@
+{% load i18n %}
+{% autoescape off %}
+    {% trans "Hi" %} {{ user.get_name }}
+
+    {% trans "We need to make sure you are human. Please verify your email." %}
+
+    http://drawride.com{% url 'registration_activate' activation_key %}
+
+    {% trans "Thanks!" %}
+{% endautoescape %}

@@ -8,6 +8,10 @@ urlpatterns = patterns('',
 
 
 urlpatterns += patterns('',
+                        url(r'^activate/(?P<activation_key>\w+)/$',
+                            ActivationView.as_view(),
+                            name='registration_activate'),
+
                         url(r'^login/$',
                             'django.contrib.auth.views.login',
                             {'template_name': 'registration/login.html', 'authentication_form': LoginForm},

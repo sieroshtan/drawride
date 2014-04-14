@@ -5,6 +5,8 @@ from django.contrib.auth.forms import AuthenticationForm, SetPasswordForm
 from django.contrib.auth import get_user_model
 
 
+User = get_user_model()
+
 help_text = {'username': _("Username must contain only letters, numbers and underscores"),
              'password': _("Minimum 6 characters"),
              'password2': _("Enter the same password as above, for verification")}
@@ -38,16 +40,16 @@ class RegistrationForm(forms.ModelForm):
     def clean_username(self):
         username = self.cleaned_data['username']
         try:
-            get_user_model().objects.get(username=username)
-        except get_user_model().DoesNotExist:
+            User.objects.get(username=username)
+        except User.DoesNotExist:
             return username
         raise forms.ValidationError(error_mes['duplicate_username'])
 
     def clean_email(self):
         email = self.cleaned_data['email']
         try:
-            get_user_model().objects.get(email=email)
-        except get_user_model().DoesNotExist:
+            User.objects.get(email=email)
+        except User.DoesNotExist:
             return email
         raise forms.ValidationError(error_mes['duplicate_email'])
 
@@ -60,13 +62,13 @@ class RegistrationForm(forms.ModelForm):
             raise forms.ValidationError(error_mes['password_mismatch'])
 
     def save(self, *args, **kwargs):
-        user = super(RegistrationForm, self).save(*args, **kwargs)
-        user.set_password(self.cleaned_data['password'])
-        user.save()
-        return user
+        new_user = User.activation.create_inactive_user(self.cleaned_data['username'],
+                                                        self.cleaned_data['email'],
+                                                        self.cleaned_data['password'])
+        return new_user
 
     class Meta:
-        model = get_user_model()
+        model = User
         fields = ('username', 'email')
 
 

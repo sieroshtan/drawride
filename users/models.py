@@ -10,6 +10,7 @@ from django.contrib.auth.models import UserManager
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from geo.models import City
+from .managers import ActivationManager
 
 
 def get_file_path(user, filename):
@@ -45,11 +46,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
+    activation_key = models.CharField(max_length=40, blank=True, null=True)
+
     USERNAME_FIELD = 'username'
 
     REQUIRED_FIELDS = ('email',)
 
     objects = UserManager()
+    activation = ActivationManager()
 
     def get_name(self):
         return self.name or self.username
