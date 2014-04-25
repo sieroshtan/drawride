@@ -76,7 +76,7 @@
                 <h4>{% trans "Description" %}</h4>
             </div>
             <div class="content description">
-                {{ ride.description|linebreaks }}
+                {{ ride.description|linebreaks|urlize }}
             </div>
         </div>
         {% endif %}
