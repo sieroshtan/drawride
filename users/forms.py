@@ -15,7 +15,7 @@ class SettingsForm(forms.ModelForm):
 
 class PhotoForm(forms.ModelForm):
     photo = forms.ImageField(label=_('Photo'),
-                             help_text=_('JPG, GIF or PNG. Max size of 1MB.'))
+                             help_text=_('JPG, GIF or PNG. Max size of 1 MB.'))
 
     def clean_photo(self):
         photo = self.cleaned_data['photo']

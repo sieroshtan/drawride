@@ -2,12 +2,12 @@
 
 {% load i18n %}
 
-{% block title %}{% trans "Login" %}{% endblock %}
+{% block title %}{% trans "Log In" %}{% endblock %}
 
 {% block content %}
     <div class="centered">
         <div class="full">
-            <h1>{% trans "Login to your account" %}</h1>
+            <h1>{% trans "Log In" %}</h1>
         </div>
         {% if form.non_field_errors %}
             {% for error in form.non_field_errors %}
@@ -32,7 +32,7 @@
                     <p class="error">{{ error }}</p>
                 {% endfor %}
              </div>
-            <input class="button" type="submit" value="{% trans "Login" %}">
+            <input class="button" type="submit" value="{% trans "Log In" %}">
         </form>
     </div>
 {% endblock %}

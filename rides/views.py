@@ -32,7 +32,7 @@ class RideDrawView(AuthRequiredMixin, CreateView):
 
         RideMembers(user=self.request.user, ride=form.instance).save()
 
-        messages.success(self.request, _("Posted"))
+        messages.success(self.request, _("You ride has been added."))
         return super(RideDrawView, self).form_valid(form)
 
 

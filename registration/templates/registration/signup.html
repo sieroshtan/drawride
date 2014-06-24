@@ -2,14 +2,14 @@
 
 {% load i18n %}
 
-{% block title %}{% trans "Register" %}{% endblock %}
+{% block title %}{% trans "Sign Up" %}{% endblock %}
 
 {% block content %}
     <div class="centered">
         <div class="full">
-            <h1>{% trans "Create a Drawride account" %}</h1>
+            <h1>{% trans "Sign Up" %}</h1>
         </div>
-        <form action="{% url 'register' %}" method="post">
+        <form action="{% url 'signup' %}" method="post">
             {% csrf_token %}
             <div class="form-field">
                 {{ form.username.label_tag }}
@@ -41,7 +41,7 @@
                     <p class="error">{{ error }}</p>
                 {% endfor %}
             </div>
-            <input class="button" type="submit" value="{% trans "Register" %}">
+            <input class="button" type="submit" value="{% trans "Sign Up" %}">
         </form>
     </div>
 {% endblock %}

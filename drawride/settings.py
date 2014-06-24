@@ -49,6 +49,7 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -84,6 +85,15 @@ USE_L10N = True
 
 USE_TZ = True
 
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
+
+LANGUAGES = (
+    ('en', 'English'),
+    ('ru', 'Русский'),
+    ('uk', 'Українська'),
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
@@ -119,7 +129,7 @@ MAP_STATIC_URL = 'http://static-maps.yandex.ru/1.x/?key=%s&l=map&size=285,250&pl
 FORMAT_MODULE_PATH = 'formats'
 
 # Email settings
-EMAIL_HOST = '127.0.0.1'
+EMAIL_HOST = 'localhost'
 EMAIL_PORT = 25
 DEFAULT_FROM_EMAIL = 'info@drawride.com'
 

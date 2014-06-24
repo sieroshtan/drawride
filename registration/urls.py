@@ -4,7 +4,7 @@ from .forms import LoginForm
 
 
 urlpatterns = patterns('',
-                       url(r'^register/$', RegisterView.as_view(), name='register'))
+                       url(r'^signup/$', SignUpView.as_view(), name='signup'))
 
 
 urlpatterns += patterns('',

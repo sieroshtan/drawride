@@ -11,14 +11,14 @@ from .forms import RegistrationForm, SetNewPasswordForm
 User = get_user_model()
 
 
-class RegisterView(CreateView):
+class SignUpView(CreateView):
     form_class = RegistrationForm
     success_url = reverse_lazy('home')
-    template_name = 'registration/register.html'
+    template_name = 'registration/signup.html'
 
     def form_valid(self, *args, **kwargs):
         messages.success(self.request, _("You should receive a welcome email from us. Please click the link within to confirm your account."))
-        return super(RegisterView, self).form_valid(*args, **kwargs)
+        return super(SignUpView, self).form_valid(*args, **kwargs)
 
 
 class ActivationView(RedirectView):

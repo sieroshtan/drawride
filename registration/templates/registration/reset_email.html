@@ -1,7 +1,5 @@
-{% load i18n %}{% autoescape off %}
-    {% trans "Hi" %} {{ user.get_name }}
-
-    {% trans "You requested us to reset a password. Click on the link below to enter your new password:" %}
-
-    {{ protocol }}://{{ domain }}{% url 'registration.views.custom_password_reset_confirm' uidb64=uid token=token %}
+{% load i18n %}
+{% autoescape off %}
+    {% url 'registration.views.custom_password_reset_confirm' uidb64=uid token=token as a_url %}
+    {% blocktrans %}Hi!<br><br>You requested us to reset a password. Click on the link below to enter your new password:<br><br><a href="{{ protocol }}://{{ domain }}{{ a_url }}">{{ protocol }}://{{ domain }}{{ a_url }}</a><br><br>Thanks.{% endblocktrans %}
 {% endautoescape %}

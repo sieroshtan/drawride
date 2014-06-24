@@ -134,10 +134,9 @@
             {% comments_form user ride %}
         {% else %}
             {% url 'login' as l_url %}
-            {% url 'register' as r_url %}
-            {% blocktrans %}
-                <h2>Please <a href="{{ r_url }}">join</a> Drawride or <a href="{{ l_url }}">login</a> to post comments.</h2>
-            {% endblocktrans %}
+            <h2>
+                {% blocktrans %}Please <a href="{{ l_url }}">log in</a> to post comments.{% endblocktrans %}
+            </h2>
         {% endif %}
     </div>
 {% endblock %}

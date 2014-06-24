@@ -8,14 +8,12 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 help_text = {'username': _("Username must contain only letters, numbers and underscores"),
-             'password': _("Minimum 6 characters"),
-             'password2': _("Enter the same password as above, for verification")}
+             'password': _("Minimum 6 characters")}
 
 error_mes = {'invalid_username': _("Enter a valid username"),
              'duplicate_username': _("A user with that username already exists"),
              'duplicate_email': _("A user with that email already exists"),
-             'password_mismatch': _("The two password fields didn't match"),
-             'math_answer': _("Your math is incorrect")}
+             'password_mismatch': _("The two password fields didn't match")}
 
 
 class RegistrationForm(forms.ModelForm):
@@ -34,8 +32,7 @@ class RegistrationForm(forms.ModelForm):
                                help_text=help_text['password'])
 
     password2 = forms.CharField(label=_("Password confirmation"),
-                                widget=forms.PasswordInput,
-                                help_text=help_text['password2'])
+                                widget=forms.PasswordInput)
 
     def clean_username(self):
         username = self.cleaned_data['username']

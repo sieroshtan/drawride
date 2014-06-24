@@ -65,7 +65,7 @@
                                 <a href="{% url 'settings' %}">{% trans "Settings" %}</a>
                             </li>
                             <li>
-                                <a href="{% url 'logout' %}">{% trans "Logout" %}</a>
+                                <a href="{% url 'logout' %}">{% trans "Log out" %}</a>
                             </li>
                         </ul>
                     </li>
@@ -73,10 +73,10 @@
             {% else %}
                 <ul class="main">
                     <li>
-                        <a href="{% url 'login' %}">{% trans "Login" %}</a>
+                        <a href="{% url 'login' %}">{% trans "Log in" %}</a>
                     </li>
                     <li>
-                        <a href="{% url 'register' %}">{% trans "Register" %}</a>
+                        <a href="{% url 'signup' %}">{% trans "Sign up" %}</a>
                     </li>
                 </ul>
             {% endif %}
