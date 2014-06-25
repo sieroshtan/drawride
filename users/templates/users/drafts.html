@@ -16,8 +16,8 @@
     {% if user.is_authenticated and user == profile %}
     <div class="sub-tabs">
         <ul>
-            <li class="current"><a href="{{ user.get_absolute_url }}">{% trans "Published" %}</a></li>
-            <li><a href="{% url 'drafts' user.username %}">{% trans "Drafts" %}</a></li>
+            <li><a href="{{ user.get_absolute_url }}">{% trans "Published" %}</a></li>
+            <li class="current"><a href="{% url 'drafts' user.username %}">{% trans "Drafts" %}</a></li>
         </ul>
     </div>
     {% endif %}

@@ -55,6 +55,11 @@ class RideView(DetailView):
     model = Ride
     template_name = 'rides/ride.html'
 
+    def get(self, request, *args, **kwargs):
+        if self.request.user != self.get_object().user and self.get_object().is_hide:
+            raise Http404
+        return super(RideView, self).get(request, *args, **kwargs)
+
     def get_context_data(self, *args, **kwargs):
         context = super(RideView, self).get_context_data(**kwargs)
 
@@ -80,7 +85,7 @@ class RidesView(ListView):
     def get_queryset(self):
         if self.request.user.is_authenticated():
             following = Follow.objects.following(self.request.user)
-            return Ride.objects.filter(user__in=following)
+            return Ride.objects.following(following)
 
         return Ride.objects.popular(self.request.user)
 

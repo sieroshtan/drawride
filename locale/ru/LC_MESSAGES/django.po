@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-23 01:34+0300\n"
+"POT-Creation-Date: 2014-06-25 15:30+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -124,10 +124,10 @@ msgstr "Земля"
 #: geo/templates/geo/city.html:25 geo/templates/geo/people.html:42
 #: rides/templates/rides/popular.html:25 rides/templates/rides/rides.html:25
 #: rides/templates/rides/upcoming.html:25
-#: search/templates/search/search.html:19
+#: search/templates/search/search.html:19 users/templates/users/drafts.html:47
 #: users/templates/users/favorites.html:22
 #: users/templates/users/involved.html:22
-#: users/templates/users/profile.html:39 users/templates/users/users.html:36
+#: users/templates/users/profile.html:47 users/templates/users/users.html:36
 msgid "None"
 msgstr "Пусто"
 
@@ -151,7 +151,8 @@ msgstr "Главная"
 
 #: registration/forms.py:10
 msgid "Username must contain only letters, numbers and underscores"
-msgstr "Логин может содержать только латинские буквы, цифры и знак подчеркивания"
+msgstr ""
+"Логин может содержать только латинские буквы, цифры и знак подчеркивания"
 
 #: registration/forms.py:11 registration/forms.py:82
 msgid "Minimum 6 characters"
@@ -261,7 +262,9 @@ msgstr "Регистрация"
 msgid ""
 "You should receive a welcome email from us. Please click the link within to "
 "confirm your account."
-msgstr "Необходимо подтвердить адрес электронной почты. Для этого перейдите по ссылке из письма об активации аккаунта."
+msgstr ""
+"Необходимо подтвердить адрес электронной почты. Для этого перейдите по "
+"ссылке из письма об активации аккаунта."
 
 #: registration/views.py:30
 msgid "Your email address has been confirmed. Thanks!"
@@ -315,6 +318,10 @@ msgstr "Новая поездка"
 msgid "Post"
 msgstr "Добавить"
 
+#: rides/templates/rides/draw.html:57 rides/templates/rides/edit.html:60
+msgid "Save to drafts"
+msgstr "В черновики"
+
 #: rides/templates/rides/edit.html:5 rides/templates/rides/ride.html:124
 #: rides/views.py:50
 msgid "Edit"
@@ -336,11 +343,13 @@ msgstr "Сохранить"
 msgid "by"
 msgstr "добавил"
 
-#: rides/templates/rides/grid.html:13 users/templates/users/profile.html:27
+#: rides/templates/rides/grid.html:13 users/templates/users/drafts.html:35
+#: users/templates/users/profile.html:35
 msgid "See members of this ride"
 msgstr "Участники поездки"
 
-#: rides/templates/rides/grid.html:16 users/templates/users/profile.html:30
+#: rides/templates/rides/grid.html:16 users/templates/users/drafts.html:38
+#: users/templates/users/profile.html:38
 msgid "View comments on this ride"
 msgstr "Просмотреть комментарии"
 
@@ -507,23 +516,38 @@ msgstr "Мужской"
 msgid "Female"
 msgstr "Женский"
 
+#: users/templates/users/drafts.html:11
 #: users/templates/users/favorites.html:11
 #: users/templates/users/involved.html:11
 #: users/templates/users/profile.html:11
 msgid "Own Rides"
 msgstr "Мои поездки"
 
+#: users/templates/users/drafts.html:12
 #: users/templates/users/favorites.html:12
 #: users/templates/users/involved.html:12
 #: users/templates/users/profile.html:12
 msgid "Involved"
 msgstr "Участник"
 
+#: users/templates/users/drafts.html:13
 #: users/templates/users/favorites.html:13
 #: users/templates/users/involved.html:13
 #: users/templates/users/profile.html:13
 msgid "Favorites"
 msgstr "Избранное"
+
+#: users/templates/users/drafts.html:19 users/templates/users/profile.html:19
+msgid "Published"
+msgstr "Опубликованные"
+
+#: users/templates/users/drafts.html:20 users/templates/users/profile.html:20
+msgid "Drafts"
+msgstr "Черновики"
+
+#: users/templates/users/drafts.html:57 users/templates/users/profile.html:57
+msgid "Send a Message"
+msgstr "Отправить сообщение"
 
 #: users/templates/users/password.html:10 users/templates/users/photo.html:10
 #: users/templates/users/settings.html:10
@@ -542,10 +566,6 @@ msgstr "Сохранить изменения"
 msgid "Delete"
 msgstr "Удалить"
 
-#: users/templates/users/profile.html:49
-msgid "Send a Message"
-msgstr "Отправить сообщение"
-
 #: users/templates/users/settings.html:5
 msgid "Edit Profile"
 msgstr "Настройки профиля"
@@ -554,15 +574,15 @@ msgstr "Настройки профиля"
 msgid "Compose message"
 msgstr "Отправить сообщение"
 
-#: users/views.py:71
+#: users/views.py:83
 msgid "Profile information has been changed."
 msgstr "Изменения сохранены."
 
-#: users/views.py:86 users/views.py:108
+#: users/views.py:98 users/views.py:120
 msgid "Your settings have been saved!"
 msgstr "Настройки были сохранены!"
 
-#: users/views.py:103
+#: users/views.py:115
 msgid "Your photo have been removed!"
 msgstr "Фотография удалена!"
 

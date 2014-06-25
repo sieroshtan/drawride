@@ -32,6 +32,18 @@ class ProfileView(DetailView):
         return context
 
 
+class ProfileDraftsView(DetailView):
+    model = User
+    slug_field = 'username'
+    context_object_name = 'profile'
+    template_name = 'users/drafts.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ProfileDraftsView, self).get_context_data(**kwargs)
+        context['rides'] = Ride.objects.rides(is_hide=True).filter(user=self.get_object())
+        return context
+
+
 class ProfileInvolvedView(DetailView):
     model = User
     slug_field = 'username'

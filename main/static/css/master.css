@@ -328,6 +328,34 @@ a {
     color: #fff;
 }
 
+/* sub-tabs */
+
+.sub-tabs {
+    margin-bottom: 10px;
+}
+
+.sub-tabs ul {
+    display: inline-block;
+}
+
+.sub-tabs ul li {
+    float: left;
+    display: inline-block;
+}
+
+.sub-tabs ul li a {
+    display: block;
+    padding: 2px 5px;
+    color: #848484;
+}
+
+.sub-tabs ul li.current a {
+    background: #848484;
+    color: #fff;
+}
+
+/* images */
+
 img.photo {
     float: left;
 }
