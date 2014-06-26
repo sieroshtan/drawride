@@ -1,6 +1,6 @@
 from django.views.generic import ListView, DetailView, UpdateView, FormView
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.decorators import login_required
@@ -14,61 +14,64 @@ from views.base import AuthRequiredMixin
 User = get_user_model()
 
 
+class ProfileBaseMixin(object):
+    user = None
+
+    def get_user(self):
+        if self.user is None:
+            self.user = get_object_or_404(User, username=self.kwargs['slug'])
+        return self.user
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ProfileBaseMixin, self).get_context_data(**kwargs)
+        context['profile'] = self.get_user()
+        return context
+
+
 class UsersView(ListView):
     model = User
     context_object_name = 'users'
     template_name = 'users/users.html'
 
 
-class ProfileView(DetailView):
-    model = User
-    slug_field = 'username'
-    context_object_name = 'profile'
+class ProfileView(ProfileBaseMixin, ListView):
+    model = Ride
+    context_object_name = 'rides'
+    paginated_by = 8
     template_name = 'users/profile.html'
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(ProfileView, self).get_context_data(**kwargs)
-        context['rides'] = Ride.objects.rides().filter(user=self.get_object())
-        return context
+    def get_queryset(self):
+        return self.model.objects.rides().filter(user=self.get_user())
 
 
-class ProfileDraftsView(DetailView):
-    model = User
-    slug_field = 'username'
-    context_object_name = 'profile'
+class ProfileDraftsView(ProfileBaseMixin, ListView):
+    model = Ride
+    context_object_name = 'rides'
+    paginated_by = 8
     template_name = 'users/drafts.html'
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(ProfileDraftsView, self).get_context_data(**kwargs)
-        context['rides'] = Ride.objects.rides(is_hide=True).filter(user=self.get_object())
-        return context
+    def get_queryset(self):
+        return self.model.objects.rides(is_hide=True).filter(user=self.get_user())
 
 
-class ProfileInvolvedView(DetailView):
-    model = User
-    slug_field = 'username'
-    context_object_name = 'profile'
+class ProfileInvolvedView(ProfileBaseMixin, ListView):
+    model = Ride
+    context_object_name = 'rides'
+    paginated_by = 8
     template_name = 'users/involved.html'
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(ProfileInvolvedView, self).get_context_data(**kwargs)
-        context['rides'] = Ride.objects.rides().filter(members__id=self.get_object().id)
-        return context
+    def get_queryset(self):
+        return self.model.objects.rides().filter(members__id=self.get_user().id)
 
 
-class ProfileFavoritesView(DetailView):
-    model = User
-    slug_field = 'username'
-    context_object_name = 'profile'
+class ProfileFavoritesView(ProfileBaseMixin, ListView):
+    model = Ride
+    context_object_name = 'rides'
+    paginated_by = 8
     template_name = 'users/favorites.html'
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(ProfileFavoritesView, self).get_context_data(**kwargs)
-
-        rides = self.get_object().favorites.all()
-
-        context['rides'] = rides
-        return context
+    def get_queryset(self):
+        return self.model.objects.rides().filter(favorites__id=self.get_user().id)
 
 
 class SettingsView(AuthRequiredMixin, UpdateView):
