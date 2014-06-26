@@ -71,6 +71,16 @@ class RideView(DetailView):
         return context
 
 
+class RideMoveView(DetailView):
+    model = Ride
+    template_name = 'rides/move.html'
+
+    def get(self, request, *args, **kwargs):
+        if self.request.user != self.get_object().user and self.get_object().is_hide:
+            raise Http404
+        return super(RideMoveView, self).get(request, *args, **kwargs)
+
+
 class RideDeleteView(DeleteView):
     model = Ride
     success_url = reverse_lazy('rides')
