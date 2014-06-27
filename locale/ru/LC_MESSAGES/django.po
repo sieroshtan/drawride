@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-25 15:30+0300\n"
+"POT-Creation-Date: 2014-06-27 12:51+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -206,13 +206,18 @@ msgstr ""
 
 #: registration/templates/registration/login.html:5
 #: registration/templates/registration/login.html:10
-#: registration/templates/registration/login.html:35
+msgctxt "log in text"
 msgid "Log In"
 msgstr "Вход"
 
 #: registration/templates/registration/login.html:28
 msgid "Forgot it?"
 msgstr "Забыли пароль?"
+
+#: registration/templates/registration/login.html:35
+msgctxt "log in button"
+msgid "Log In"
+msgstr "Войти"
 
 #: registration/templates/registration/recover.html:5
 #: registration/templates/registration/recover.html:10
@@ -254,9 +259,14 @@ msgstr ""
 
 #: registration/templates/registration/signup.html:5
 #: registration/templates/registration/signup.html:10
-#: registration/templates/registration/signup.html:44
+msgctxt "sign up text"
 msgid "Sign Up"
 msgstr "Регистрация"
+
+#: registration/templates/registration/signup.html:44
+msgctxt "sign up button"
+msgid "Sign Up"
+msgstr "Зарегистрироваться"
 
 #: registration/views.py:20
 msgid ""
@@ -574,15 +584,15 @@ msgstr "Настройки профиля"
 msgid "Compose message"
 msgstr "Отправить сообщение"
 
-#: users/views.py:83
+#: users/views.py:86
 msgid "Profile information has been changed."
 msgstr "Изменения сохранены."
 
-#: users/views.py:98 users/views.py:120
+#: users/views.py:101 users/views.py:123
 msgid "Your settings have been saved!"
 msgstr "Настройки были сохранены!"
 
-#: users/views.py:115
+#: users/views.py:118
 msgid "Your photo have been removed!"
 msgstr "Фотография удалена!"
 

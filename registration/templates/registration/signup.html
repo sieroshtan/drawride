@@ -2,12 +2,12 @@
 
 {% load i18n %}
 
-{% block title %}{% trans "Sign Up" %}{% endblock %}
+{% block title %}{% trans "Sign Up" context "sign up text" %}{% endblock %}
 
 {% block content %}
     <div class="centered">
         <div class="full">
-            <h1>{% trans "Sign Up" %}</h1>
+            <h1>{% trans "Sign Up" context "sign up text" %}</h1>
         </div>
         <form action="{% url 'signup' %}" method="post">
             {% csrf_token %}
@@ -41,7 +41,7 @@
                     <p class="error">{{ error }}</p>
                 {% endfor %}
             </div>
-            <input class="button" type="submit" value="{% trans "Sign Up" %}">
+            <input class="button" type="submit" value="{% trans "Sign Up" context "sign up button" %}">
         </form>
     </div>
 {% endblock %}
