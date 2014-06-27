@@ -14,9 +14,7 @@
         </ul>
     </div>
     {% if rides %}
-        <ul class="rides-grid clearfix">
-            {% include 'rides/grid.html' %}
-        </ul>
+        {% include 'rides/grid.html' %}
     {% else %}
         <div class="null-message">
             <h2>{% trans "None" %}</h2>

@@ -42,6 +42,16 @@
                 </li>
             {% endfor %}
         </ul>
+        {% if is_paginated %}
+            <div class="pagination">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}">← {% trans "Previous" %}</a>
+                {% endif %}
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">{% trans "Next" %} →</a>
+                {% endif %}
+            </div>
+        {% endif %}
     {% else %}
         <div class="null-message">
             <h2>{% trans "None" %}</h2>

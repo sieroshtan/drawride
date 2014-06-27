@@ -981,6 +981,28 @@ ul.messages li .rightside .message-meta .posted {
     padding: 3px 0;
 }
 
+/* pagination */
+
+.pagination {
+    padding-top: 15px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.pagination a {
+    padding: 6px 11px;
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: bold;
+    background: #f6724c;
+    border-radius: 6px;
+}
+
+.pagination a:hover {
+    background: #F45647;
+    color: #fff;
+}
+
 /* tables */
 
 table.data {

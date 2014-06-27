@@ -1,5 +1,6 @@
 {% load i18n %}
 
+<ul class="rides-grid clearfix">
 {% for ride in rides %}
     <li>
         <a href="{{ ride.get_absolute_url }}">
@@ -19,3 +20,14 @@
         </div>
     </li>
 {% endfor %}
+</ul>
+{% if is_paginated %}
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">← {% trans "Previous" %}</a>
+        {% endif %}
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">{% trans "Next" %} →</a>
+        {% endif %}
+    </div>
+{% endif %}

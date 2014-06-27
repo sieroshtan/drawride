@@ -37,7 +37,7 @@ class UsersView(ListView):
 class ProfileView(ProfileBaseMixin, ListView):
     model = Ride
     context_object_name = 'rides'
-    paginated_by = 8
+    paginate_by = 8
     template_name = 'users/profile.html'
 
     def get_queryset(self):
@@ -47,7 +47,7 @@ class ProfileView(ProfileBaseMixin, ListView):
 class ProfileDraftsView(ProfileBaseMixin, ListView):
     model = Ride
     context_object_name = 'rides'
-    paginated_by = 8
+    paginate_by = 8
     template_name = 'users/drafts.html'
 
     def get_queryset(self):
@@ -57,7 +57,7 @@ class ProfileDraftsView(ProfileBaseMixin, ListView):
 class ProfileInvolvedView(ProfileBaseMixin, ListView):
     model = Ride
     context_object_name = 'rides'
-    paginated_by = 8
+    paginate_by = 8
     template_name = 'users/involved.html'
 
     def get_queryset(self):
@@ -67,7 +67,7 @@ class ProfileInvolvedView(ProfileBaseMixin, ListView):
 class ProfileFavoritesView(ProfileBaseMixin, ListView):
     model = Ride
     context_object_name = 'rides'
-    paginated_by = 8
+    paginate_by = 8
     template_name = 'users/favorites.html'
 
     def get_queryset(self):
