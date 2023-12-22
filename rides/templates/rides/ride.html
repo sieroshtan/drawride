@@ -112,7 +112,7 @@
             </div>
             <div class="content">
                 <a class="ride-option-btn show-lightbox export" href="javascript:void(0)">{% trans "Export route" %}</a>
-{#                <a class="ride-option-btn go" href="{% url 'full_map' ride.id %}">{% trans "Go!" %}</a>#}
+                <a class="ride-option-btn go" href="{% url 'navigation' ride.id %}">{% trans "Navigation" %}</a>
             </div>
         </div>
         {% if user.is_authenticated and ride.user == user %}

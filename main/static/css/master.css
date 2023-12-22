@@ -39,6 +39,16 @@ a:hover {
     color: #205f82
 }
 
+.buttonToLink {
+    background: none;
+    border: none;
+    display: block;
+}
+ 
+.buttonToLink:hover {
+    text-decoration: none;
+}
+
 button[type="submit"],
 input[type="submit"] {
     cursor: pointer
@@ -69,7 +79,7 @@ nav .main li {
     position: relative;
 }
 
-nav .main li a {
+nav .main li a, nav .main li .buttonToLink {
     display: block;
     height: 100%;
     padding: 0 15px;
@@ -105,12 +115,12 @@ nav .main ul li {
     display: block;
 }
 
-nav .main ul li a {
+nav .main ul li a, nav .main ul li .buttonToLink {
     padding: 0 11px 0 15px;
     height: 100%;
 }
 
-nav .main ul li a:hover {
+nav .main ul li a:hover, nav .main ul li .buttonToLink:hover {
     background: #474747;
     color: #fff;
 }

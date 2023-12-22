@@ -1,7 +1,7 @@
 from django.views.generic import ListView, DetailView, RedirectView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from .models import Country, City

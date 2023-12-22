@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 
 class Country(models.Model):
@@ -10,7 +10,7 @@ class Country(models.Model):
 
 
 class City(models.Model):
-    country = models.ForeignKey(Country, related_name='cities')
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='cities')
     name = models.CharField(max_length=255)
     lat = models.FloatField(blank=True, null=True)
     lng = models.FloatField(blank=True, null=True)

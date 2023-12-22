@@ -1,11 +1,12 @@
 from django.views.generic import CreateView, RedirectView
-from django.contrib.auth.views import password_reset, password_reset_confirm
-from django.template.response import TemplateResponse
+from django.contrib.auth.views import PasswordResetView
 from django.contrib.auth import login
 from django.contrib import messages
-from django.core.urlresolvers import reverse_lazy
-from django.utils.translation import ugettext_lazy as _
+from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
+from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView
+from django.conf import settings
 from .forms import RegistrationForm, SetNewPasswordForm
 
 User = get_user_model()
@@ -33,27 +34,22 @@ class ActivationView(RedirectView):
         return reverse_lazy('home')
 
 
-def custom_password_reset(request):
-    response = password_reset(request,
-                              template_name='registration/recover.html',
-                              email_template_name='registration/reset_email.html',
-                              post_reset_redirect='home')
+class PasswordResetViewCustom(PasswordResetView):
+    template_name = "registration/recover.html"
+    success_url = "/"
 
-    if not isinstance(response, TemplateResponse):
-        messages.success(request, _("We have sent you the email with reset password instructions"))
-
-    return response
+    def form_valid(self, form):
+        res = super().form_valid(form)
+        messages.success(self.request, _("We have sent you the email with reset password instructions"))
+        return res
 
 
-def custom_password_reset_confirm(request, uidb64, token):
-    response = password_reset_confirm(request,
-                                      uidb64,
-                                      token,
-                                      'registration/reset_confirm.html',
-                                      set_password_form=SetNewPasswordForm,
-                                      post_reset_redirect='login')
+class PasswordResetConfirmViewCustom(PasswordResetConfirmView):
+    form_class = SetNewPasswordForm
+    template_name = 'registration/reset_confirm.html'
+    success_url = settings.LOGIN_URL
 
-    if not isinstance(response, TemplateResponse):
-        messages.success(request, _("Your password has been changed. Please use your new password to login"))
-
-    return response
+    def form_valid(self, form):
+        res = super().form_valid(form)
+        messages.success(self.request, _("Your password has been changed. Please use your new password to login"))
+        return res

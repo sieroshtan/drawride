@@ -1,14 +1,15 @@
-from django.conf.urls import patterns, url
+from django.urls import path, re_path
 from .views import *
 
-urlpatterns = patterns('',
-                       url(r'^$', RidesView.as_view(), name='home'),
-                       url(r'^draw/$', RideDrawView.as_view(), name='draw'),
-                       url(r'^ride/(?P<pk>\d+)/$', RideView.as_view(), name='ride'),
-                       url(r'^ride/(?P<pk>\d+)/edit/$', RideEditView.as_view(), name='edit'),
-                       url(r'^ride/(?P<pk>\d+)/move/$', RideMoveView.as_view(), name='move'),
-                       url(r'^popular/$', RidesPopularView.as_view(), name='popular'),
-                       url(r'^upcoming/$', RidesUpcomingView.as_view(), name='upcoming'),
-                       url(r'^ride/(?P<pk>\d+)/export/(?P<ext>gpx|kml)/$', ride_export, name='export'),
-                       url(r'^ride/(?P<pk>\d+)/join/$', join, name='join'),
-                       url(r'^ride/(?P<pk>\d+)/fave/$', fave, name='fave'))
+urlpatterns = [
+    path("", RidesView.as_view(), name='home'),
+    path('draw/', RideDrawView.as_view(), name='draw'),
+    path("ride/<int:pk>/", RideView.as_view(), name='ride'),
+    path("ride/<int:pk>/edit/", RideEditView.as_view(), name='edit'),
+    path("ride/<int:pk>/navigation/", RideNavigationView.as_view(), name='navigation'),
+    path('popular/', RidesPopularView.as_view(), name='popular'),
+    path('upcoming/', RidesUpcomingView.as_view(), name='upcoming'),
+    re_path(r"^ride/(?P<pk>\d+)/export/(?P<ext>gpx|kml)/$", ride_export, name='export'),
+    path("ride/<int:pk>/join/", join, name='join'),
+    path("ride/<int:pk>/fave/", fave, name='fave')
+]

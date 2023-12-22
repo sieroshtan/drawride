@@ -1,7 +1,7 @@
 from PIL import Image
 
 from django import forms
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -45,18 +45,18 @@ class PhotoForm(forms.ModelForm):
             if pr > nr:
                 # photo aspect is wider than destination ratio
                 tw = int(round(nh * pr))
-                image = image.resize((tw, nh), Image.ANTIALIAS)
+                image = image.resize((tw, nh), Image.LANCZOS)
                 l = int(round((tw - nw) / 2.0))
                 image = image.crop((l, 0, l + nw, nh))
             elif pr < nr:
                 # photo aspect is taller than destination ratio
                 th = int(round(nw / pr))
-                image = image.resize((nw, th), Image.ANTIALIAS)
+                image = image.resize((nw, th), Image.LANCZOS)
                 t = int(round((th - nh) / 2.0))
                 image = image.crop((0, t, nw, t + nh))
             else:
                 # photo aspect matches the destination ratio
-                image = image.resize(size, Image.ANTIALIAS)
+                image = image.resize(size, Image.LANCZOS)
             image.save(user.photo.path, quality=90)
         return user
 

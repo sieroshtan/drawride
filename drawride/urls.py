@@ -1,17 +1,19 @@
-from django.conf.urls import patterns, include, url
-from django.conf.urls.static import static
+from django.urls import include, path
 from django.conf import settings
 
-urlpatterns = patterns('',
-                       url('', include('main.urls')),
-                       url('', include('registration.urls')),
-                       url('', include('users.urls')),
-                       url('', include('discussions.urls')),
-                       url('', include('follow.urls')),
-                       url('', include('rides.urls')),
-                       url('', include('comments.urls')),
-                       url('', include('search.urls')),
-                       url('', include('geo.urls')))
+urlpatterns = [
+    path('', include('main.urls')),
+    path('', include('registration.urls')),
+    path('', include('users.urls')),
+    path('', include('discussions.urls')),
+    path('', include('follow.urls')),
+    path('', include('rides.urls')),
+    path('', include('comments.urls')),
+    path('', include('search.urls')),
+    path('', include('geo.urls'))
+]
 
 if settings.DEBUG:
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

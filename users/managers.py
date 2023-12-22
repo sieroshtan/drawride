@@ -5,7 +5,7 @@ from django.template.loader import render_to_string
 from django.db.models import Manager
 from django.core.mail import send_mail
 from django.contrib.auth import get_user_model
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 
 

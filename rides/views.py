@@ -5,9 +5,9 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
 from django.http import HttpResponse, Http404
 from django.contrib.auth.decorators import login_required
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.template.loader import render_to_string
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from follow.models import Follow
 from .models import Ride, RideMembers, UserFavorites
@@ -63,7 +63,7 @@ class RideView(DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super(RideView, self).get_context_data(**kwargs)
 
-        if self.request.user.is_authenticated():
+        if self.request.user.is_authenticated:
             context['is_member'] = RideMembers.objects.is_member(user=self.request.user,
                                                                  ride=self.get_object())
             context['is_favorite'] = UserFavorites.objects.is_favorite(user=self.request.user,
@@ -71,14 +71,14 @@ class RideView(DetailView):
         return context
 
 
-class RideMoveView(DetailView):
+class RideNavigationView(DetailView):
     model = Ride
-    template_name = 'rides/move.html'
+    template_name = 'rides/navigation.html'
 
     def get(self, request, *args, **kwargs):
         if self.request.user != self.get_object().user and self.get_object().is_hide:
             raise Http404
-        return super(RideMoveView, self).get(request, *args, **kwargs)
+        return super(RideNavigationView, self).get(request, *args, **kwargs)
 
 
 class RideDeleteView(DeleteView):
@@ -93,7 +93,7 @@ class RidesView(ListView):
     template_name = 'rides/rides.html'
 
     def get_queryset(self):
-        if self.request.user.is_authenticated():
+        if self.request.user.is_authenticated:
             following = Follow.objects.following(self.request.user)
             return Ride.objects.following(following)
 
@@ -122,7 +122,7 @@ class RidesUpcomingView(ListView):
 
 @login_required
 def join(request, pk):
-    if request.is_ajax() is False:
+    if request.META.get('HTTP_X_REQUESTED_WITH') != 'XMLHttpRequest':
         raise Http404
 
     ride = get_object_or_404(Ride, pk=pk)
@@ -148,7 +148,7 @@ def join(request, pk):
 
 @login_required
 def fave(request, pk):
-    if request.is_ajax() is False:
+    if request.META.get('HTTP_X_REQUESTED_WITH') != 'XMLHttpRequest':
         raise Http404
 
     ride = get_object_or_404(Ride, pk=pk)

@@ -1,7 +1,6 @@
-from django.conf.urls import patterns, url
+from django.urls import path
 from .views import *
 
-urlpatterns = patterns('',
-                       url(r'^about/$',
-                           AboutView.as_view(),
-                           name='about'))
+urlpatterns = [
+    path("about", AboutView.as_view(), name='about')
+]

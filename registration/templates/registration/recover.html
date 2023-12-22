@@ -13,7 +13,7 @@
             {% trans "Please enter your email to reset your password. You’ll receive an email with instructions." %}
         </p>
         <div class="form-inline">
-            <form action="." method="post">
+            <form action="" method="post">
                 {% csrf_token %}
                 <div class="form-field">
                     {{ form.email.label_tag }}

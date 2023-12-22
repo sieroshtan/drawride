@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -21,8 +21,6 @@ SECRET_KEY = '9nuso8%89mi272x22j8zz1igpss_=sx^!rt4(ku9knkucx)exo'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
-TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -47,7 +45,7 @@ INSTALLED_APPS = (
     'search',
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -55,7 +53,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
+]
 
 ROOT_URLCONF = 'drawride.urls'
 
@@ -77,7 +75,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Europe/Kiev'
+TIME_ZONE = 'Europe/Kyiv'
 
 USE_I18N = True
 
@@ -91,7 +89,6 @@ LOCALE_PATHS = (
 
 LANGUAGES = (
     ('en', 'English'),
-    ('ru', 'Русский'),
     ('uk', 'Українська'),
 )
 
@@ -99,14 +96,10 @@ LANGUAGES = (
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
 STATIC_URL = '/static/'
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), '..', 'templates').replace('\\','/'),)
 
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
@@ -116,22 +109,36 @@ APPEND_SLASH = True
 
 AUTH_USER_MODEL = 'users.User'
 
-from django.conf import global_settings
-
-TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
-    'django.core.context_processors.request',
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+                        os.path.join(BASE_DIR, 'templates'),
+                ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'debug': DEBUG,
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 
 # Maps settings
-MAP_KEY = 'AOwlDE4BAAAAQWhmGwQAUtc76ztmACqpVWpYl3FcTryH4jcAAAAAAAAAAABoZmgmLL7a5rjeiSYBkmWAq-dMyQ=='
-MAP_STATIC_URL = 'http://static-maps.yandex.ru/1.x/?key=%s&l=map&size=285,250&pl=c:0066ff99,w:3,' % MAP_KEY
+MAP_STATIC_URL = "https://static-maps.yandex.ru/1.x/?l=map&size=285,250&pl=c:0066ff99,w:3,"
 
 FORMAT_MODULE_PATH = 'formats'
 
 # Email settings
 EMAIL_HOST = 'localhost'
-EMAIL_PORT = 25
+EMAIL_PORT = 8025
 DEFAULT_FROM_EMAIL = 'info@drawride.com'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # Local settings
 try:

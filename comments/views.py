@@ -8,7 +8,7 @@ from .forms import CommentForm
 
 @login_required()
 def post_comment(request, ride_id):
-    if request.is_ajax() is False:
+    if request.META.get('HTTP_X_REQUESTED_WITH') != 'XMLHttpRequest':
         raise Http404
 
     ride = get_object_or_404(Ride, pk=ride_id)

@@ -1,8 +1,8 @@
-{% load i18n staticfiles %}
+{% load i18n static %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>GPS Move</title>
+    <title>{{ ride.title }} – Navigation Mode</title>
     <meta charset="utf-8">
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
     <style>
@@ -21,8 +21,8 @@
 </head>
 <body>
     <div id="map"></div>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="//api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+    <script src="//api-maps.yandex.ru/2.1/?lang=ua_UA"></script>
     <script src="{% static 'js/app.js' %}"></script>
     <script>
         ymaps.ready(function () {
@@ -43,7 +43,7 @@
                     lon = position.coords.longitude;
                     pin.geometry.setCoordinates([position.coords.latitude, position.coords.longitude]);
                 });
-            }, 3000)
+            }, 5000)
         });
     </script>
 </body>

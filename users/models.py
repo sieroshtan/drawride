@@ -4,10 +4,10 @@ from random import choice
 
 from django.db import models
 from django.utils import timezone
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.contrib.auth.models import UserManager
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 from geo.models import City
 from .managers import ActivationManager
@@ -27,8 +27,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
 
     LANGUAGES = (
-        ('ru', 'Russian'),
         ('en', 'English'),
+        ('uk', 'Українська'),
     )
 
     username = models.CharField(max_length=45, unique=True, db_index=True)
@@ -39,7 +39,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     bio = models.TextField(max_length=1000, blank=True)
     lang = models.CharField(max_length=2, choices=LANGUAGES, blank=True)
     photo = models.ImageField(upload_to=get_file_path)
-    city = models.ForeignKey(City, null=True, blank=True)
+    city = models.ForeignKey(City, on_delete=models.CASCADE, null=True, blank=True)
 
     date_joined = models.DateTimeField(default=timezone.now)
 

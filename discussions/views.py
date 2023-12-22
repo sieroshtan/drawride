@@ -1,5 +1,5 @@
 from django.views.generic import CreateView, ListView
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import get_user_model
@@ -11,7 +11,7 @@ from views.base import AuthRequiredMixin
 
 @login_required
 def compose(request, username):
-    if request.is_ajax():
+    if request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         to_user = get_object_or_404(get_user_model(), username=username)
         form = MessageForm(request.POST or None)
 

@@ -1,6 +1,6 @@
 from django.db import models
-from django.core.urlresolvers import reverse
-from django.contrib.contenttypes import generic
+from django.urls import reverse
+from django.contrib.contenttypes.fields import GenericRelation
 from django.utils import timezone
 from django.conf import settings
 from comments.models import Comment
@@ -9,7 +9,7 @@ from geo.models import City
 
 
 class Ride(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='his_rides')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='his_rides')
     title = models.CharField(max_length=45)
     created = models.DateTimeField(auto_now_add=True)
     start_time = models.DateTimeField()
@@ -18,10 +18,10 @@ class Ride(models.Model):
     distance = models.FloatField()
     description = models.CharField(max_length=1000, blank=True)
     members = models.ManyToManyField(settings.AUTH_USER_MODEL, through='RideMembers', related_name='members')
-    favorites = models.ManyToManyField(settings.AUTH_USER_MODEL, through='UserFavorites', related_name='favorites', null=True)
-    city = models.ForeignKey(City, default=0, related_name='rides')
+    favorites = models.ManyToManyField(settings.AUTH_USER_MODEL, through='UserFavorites', related_name='favorites')
+    city = models.ForeignKey(City, on_delete=models.CASCADE, default=0, related_name='rides')
     is_hide = models.BooleanField(default=False)
-    comments = generic.GenericRelation(Comment)
+    comments = GenericRelation(Comment)
 
     objects = RideManager()
 
@@ -36,12 +36,12 @@ class Ride(models.Model):
         return reverse('ride', args=(self.id,))
 
     class Meta:
-        ordering = ('-id',)
+        ordering = ['-id']
 
 
 class RideMembers(models.Model):
-    ride = models.ForeignKey(Ride)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    ride = models.ForeignKey(Ride, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     status = models.BooleanField(default=True)
     created = models.DateTimeField(default=timezone.now)
 
@@ -53,8 +53,8 @@ class RideMembers(models.Model):
 
 
 class UserFavorites(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    ride = models.ForeignKey(Ride)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    ride = models.ForeignKey(Ride, on_delete=models.CASCADE)
     status = models.BooleanField(default=True)
     created = models.DateTimeField(default=timezone.now)
 
