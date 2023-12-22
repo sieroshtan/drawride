@@ -11,32 +11,32 @@ User = get_user_model()
 
 class CitiesView(ListView):
     model = Country
-    context_object_name = 'countries'
-    template_name = 'geo/cities.html'
+    context_object_name = "countries"
+    template_name = "geo/cities.html"
 
     def get_queryset(self):
-        return self.model.objects.prefetch_related('cities')
+        return self.model.objects.prefetch_related("cities")
 
 
 class CityView(DetailView):
     model = City
-    template_name = 'geo/city.html'
+    template_name = "geo/city.html"
 
 
 class CityPeopleView(DetailView):
     model = City
-    template_name = 'geo/people.html'
+    template_name = "geo/people.html"
 
     def get_context_data(self, *args, **kwargs):
         context = super(CityPeopleView, self).get_context_data(**kwargs)
-        context['users'] = User.objects.filter(city=self.object)
+        context["users"] = User.objects.filter(city=self.object)
         return context
 
 
 class ChangeCityView(ListView):
     model = Country
-    context_object_name = 'countries'
-    template_name = 'geo/change_city.html'
+    context_object_name = "countries"
+    template_name = "geo/change_city.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -54,4 +54,4 @@ class SetCityView(RedirectView):
         city = get_object_or_404(City, pk=pk)
         self.request.user.city = city
         self.request.user.save()
-        return reverse('home')
+        return reverse("home")

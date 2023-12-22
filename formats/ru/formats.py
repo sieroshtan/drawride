@@ -1,4 +1,4 @@
-DATETIME_FORMAT = 'd b Y \в H:i'
-DATE_FORMAT = 'd b Y'
+DATETIME_FORMAT = "d b Y \в H:i"
+DATE_FORMAT = "d b Y"
 
-DECIMAL_SEPARATOR = '.'
+DECIMAL_SEPARATOR = "."

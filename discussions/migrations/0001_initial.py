@@ -6,7 +6,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -15,34 +14,84 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Message',
+            name="Message",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('text', models.TextField(max_length=500)),
-                ('date_created', models.DateTimeField(auto_now_add=True)),
-                ('from_user_deleted', models.BooleanField(default=False)),
-                ('to_user_deleted', models.BooleanField(default=False)),
-                ('readed', models.BooleanField(default=False)),
-                ('from_user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='from_user', to=settings.AUTH_USER_MODEL)),
-                ('to_user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='to_users', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("text", models.TextField(max_length=500)),
+                ("date_created", models.DateTimeField(auto_now_add=True)),
+                ("from_user_deleted", models.BooleanField(default=False)),
+                ("to_user_deleted", models.BooleanField(default=False)),
+                ("readed", models.BooleanField(default=False)),
+                (
+                    "from_user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="from_user",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "to_user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="to_users",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'ordering': ('id',),
+                "ordering": ("id",),
             },
         ),
         migrations.CreateModel(
-            name='MessageContact',
+            name="MessageContact",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('from_user_deleted', models.BooleanField(default=False)),
-                ('to_user_deleted', models.BooleanField(default=False)),
-                ('from_user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='sent_messages', to=settings.AUTH_USER_MODEL)),
-                ('latest_message', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='discussions.message')),
-                ('to_user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='received_messages', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("from_user_deleted", models.BooleanField(default=False)),
+                ("to_user_deleted", models.BooleanField(default=False)),
+                (
+                    "from_user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="sent_messages",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "latest_message",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="discussions.message",
+                    ),
+                ),
+                (
+                    "to_user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="received_messages",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'ordering': ('-latest_message',),
-                'unique_together': {('from_user', 'to_user')},
+                "ordering": ("-latest_message",),
+                "unique_together": {("from_user", "to_user")},
             },
         ),
     ]

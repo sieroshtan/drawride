@@ -5,10 +5,9 @@ from discussions.models import Message
 register = template.Library()
 
 
-@register.inclusion_tag('dialogs/form.html')
+@register.inclusion_tag("dialogs/form.html")
 def message_form(to_user):
-    return {'to_user': to_user,
-            'form': MessageForm()}
+    return {"to_user": to_user, "form": MessageForm()}
 
 
 @register.filter

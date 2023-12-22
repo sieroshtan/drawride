@@ -7,70 +7,135 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
-        ('geo', '0001_initial'),
+        ("geo", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Ride',
+            name="Ride",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=45)),
-                ('created', models.DateTimeField(auto_now_add=True)),
-                ('start_time', models.DateTimeField()),
-                ('end_time', models.DateTimeField(null=True)),
-                ('points', models.TextField()),
-                ('distance', models.FloatField()),
-                ('description', models.CharField(blank=True, max_length=1000)),
-                ('is_hide', models.BooleanField(default=False)),
-                ('city', models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, related_name='rides', to='geo.city')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='his_rides', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=45)),
+                ("created", models.DateTimeField(auto_now_add=True)),
+                ("start_time", models.DateTimeField()),
+                ("end_time", models.DateTimeField(null=True)),
+                ("points", models.TextField()),
+                ("distance", models.FloatField()),
+                ("description", models.CharField(blank=True, max_length=1000)),
+                ("is_hide", models.BooleanField(default=False)),
+                (
+                    "city",
+                    models.ForeignKey(
+                        default=0,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="rides",
+                        to="geo.city",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="his_rides",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'ordering': ('-id',),
+                "ordering": ("-id",),
             },
         ),
         migrations.CreateModel(
-            name='RideMembers',
+            name="RideMembers",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('status', models.BooleanField(default=True)),
-                ('created', models.DateTimeField(default=django.utils.timezone.now)),
-                ('ride', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='rides.ride')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("status", models.BooleanField(default=True)),
+                ("created", models.DateTimeField(default=django.utils.timezone.now)),
+                (
+                    "ride",
+                    models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to="rides.ride"),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'ordering': ('-id',),
-                'unique_together': {('ride', 'user')},
+                "ordering": ("-id",),
+                "unique_together": {("ride", "user")},
             },
         ),
         migrations.AddField(
-            model_name='ride',
-            name='members',
-            field=models.ManyToManyField(related_name='members', through='rides.RideMembers', to=settings.AUTH_USER_MODEL),
+            model_name="ride",
+            name="members",
+            field=models.ManyToManyField(
+                related_name="members",
+                through="rides.RideMembers",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
         migrations.CreateModel(
-            name='UserFavorites',
+            name="UserFavorites",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('status', models.BooleanField(default=True)),
-                ('created', models.DateTimeField(default=django.utils.timezone.now)),
-                ('ride', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='rides.ride')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("status", models.BooleanField(default=True)),
+                ("created", models.DateTimeField(default=django.utils.timezone.now)),
+                (
+                    "ride",
+                    models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to="rides.ride"),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'ordering': ('-id',),
-                'unique_together': {('ride', 'user')},
+                "ordering": ("-id",),
+                "unique_together": {("ride", "user")},
             },
         ),
         migrations.AddField(
-            model_name='ride',
-            name='favorites',
-            field=models.ManyToManyField(null=True, related_name='favorites', through='rides.UserFavorites', to=settings.AUTH_USER_MODEL),
+            model_name="ride",
+            name="favorites",
+            field=models.ManyToManyField(
+                null=True,
+                related_name="favorites",
+                through="rides.UserFavorites",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]

@@ -9,6 +9,7 @@ pillow = "*"
 
 [dev-packages]
 aiosmtpd = "*"
+ruff = "*"
 
 [requires]
 python_version = "3.12"

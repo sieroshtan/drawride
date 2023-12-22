@@ -17,26 +17,26 @@ class ProfileBaseMixin(object):
 
     def get_user(self):
         if self.user is None:
-            self.user = get_object_or_404(User, username=self.kwargs['slug'])
+            self.user = get_object_or_404(User, username=self.kwargs["slug"])
         return self.user
 
     def get_context_data(self, *args, **kwargs):
         context = super(ProfileBaseMixin, self).get_context_data(**kwargs)
-        context['profile'] = self.get_user()
+        context["profile"] = self.get_user()
         return context
 
 
 class UsersView(ListView):
     model = User
-    context_object_name = 'users'
-    template_name = 'users/users.html'
+    context_object_name = "users"
+    template_name = "users/users.html"
 
 
 class ProfileView(ProfileBaseMixin, ListView):
     model = Ride
-    context_object_name = 'rides'
+    context_object_name = "rides"
     paginate_by = 8
-    template_name = 'users/profile.html'
+    template_name = "users/profile.html"
 
     def get_queryset(self):
         return self.model.objects.rides().filter(user=self.get_user())
@@ -44,9 +44,9 @@ class ProfileView(ProfileBaseMixin, ListView):
 
 class ProfileDraftsView(ProfileBaseMixin, ListView):
     model = Ride
-    context_object_name = 'rides'
+    context_object_name = "rides"
     paginate_by = 8
-    template_name = 'users/drafts.html'
+    template_name = "users/drafts.html"
 
     def get_queryset(self):
         return self.model.objects.rides(is_hide=True).filter(user=self.get_user())
@@ -54,9 +54,9 @@ class ProfileDraftsView(ProfileBaseMixin, ListView):
 
 class ProfileInvolvedView(ProfileBaseMixin, ListView):
     model = Ride
-    context_object_name = 'rides'
+    context_object_name = "rides"
     paginate_by = 8
-    template_name = 'users/involved.html'
+    template_name = "users/involved.html"
 
     def get_queryset(self):
         return self.model.objects.rides().filter(members__id=self.get_user().id)
@@ -64,9 +64,9 @@ class ProfileInvolvedView(ProfileBaseMixin, ListView):
 
 class ProfileFavoritesView(ProfileBaseMixin, ListView):
     model = Ride
-    context_object_name = 'rides'
+    context_object_name = "rides"
     paginate_by = 8
-    template_name = 'users/favorites.html'
+    template_name = "users/favorites.html"
 
     def get_queryset(self):
         return self.model.objects.rides().filter(favorites__id=self.get_user().id)
@@ -74,8 +74,8 @@ class ProfileFavoritesView(ProfileBaseMixin, ListView):
 
 class SettingsView(AuthRequiredMixin, UpdateView):
     form_class = SettingsForm
-    success_url = reverse_lazy('settings')
-    template_name = 'users/settings.html'
+    success_url = reverse_lazy("settings")
+    template_name = "users/settings.html"
 
     def get_object(self, queryset=None):
         return self.request.user
@@ -87,34 +87,34 @@ class SettingsView(AuthRequiredMixin, UpdateView):
 
 class SettingsPasswordView(AuthRequiredMixin, FormView):
     form_class = PasswordChangeForm
-    success_url = reverse_lazy('settings_password')
-    template_name = 'users/password.html'
+    success_url = reverse_lazy("settings_password")
+    template_name = "users/password.html"
 
     def get_form_kwargs(self):
         kwargs = super(SettingsPasswordView, self).get_form_kwargs()
-        kwargs['user'] = self.request.user
+        kwargs["user"] = self.request.user
         return kwargs
 
     def form_valid(self, form):
-        messages.success(self.request, _('Your settings have been saved!'))
+        messages.success(self.request, _("Your settings have been saved!"))
         return super(SettingsPasswordView, self).form_valid(form)
 
 
 class SettingsPhotoView(AuthRequiredMixin, UpdateView):
     form_class = PhotoForm
-    success_url = reverse_lazy('settings_photo')
-    template_name = 'users/photo.html'
+    success_url = reverse_lazy("settings_photo")
+    template_name = "users/photo.html"
 
     def get_object(self, queryset=None):
         return self.request.user
 
     def post(self, request, *args, **kwargs):
-        if 'delete' in request.POST:
+        if "delete" in request.POST:
             user = self.get_object()
-            user.photo = ''
+            user.photo = ""
             user.save()
             messages.success(self.request, _("Your photo have been removed!"))
-            return redirect('settings_photo')
+            return redirect("settings_photo")
         return super(SettingsPhotoView, self).post(request, *args, **kwargs)
 
     def form_valid(self, form):

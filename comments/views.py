@@ -8,7 +8,7 @@ from .forms import CommentForm
 
 @login_required()
 def post_comment(request, ride_id):
-    if request.META.get('HTTP_X_REQUESTED_WITH') != 'XMLHttpRequest':
+    if request.META.get("HTTP_X_REQUESTED_WITH") != "XMLHttpRequest":
         raise Http404
 
     ride = get_object_or_404(Ride, pk=ride_id)
@@ -20,6 +20,6 @@ def post_comment(request, ride_id):
         comment.user = request.user
         comment.save()
 
-    t = Template('{% load comments %}{% comments ride %}')
+    t = Template("{% load comments %}{% comments ride %}")
 
-    return HttpResponse(t.render(Context({'ride': ride})))
+    return HttpResponse(t.render(Context({"ride": ride})))

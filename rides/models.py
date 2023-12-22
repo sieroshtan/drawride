@@ -9,7 +9,9 @@ from geo.models import City
 
 
 class Ride(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='his_rides')
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="his_rides"
+    )
     title = models.CharField(max_length=45)
     created = models.DateTimeField(auto_now_add=True)
     start_time = models.DateTimeField()
@@ -17,26 +19,30 @@ class Ride(models.Model):
     points = models.TextField()
     distance = models.FloatField()
     description = models.CharField(max_length=1000, blank=True)
-    members = models.ManyToManyField(settings.AUTH_USER_MODEL, through='RideMembers', related_name='members')
-    favorites = models.ManyToManyField(settings.AUTH_USER_MODEL, through='UserFavorites', related_name='favorites')
-    city = models.ForeignKey(City, on_delete=models.CASCADE, default=0, related_name='rides')
+    members = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, through="RideMembers", related_name="members"
+    )
+    favorites = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, through="UserFavorites", related_name="favorites"
+    )
+    city = models.ForeignKey(City, on_delete=models.CASCADE, default=0, related_name="rides")
     is_hide = models.BooleanField(default=False)
     comments = GenericRelation(Comment)
 
     objects = RideManager()
 
     def points_string(self):
-        points = self.points.split(',')[::-1]
-        return ','.join(points[:200])
+        points = self.points.split(",")[::-1]
+        return ",".join(points[:200])
 
     def static_url(self):
         return settings.MAP_STATIC_URL + self.points_string()
 
     def get_absolute_url(self):
-        return reverse('ride', args=(self.id,))
+        return reverse("ride", args=(self.id,))
 
     class Meta:
-        ordering = ['-id']
+        ordering = ["-id"]
 
 
 class RideMembers(models.Model):
@@ -48,8 +54,8 @@ class RideMembers(models.Model):
     objects = RideMembersManager()
 
     class Meta:
-        unique_together = ('ride', 'user')
-        ordering = ('-id',)
+        unique_together = ("ride", "user")
+        ordering = ("-id",)
 
 
 class UserFavorites(models.Model):
@@ -61,5 +67,5 @@ class UserFavorites(models.Model):
     objects = UserFavoritesManager()
 
     class Meta:
-        unique_together = ('ride', 'user')
-        ordering = ('-id',)
+        unique_together = ("ride", "user")
+        ordering = ("-id",)

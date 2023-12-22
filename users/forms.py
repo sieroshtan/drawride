@@ -10,18 +10,17 @@ User = get_user_model()
 class SettingsForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('name', 'email', 'gender', 'bio')
+        fields = ("name", "email", "gender", "bio")
 
 
 class PhotoForm(forms.ModelForm):
-    photo = forms.ImageField(label=_('Photo'),
-                             help_text=_('JPG, GIF or PNG. Max size of 1 MB.'))
+    photo = forms.ImageField(label=_("Photo"), help_text=_("JPG, GIF or PNG. Max size of 1 MB."))
 
     def clean_photo(self):
-        photo = self.cleaned_data['photo']
+        photo = self.cleaned_data["photo"]
         try:
-            main, sub = photo.content_type.split('/')
-            if not (main == 'image' and sub in ['jpeg', 'jpg', 'gif', 'png']):
+            main, sub = photo.content_type.split("/")
+            if not (main == "image" and sub in ["jpeg", "jpg", "gif", "png"]):
                 raise forms.ValidationError(_("Please use a JPEG, GIF or PNG image."))
             if len(photo) > 1024000:
                 raise forms.ValidationError(_("Please select a image that is less than 1MB."))
@@ -62,4 +61,4 @@ class PhotoForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('photo',)
+        fields = ("photo",)

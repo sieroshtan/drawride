@@ -1,6 +1,12 @@
 import json
 
-from django.views.generic import CreateView, DetailView, ListView, UpdateView, DeleteView
+from django.views.generic import (
+    CreateView,
+    DetailView,
+    ListView,
+    UpdateView,
+    DeleteView,
+)
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
 from django.http import HttpResponse, Http404
@@ -17,12 +23,12 @@ from views.base import AuthRequiredMixin
 
 class RideDrawView(AuthRequiredMixin, CreateView):
     form_class = RideForm
-    template_name = 'rides/draw.html'
+    template_name = "rides/draw.html"
 
     def get(self, request, *args, **kwargs):
         if self.request.user.city is None:
             messages.error(self.request, _("Before adding the ride please select your city."))
-            return redirect('change_city')
+            return redirect("change_city")
         return super(RideDrawView, self).get(request, *args, **kwargs)
 
     def form_valid(self, form):
@@ -39,7 +45,7 @@ class RideDrawView(AuthRequiredMixin, CreateView):
 class RideEditView(AuthRequiredMixin, UpdateView):
     model = Ride
     form_class = RideForm
-    template_name = 'rides/edit.html'
+    template_name = "rides/edit.html"
 
     def get(self, request, *args, **kwargs):
         if self.request.user != self.get_object().user:
@@ -53,7 +59,7 @@ class RideEditView(AuthRequiredMixin, UpdateView):
 
 class RideView(DetailView):
     model = Ride
-    template_name = 'rides/ride.html'
+    template_name = "rides/ride.html"
 
     def get(self, request, *args, **kwargs):
         if self.request.user != self.get_object().user and self.get_object().is_hide:
@@ -64,16 +70,18 @@ class RideView(DetailView):
         context = super(RideView, self).get_context_data(**kwargs)
 
         if self.request.user.is_authenticated:
-            context['is_member'] = RideMembers.objects.is_member(user=self.request.user,
-                                                                 ride=self.get_object())
-            context['is_favorite'] = UserFavorites.objects.is_favorite(user=self.request.user,
-                                                                       ride=self.object)
+            context["is_member"] = RideMembers.objects.is_member(
+                user=self.request.user, ride=self.get_object()
+            )
+            context["is_favorite"] = UserFavorites.objects.is_favorite(
+                user=self.request.user, ride=self.object
+            )
         return context
 
 
 class RideNavigationView(DetailView):
     model = Ride
-    template_name = 'rides/navigation.html'
+    template_name = "rides/navigation.html"
 
     def get(self, request, *args, **kwargs):
         if self.request.user != self.get_object().user and self.get_object().is_hide:
@@ -83,14 +91,14 @@ class RideNavigationView(DetailView):
 
 class RideDeleteView(DeleteView):
     model = Ride
-    success_url = reverse_lazy('rides')
+    success_url = reverse_lazy("rides")
 
 
 class RidesView(ListView):
     model = Ride
-    context_object_name = 'rides'
+    context_object_name = "rides"
     paginate_by = 8
-    template_name = 'rides/rides.html'
+    template_name = "rides/rides.html"
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
@@ -102,9 +110,9 @@ class RidesView(ListView):
 
 class RidesPopularView(ListView):
     model = Ride
-    context_object_name = 'rides'
+    context_object_name = "rides"
     paginate_by = 8
-    template_name = 'rides/popular.html'
+    template_name = "rides/popular.html"
 
     def get_queryset(self):
         return self.model.objects.popular(self.request.user)
@@ -112,9 +120,9 @@ class RidesPopularView(ListView):
 
 class RidesUpcomingView(ListView):
     model = Ride
-    context_object_name = 'rides'
+    context_object_name = "rides"
     paginate_by = 8
-    template_name = 'rides/upcoming.html'
+    template_name = "rides/upcoming.html"
 
     def get_queryset(self):
         return self.model.objects.upcoming(self.request.user)
@@ -122,12 +130,12 @@ class RidesUpcomingView(ListView):
 
 @login_required
 def join(request, pk):
-    if request.META.get('HTTP_X_REQUESTED_WITH') != 'XMLHttpRequest':
+    if request.META.get("HTTP_X_REQUESTED_WITH") != "XMLHttpRequest":
         raise Http404
 
     ride = get_object_or_404(Ride, pk=pk)
 
-    response = {'status': 'OK'}
+    response = {"status": "OK"}
 
     try:
         ride_member = RideMembers.objects.get(user=request.user, ride=ride)
@@ -136,24 +144,23 @@ def join(request, pk):
         ride_member = RideMembers(user=request.user, ride=ride)
         ride_member.save()
     else:
-        response['status'] = 'NO'
+        response["status"] = "NO"
 
     members = ride.members.all()
 
-    response['members'] = render_to_string('rides/members.html', {'members': members})
+    response["members"] = render_to_string("rides/members.html", {"members": members})
 
-    return HttpResponse(json.dumps(response),
-                        content_type='application/json')
+    return HttpResponse(json.dumps(response), content_type="application/json")
 
 
 @login_required
 def fave(request, pk):
-    if request.META.get('HTTP_X_REQUESTED_WITH') != 'XMLHttpRequest':
+    if request.META.get("HTTP_X_REQUESTED_WITH") != "XMLHttpRequest":
         raise Http404
 
     ride = get_object_or_404(Ride, pk=pk)
 
-    response = {'status': 'OK'}
+    response = {"status": "OK"}
 
     try:
         fave = UserFavorites.objects.get(user=request.user, ride=ride)
@@ -162,22 +169,23 @@ def fave(request, pk):
         fave = UserFavorites(user=request.user, ride=ride)
         fave.save()
     else:
-        response['status'] = 'NO'
+        response["status"] = "NO"
 
-    return HttpResponse(json.dumps(response),
-                        content_type='application/json')
+    return HttpResponse(json.dumps(response), content_type="application/json")
 
 
 def ride_export(request, pk, ext):
     ride = get_object_or_404(Ride, pk=pk)
 
-    points = ride.points.split(',')
+    points = ride.points.split(",")
     coords = list(zip(points[::2], points[1::2]))
 
-    xml = render_to_string('rides/exporters/%s.xml' % ext, {'ride': ride,
-                                                            'coords': coords})
+    xml = render_to_string("rides/exporters/%s.xml" % ext, {"ride": ride, "coords": coords})
 
-    response = HttpResponse(xml, content_type='text/%s+xml' % ext)
-    response['Content-Disposition'] = 'attachment; filename=route_%s.%s' % (ride.id, ext)
+    response = HttpResponse(xml, content_type="text/%s+xml" % ext)
+    response["Content-Disposition"] = "attachment; filename=route_%s.%s" % (
+        ride.id,
+        ext,
+    )
 
     return response

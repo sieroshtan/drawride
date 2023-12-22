@@ -9,7 +9,7 @@ from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 
 
-SHA1_RE = re.compile('^[a-f0-9]{40}$')
+SHA1_RE = re.compile("^[a-f0-9]{40}$")
 
 
 class ActivationManager(Manager):
@@ -21,7 +21,7 @@ class ActivationManager(Manager):
                 return False
 
             user.is_active = True
-            user.activation_key = 'ALREADY_ACTIVATED'
+            user.activation_key = "ALREADY_ACTIVATED"
             user.save()
             return user
         return False
@@ -30,17 +30,16 @@ class ActivationManager(Manager):
         new_user = get_user_model().objects.create_user(username, email, password)
         new_user.is_active = False
 
-        salt = hashlib.sha1(str(random.random()).encode('utf-8')).hexdigest()[:5]
-        activation_key = hashlib.sha1((salt+username).encode('utf-8')).hexdigest()
+        salt = hashlib.sha1(str(random.random()).encode("utf-8")).hexdigest()[:5]
+        activation_key = hashlib.sha1((salt + username).encode("utf-8")).hexdigest()
 
         new_user.activation_key = activation_key
         new_user.save()
 
-        ctx_dict = {'activation_key': activation_key}
+        ctx_dict = {"activation_key": activation_key}
         subject = _("Drawride | Email verification")
 
-        message = render_to_string('registration/activation_email.html',
-                                   ctx_dict)
+        message = render_to_string("registration/activation_email.html", ctx_dict)
 
         send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, (email,))
 
