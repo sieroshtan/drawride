@@ -802,12 +802,12 @@ a.social-button.facebook:hover {
     background: #4568b2;
 }
 
-a.social-button.vkontakte {
-    background: #36638e;
+a.social-button.telegram {
+    background: #3390ec;
 }
 
-a.social-button.vkontakte:hover {
-    background: #396e9c;
+a.social-button.telegram:hover {
+    background: #3399ec;
 }
 
 /* list buttons */
