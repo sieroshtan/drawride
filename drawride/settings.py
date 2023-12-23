@@ -25,6 +25,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
+CSRF_TRUSTED_ORIGINS = []
 
 # Application definition
 
@@ -122,13 +123,15 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "main.context_processors.api_keys",
             ],
         },
     },
 ]
 
 # Maps settings
-MAP_STATIC_URL = "https://static-maps.yandex.ru/1.x/?l=map&size=285,250&pl=c:0066ff99,w:3,"
+GOOGLE_MAPS_API_KEY = ""
+MAP_STATIC_URL = 'https://maps.googleapis.com/maps/api/staticmap?size=570x500&key=%s&path=color:0x0000ff|weight:6|' % GOOGLE_MAPS_API_KEY
 
 FORMAT_MODULE_PATH = "formats"
 

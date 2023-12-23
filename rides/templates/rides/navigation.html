@@ -21,30 +21,73 @@
 </head>
 <body>
     <div id="map"></div>
-    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
-    <script src="//api-maps.yandex.ru/2.1/?lang=ua_UA"></script>
-    <script src="{% static 'js/app.js' %}"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRlTslWsPDV3k_ci_BK7LvTimilgWzxc0&v=weekly&libraries=geometry&callback=initMap"></script>
     <script>
-        ymaps.ready(function () {
-            initMap();
-            addPolyline('{{ ride.points }}', false);
+        let map;
+
+        window.initMap = function() {
+            google.maps.Polyline.prototype.getBounds = function() {
+                var bounds = new google.maps.LatLngBounds();
+                this.getPath().forEach(function(item, index) {
+                    bounds.extend(new google.maps.LatLng(item.lat(), item.lng()));
+                });
+                return bounds;
+            }
+
+            map = new google.maps.Map(document.getElementById("map"), {
+                streetViewControl: false,
+                fullscreenControl: false,
+                zoomControl: true,
+                zoomControlOptions: {
+                    position: google.maps.ControlPosition.RIGHT_TOP,
+                },
+
+                zoom: 11,
+                center: {lat: {{ user.city.lat }}, lng: {{ user.city.lng }}},
+            });
+
+            let pointsStr = '{{ ride.points_string }}';
+            var path = [];
+
+            if (pointsStr.length > 0) {
+                var points = pointsStr.split('|');
+
+                for (var i = 0; i < points.length; i++) {
+                    var point = points[i].split(",");
+                    path.push({ lat: parseFloat(point[0]), lng: parseFloat(point[1]) });
+                }
+            }
+
+            if (path.length > 0) {
+                var polyline = new google.maps.Polyline({
+                    path: path,
+                    map: map,
+                    editable: false,
+                    strokeColor: '#1258c9',
+                    strokeWeight: 3,
+                });
+
+                polyline.setMap(map);
+                map.fitBounds(polyline.getBounds());
+            }
+
+            let marker;
 
             navigator.geolocation.getCurrentPosition(function(position) {
-                pin = new ymaps.Placemark([position.coords.latitude, position.coords.longitude], {}, {
-                    preset: 'islands#circleDotIcon',
-                    iconColor: '#1faee9'
+                const myLatLng = { lat: position.coords.latitude, lng: position.coords.longitude };
+
+                marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map,
                 });
-                map.geoObjects.add(pin);
             });
 
             setInterval(function() {
                 navigator.geolocation.getCurrentPosition(function(position) {
-                    lat = position.coords.latitude;
-                    lon = position.coords.longitude;
-                    pin.geometry.setCoordinates([position.coords.latitude, position.coords.longitude]);
+                    marker.setPosition({ lat: position.coords.latitude, lng: position.coords.longitude });
                 });
-            }, 5000)
-        });
+            }, 10000)
+        }
     </script>
 </body>
 </html>

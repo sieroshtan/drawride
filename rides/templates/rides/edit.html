@@ -5,7 +5,7 @@
 {% block title %}{% trans "Edit" %}{% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.css">
 {% endblock %}
 
 {% block content %}
@@ -63,17 +63,87 @@
 {% endblock %}
 
 {% block js %}
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}&v=weekly&libraries=geometry&callback=initMap"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
     <script src="{% static 'js/jquery-ui-timepicker-addon.min.js' %}"></script>
     <script>
-        $('.datetime').datetimepicker({
-            dateFormat: 'yy-mm-dd',
-            showButtonPanel: false,
-            timeFormat: 'HH:mm', stepMinute: 10
+        $(function() {
+            $('.datetime').datetimepicker({
+                dateFormat: 'yy-mm-dd',
+                showButtonPanel: false,
+                timeFormat: 'HH:mm', stepMinute: 10
+            });
         });
-        ymaps.ready(function () {
-            initMap([{{ user.city.lng }}, {{ user.city.lat }}]);
-            addPolyline('{{ form.points.value|default:"" }}', true);
-        });
+
+        let map;
+
+        window.initMap = function() {
+            google.maps.Polyline.prototype.getBounds = function() {
+                var bounds = new google.maps.LatLngBounds();
+                this.getPath().forEach(function(item, index) {
+                    bounds.extend(new google.maps.LatLng(item.lat(), item.lng()));
+                });
+                return bounds;
+            }
+
+            map = new google.maps.Map(document.getElementById("map"), {
+                streetViewControl: false,
+                fullscreenControl: false,
+                zoomControl: true,
+                zoomControlOptions: {
+                    position: google.maps.ControlPosition.RIGHT_TOP,
+                },
+
+                zoom: 11,
+                center: {lat: {{ user.city.lat }}, lng: {{ user.city.lng }}},
+            });
+
+            let pointsStr = '{{ form.points.value|default:"" }}';
+            var path = [];
+
+            if (pointsStr.length > 0) {
+                var points = pointsStr.split('|');
+
+                for (var i = 0; i < points.length; i++) {
+                    var point = points[i].split(",");
+                    path.push({ lat: parseFloat(point[0]), lng: parseFloat(point[1]) });
+                }
+            }
+
+            if (path.length > 0) {
+                var polyline = new google.maps.Polyline({
+                    path: path,
+                    map: map,
+                    editable: true,
+                    strokeColor: '#1258c9',
+                    strokeWeight: 3,
+                });
+
+                polyline.setMap(map);
+                map.fitBounds(polyline.getBounds());
+
+                map.addListener('click', addLatLng);
+
+                function addLatLng(event) {
+                    var path = polyline.getPath();
+                    path.push(event.latLng);
+                }
+
+                google.maps.event.addListener(polyline.getPath(), "insert_at", getPath);
+                google.maps.event.addListener(polyline.getPath(), "remove_at", getPath);
+                google.maps.event.addListener(polyline.getPath(), "set_at", getPath);
+
+                function getPath() {
+                    var path = polyline.getPath();
+                    var coords = [];
+                    for (var i=0; i < path.getLength(); i++) {
+                        coords.push(path.getAt(i).toUrlValue(6));
+                    }
+                    var distance = (google.maps.geometry.spherical.computeLength(path) / 1000).toFixed(2);
+                    $('#id_points').val(coords.join('|'));
+                    $('#id_distance').val(distance);
+                }
+            }
+        };
     </script>
 {% endblock %}

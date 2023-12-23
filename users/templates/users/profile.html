@@ -26,7 +26,7 @@
             {% for ride in rides %}
                 <li>
                     <a href="{{ ride.get_absolute_url }}">
-                        <img src="{{ ride.static_url }}" alt="{{ ride.title }}">
+                        <img src="{{ ride.map_static_url }}" alt="{{ ride.title }}">
                     </a>
                     <div class="details">
                         <a class="title" href="{{ ride.get_absolute_url }}" title="{{ ride.title }}">{{ ride.title }}</a>

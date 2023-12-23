@@ -49,6 +49,7 @@ $(document).ready(function () {
             success: function (data) {
                 form.find('#id_text').val('');
                 $('#lightbox').html(data)
+                $('#overlay').fadeOut('fast');
             }
         });
     });
@@ -126,62 +127,3 @@ $(document).ready(function () {
         $('#notices').slideUp('fast');
     });
 });
-
-var map = null;
-
-function initMap(center) {
-    center = center || [50,30];
-    map = new ymaps.Map('map', {
-        center: center,
-        zoom: 11,
-        controls: []
-    });
-
-    map.controls.add('zoomControl', {float: 'left', size: 'small'});
-    map.controls.add('typeSelector', {float: 'right'});
-    map.controls.add('fullscreenControl', {float: 'right'});
-}
-
-function addPolyline(pointsString, editMode) {
-    pointsString = pointsString || '';
-    editMode = editMode || false;
-
-    var geometry = [];
-
-    if (pointsString.length > 0) {
-        var points = pointsString.split(',');
-        for (var i = 0; i < points.length; i++) {
-            if (i % 2 == 0) {
-                geometry.push([points[i], points[i + 1]]);
-            }
-        }
-    }
-
-    var polyline = new ymaps.Polyline(geometry, {}, {strokeWidth: 4});
-    map.geoObjects.add(polyline);
-
-    if (geometry.length > 0) {
-        map.setBounds(polyline.geometry.getBounds());
-    }
-
-    if (editMode) {
-        polyline.editor.startDrawing();
-        var coords = polyline.geometry.getCoordinates();
-        $('#id_points').val(coords.join(','));
-        $('#id_distance').val(distance(coords));
-    }
-
-    polyline.events.add('geometrychange', function () {
-        var coords = polyline.geometry.getCoordinates();
-        $('#id_points').val(coords.join(','));
-        $('#id_distance').val(distance(coords));
-    });
-}
-
-function distance(coords) {
-    var dist = 0;
-    for (var i = 1; i < coords.length; i++) {
-        dist += ymaps.coordSystem.geo.getDistance(coords[i], coords[i-1]) / 1000;
-    }
-    return dist.toFixed(2);
-}

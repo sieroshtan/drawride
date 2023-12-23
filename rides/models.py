@@ -32,10 +32,10 @@ class Ride(models.Model):
     objects = RideManager()
 
     def points_string(self):
-        points = self.points.split(",")[::-1]
-        return ",".join(points[:200])
+        points = self.points.split("|")
+        return "|".join(points[:200])
 
-    def static_url(self):
+    def map_static_url(self):
         return settings.MAP_STATIC_URL + self.points_string()
 
     def get_absolute_url(self):
