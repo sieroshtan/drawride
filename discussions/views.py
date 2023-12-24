@@ -1,7 +1,8 @@
 from django.views.generic import CreateView, ListView
+from django.views.decorators.http import require_http_methods
 from django.urls import reverse
-from django.http import Http404
-from django.shortcuts import get_object_or_404, render
+from django.http import Http404, JsonResponse
+from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from .forms import MessageForm
@@ -9,21 +10,22 @@ from .models import MessageContact, Message
 from views.base import AuthRequiredMixin
 
 
+@require_http_methods(["POST"])
 @login_required
 def compose(request, username):
-    if request.META.get("HTTP_X_REQUESTED_WITH") == "XMLHttpRequest":
-        to_user = get_object_or_404(get_user_model(), username=username)
-        form = MessageForm(request.POST or None)
-
-        if form.is_valid():
-            message = form.save(commit=False)
-            message.from_user = request.user
-            message.to_user = to_user
-            message.save()
-
-        return render(request, "discussions/form.html", {"form": form, "to_user": to_user})
-    else:
+    if request.META.get("HTTP_ACCEPT") != "text/html+partial":
         raise Http404
+
+    to_user = get_object_or_404(get_user_model(), username=username)
+    form = MessageForm(request.POST)
+
+    if form.is_valid():
+        message = form.save(commit=False)
+        message.from_user = request.user
+        message.to_user = to_user
+        message.save()
+
+    return JsonResponse({}, status=204)
 
 
 class DiscussionsView(AuthRequiredMixin, ListView):

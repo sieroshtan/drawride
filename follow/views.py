@@ -1,31 +1,35 @@
 from django.views.generic import DetailView
+from django.http import Http404
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
 from django.contrib.auth import get_user_model
 from .models import Follow
 
 
 @login_required
 def follow(request, username):
+    if request.META.get("HTTP_ACCEPT") != "text/html+partial":
+        raise Http404
+
     follower = request.user
     followee = get_user_model().objects.get(username=username)
 
-    response = {"status": "OK" if Follow.objects.add_follower(follower, followee) else "NO"}
+    Follow.objects.add_follower(follower, followee)
 
-    return JsonResponse(response)
+    return render(request, "follow/unfollow.html", {"profile": followee})
 
 
 @login_required
 def unfollow(request, username):
+    if request.META.get("HTTP_ACCEPT") != "text/html+partial":
+        raise Http404
+
     follower = request.user
     followee = get_user_model().objects.get(username=username)
 
-    print(follower)
-    print(followee)
+    Follow.objects.remove_follower(follower, followee)
 
-    response = {"status": "OK" if Follow.objects.remove_follower(follower, followee) else "NO"}
-
-    return JsonResponse(response)
+    return render(request, "follow/follow.html", {"profile": followee})
 
 
 class FollowersView(DetailView):

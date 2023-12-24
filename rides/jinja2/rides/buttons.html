@@ -1,0 +1,16 @@
+{% macro fave_btn(ride, is_favorite) -%}
+    {% if is_favorite %}
+        <a class="ride-action-btn favorite unfave" href="{{ url('fave', args=[ride.id]) }}" ts-req="">{{ _("Remove from favorites") }}</a>
+    {% else %}
+        <a class="ride-action-btn favorite" href="{{ url('fave', args=[ride.id]) }}" ts-req="">{{ _("Add to favorites") }}</a>
+    {% endif %}
+{%- endmacro %}
+
+
+{% macro participant_btn(ride, is_participant) -%}
+    {% if is_participant %}
+        <a id="join-btn" class="ride-action-btn join leave" href="{{ url('join', args=[ride.id]) }}" ts-req="" ts-target="#join-btn">{{ _("Leave a ride") }}</a>
+    {% else %}
+        <a id="join-btn" class="ride-action-btn join" href="{{ url('join', args=[ride.id]) }}" ts-req="" ts-target="#join-btn">{{ _("Join to ride") }}</a>
+    {% endif %}
+{%- endmacro %}

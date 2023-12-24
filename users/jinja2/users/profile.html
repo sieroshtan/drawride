@@ -59,10 +59,13 @@
 
 {% block overlay %}
     <div id="overlay">
-        <div id="overlay-bg"></div>
+        <div id="overlay-bg" ts-action="class- visible" ts-target="#overlay" ts-trigger="click"></div>
         <div id="lightbox">
             <div class="full lightbox-title">
-                <h2>{{ _("Send a Message") }}</h2>
+                <h2>{{ _("Send a message") }}</h2>
+            </div>
+            <div id="compose-form">
+                {% include 'discussions/form.html' %}
             </div>
         </div>
     </div>

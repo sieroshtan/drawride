@@ -207,6 +207,7 @@ textarea {
     border-radius: 2px;
 }
 
+span.button,
 a.button,
 input[type="submit"] {
     display: inline-block;
@@ -221,6 +222,7 @@ input[type="submit"] {
     font-size: 1.1em;
 }
 
+span.button,
 a.button:hover,
 input[type="submit"]:hover {
     background: #F45647;
@@ -752,7 +754,7 @@ a.ride-action-btn.hidden {
 
 /* ride options */
 
-a.ride-option-btn {
+span.ride-option-btn, a.ride-option-btn, a.ride-manage-btn {
     background: #b7b7ae;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -762,6 +764,10 @@ a.ride-option-btn {
     color: #fff;
     font-weight: bold;
     text-align: center;
+}
+
+span.ride-option-btn:hover {
+    cursor:pointer;
 }
 
 a.ride-option-btn.export {
@@ -1051,6 +1057,16 @@ table.data td a {
     overflow: hidden;
     position: fixed;
     z-index: 9999;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+#overlay.visible {
+    animation: fadeIn 0.2s;
+    display: block;
 }
 
 #overlay #overlay-bg {

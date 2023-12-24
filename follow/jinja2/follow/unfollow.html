@@ -1,0 +1,5 @@
+<a class="button unfollow" href="{{ url('unfollow', args=[profile.username]) }}" ts-req="">
+    <span>{{ _("Following") }}</span>
+    <span class="hover-text">{{ _("Unfollow") }}</span>
+</a>
+<span class="count" id="followers-count" ts-swap-push="#followers-count">{{ profile.followers.count() }}</span>

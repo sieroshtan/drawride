@@ -9,6 +9,7 @@ from .forms import SettingsForm, PhotoForm
 from rides.models import Ride
 from views.base import AuthRequiredMixin
 from follow.models import Follow
+from discussions.forms import MessageForm
 
 User = get_user_model()
 
@@ -25,6 +26,7 @@ class ProfileBaseMixin(object):
         context = super(ProfileBaseMixin, self).get_context_data(**kwargs)
         context["profile"] = self.get_user()
         context["follows"] = Follow.objects.follows(self.request.user, self.get_user())
+        context["message_form"] = MessageForm()
         return context
 
 

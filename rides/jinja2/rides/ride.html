@@ -1,5 +1,8 @@
 {% extends 'layout.html' %}
 
+{% from 'rides/buttons.html' import fave_btn, participant_btn %}
+{% from 'rides/participants.html' import participants %}
+
 {% block title %}{{ ride.title }}{% endblock %}
 
 {% block meta %}
@@ -28,20 +31,8 @@
         {% if user.is_authenticated %}
             <div class="block">
                 <div class="content">
-                    {% if is_member %}
-                        <a class="ride-action-btn join leave" href="{{ url('join', args=[ride.id]) }}">{{ _("Leave a ride") }}</a>
-                        <a class="ride-action-btn join hidden" href="{{ url('join', args=[ride.id]) }}">{{ _("Join to ride") }}</a>
-                    {% else %}
-                        <a class="ride-action-btn join" href="{{ url('join', args=[ride.id]) }}">{{ _("Join to ride") }}</a>
-                        <a class="ride-action-btn join leave hidden" href="{{ url('join', args=[ride.id]) }}">{{ _("Leave a ride") }}</a>
-                    {% endif %}
-                    {% if is_favorite %}
-                        <a class="ride-action-btn favorite unfave" href="{{ url('fave', args=[ride.id]) }}">{{ _("Remove from favorites") }}</a>
-                        <a class="ride-action-btn favorite hidden" href="{{ url('fave', args=[ride.id]) }}">{{ _("Add to favorites") }}</a>
-                    {% else %}
-                        <a class="ride-action-btn favorite" href="{{ url('fave', args=[ride.id]) }}">{{ _("Add to favorites") }}</a>
-                        <a class="ride-action-btn favorite unfave hidden" href="{{ url('fave', args=[ride.id]) }}">{{ _("Remove from favorites") }}</a>
-                    {% endif %}
+                    {{ participant_btn(ride, is_participant) }}
+                    {{ fave_btn(ride, is_favorite) }}
                 </div>
             </div>
         {% endif %}
@@ -83,14 +74,7 @@
                 <h4>{{ _("Ride members") }}</h4>
             </div>
             <div class="content members">
-                <ul id="members-list">
-                    {% for member in ride.members.all() %}
-                        <li>
-                            <a href="{{ member.get_absolute_url() }}" title="{{ member.username }}">
-                                <img alt="{{ member.username }}" class="photo" src="{{ member.get_photo() }}">
-                            </a>
-                        </li>
-                    {% endfor %}
+                <ul id="members-list" ts-trigger="load" ts-req="{{ url('ride_participants', args=[ride.id]) }}">
                 </ul>
             </div>
         </div>
@@ -109,7 +93,7 @@
                 <h4>{{ _("Options") }}</h4>
             </div>
             <div class="content">
-                <a class="ride-option-btn show-lightbox export" href="javascript:void(0)">{{ _("Export route") }}</a>
+                <span class="ride-option-btn export" href="javascript:void(0)" ts-action="class+ visible" ts-trigger="click" ts-target="#overlay">{{ _("Export route") }}</span>
                 <a class="ride-option-btn go" href="{{ url('navigation', args=[ride.id]) }}">{{ _("Navigation") }}</a>
             </div>
         </div>
@@ -125,38 +109,18 @@
         {% endif %}
     </div>
     <div id="comments-section">
-        <ul id="comments" class="comments">
-            {% for comment in comments %}
-                <li id="comment-{{ comment.id }}" class="clearfix">
-                    <a href="{{ comment.user.get_absolute_url() }}">
-                        <img class="photo" src="{{ comment.user.get_photo() }}" alt="{{ comment.user.get_name() }}">
-                    </a>
-                    <div class="rightside">
-                        <div class="comment-meta">
-                            <a href="{{ comment.user.get_absolute_url() }}" class="name">{{ comment.user.get_name() }}</a>
-                            <span class="posted">{{ comment.date_created }}</span>
-                        </div>
-                        <div class="comment-body">
-                            {{ comment.text|urlize }}
-                        </div>
-                    </div>
-                    <div class="permalink">
-                        <a href="#comment-{{ comment.id }}" title="{{ _("Permalink to this comment") }}">#</a>
-                    </div>
-                </li>
-            {% endfor %}        
-        </ul>
+        <ul id="comments" class="comments" ts-req="{{ url('ride_comments', args=[ride.id]) }}" ts-trigger="load"></ul>
         {% if user.is_authenticated %}
             <ul class="comments form">
                 <li class="clearfix">
                     <img class="photo" src="{{ user.get_photo() }}" alt="{{ user.get_name() }}">
                     <div class="rightside">
-                        <form action="{{ url('post_comment', args=[ride.id]) }}" method="post" id="form-post-comment" class="simple-form">
+                        <form action="{{ url('post_comment', args=[ride.id]) }}" method="post" id="form-post-comment" class="simple-form" ts-req="" ts-target="#comments">
                             {{ csrf_input }}
                             <div class="form-field">
-                                {{ comment_form.text }}
+                                <textarea name="text" cols="40" rows="3" placeholder="Enter your comment here..." required="" id="id_text"></textarea>
                             </div>
-                            <input class="button" type="submit" value="{{ _("Post Comment") }}">
+                            <input class="button" type="submit" value="{{ _("Post Comment") }}" ts-action="remove" ts-targer="#id_text">
                         </form>
                     </div>
                 </li>
@@ -171,10 +135,10 @@
 
 {% block overlay %}
     <div id="overlay">
-        <div id="overlay-bg"></div>
+        <div id="overlay-bg" ts-action="class- visible" ts-target="#overlay" ts-trigger="click"></div>
         <div id="lightbox">
             <div class="full lightbox-title">
-                <h2>{{ _("Choose export destination") }}</h2>
+                <h2>{{ _("Choose the export format") }}</h2>
             </div>
             <ul class="list-buttons">
                 <li>

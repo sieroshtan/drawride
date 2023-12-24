@@ -1,12 +1,10 @@
-{% load i18n %}
-
-<form action="{% url 'compose' to_user.username %}" method="post" id="form-compose" class="simple-form">
-    {% csrf_token %}
+<form action="{{ url('compose', args=[profile.username]) }}" method="post" class="simple-form" ts-req="">
+    {{ csrf_input }}
     <div class="form-field">
-        {{ form.text }}
-        {% for error in form.text.errors %}
+        {{ message_form.text }}
+        {% for error in message_form.text.errors %}
             <p class="error">{{ error }}</p>
         {% endfor %}
     </div>
-    <input type="submit" value="{% trans "Send Message" %}">
+    <input type="submit" value="{{ _("Send") }}" ts-action="class- visible" ts-target="#overlay" ts-trigger="click">
 </form>

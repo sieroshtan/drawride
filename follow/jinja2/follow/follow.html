@@ -1,0 +1,4 @@
+<a class="button follow" href="{{ url('follow', args=[profile.username]) }}" ts-req="">
+    <span>{{ _("Follow") }}</span>
+</a>
+<span class="count" id="followers-count" ts-swap-push="#followers-count">{{ profile.followers.count() }}</span>

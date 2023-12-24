@@ -3,13 +3,13 @@
         <ul class="profile-tabs">
             <li class="followers">
                 <a href="{{ url('followers', args=[profile.username]) }}">
-                    <span class="count">{{ profile.followers.count() }}</span>
+                    <span class="count" id="followers-count">{{ profile.followers.count() }}</span>
                     <span class="meta">{{ _("Followers") }}</span>
                 </a>
             </li>
             <li class="following">
                 <a href="{{ url('following', args=[profile.username]) }}">
-                    <span class="count">{{ profile.following.count() }}</span>
+                    <span class="count" id="following-count">{{ profile.following.count() }}</span>
                     <span class="meta">{{ _("Following") }}</span>
                 </a>
             </li>
@@ -27,22 +27,15 @@
         </ul>
         <div class="profile-options">
             {% if user.is_authenticated and user != profile %}
-                <a id="compose-message" class="button" href="{{ url('compose', args=[profile.username]) }}">{{ _("Compose message") }}</a>
+                <span id="compose-message" class="button" ts-action="class+ visible" ts-trigger="click" ts-target="#overlay">{{ _("Compose message") }}</span>
                 {% if follows %}
-                    <a class="button unfollow" href="{{ url('unfollow', args=[profile.username]) }}">
+                    <a class="button unfollow" href="{{ url('unfollow', args=[profile.username]) }}" ts-req="">
                         <span>{{ _("Following") }}</span>
                         <span class="hover-text">{{ _("Unfollow") }}</span>
-                    </a>
-                    <a class="button follow hidden" href="{{ url('follow', args=[profile.username]) }}">
-                        <span>{{ _("Follow") }}</span>
                     </a>
                 {% else %}
-                    <a class="button follow" href="{{ url('follow', args=[profile.username]) }}">
+                    <a class="button follow" href="{{ url('follow', args=[profile.username]) }}" ts-req="">
                         <span>{{ _("Follow") }}</span>
-                    </a>
-                    <a class="button unfollow hidden" href="{{ url('unfollow', args=[profile.username]) }}">
-                        <span>{{ _("Following") }}</span>
-                        <span class="hover-text">{{ _("Unfollow") }}</span>
                     </a>
                 {% endif %}            
             {% endif %}

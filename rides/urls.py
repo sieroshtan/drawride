@@ -9,7 +9,8 @@ urlpatterns = [
     path("ride/<int:pk>/navigation/", RideNavigationView.as_view(), name="navigation"),
     path("popular/", RidesPopularView.as_view(), name="popular"),
     path("upcoming/", RidesUpcomingView.as_view(), name="upcoming"),
-    re_path(r"^ride/(?P<pk>\d+)/export/(?P<ext>gpx|kml)/$", ride_export, name="export"),
-    path("ride/<int:pk>/join/", join, name="join"),
-    path("ride/<int:pk>/fave/", fave, name="fave"),
+    re_path(r"^ride/(?P<ride_id>\d+)/export/(?P<ext>gpx|kml)/$", ride_export, name="export"),
+    path("ride/<int:ride_id>/join/", join, name="join"),
+    path("ride/<int:ride_id>/fave/", fave, name="fave"),
+    path("ride/<int:ride_id>/participants/", ride_participants, name="ride_participants"),
 ]

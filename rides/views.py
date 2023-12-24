@@ -6,8 +6,8 @@ from django.views.generic import (
     DeleteView,
 )
 from django.contrib import messages
-from django.shortcuts import get_object_or_404, redirect
-from django.http import HttpResponse, JsonResponse, Http404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponse, Http404
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.template.loader import render_to_string
@@ -70,7 +70,7 @@ class RideView(DetailView):
         context["comment_form"] = CommentForm()
 
         if self.request.user.is_authenticated:
-            context["is_member"] = RideMembers.objects.is_member(
+            context["is_participant"] = RideMembers.objects.is_member(
                 user=self.request.user, ride=self.get_object()
             )
             context["is_favorite"] = UserFavorites.objects.is_favorite(
@@ -129,53 +129,56 @@ class RidesUpcomingView(ListView):
 
 
 @login_required
-def join(request, pk):
-    if request.META.get("HTTP_X_REQUESTED_WITH") != "XMLHttpRequest":
+def join(request, ride_id):
+    if request.META.get("HTTP_ACCEPT") != "text/html+partial":
         raise Http404
 
-    ride = get_object_or_404(Ride, pk=pk)
+    ride = get_object_or_404(Ride, pk=ride_id)
 
-    response = {"status": "OK"}
-
+    is_participant = False
     try:
         ride_member = RideMembers.objects.get(user=request.user, ride=ride)
         ride_member.delete()
     except RideMembers.DoesNotExist:
         ride_member = RideMembers(user=request.user, ride=ride)
         ride_member.save()
-    else:
-        response["status"] = "NO"
+        is_participant = True
 
-    members = ride.members.all()
-
-    response["members"] = render_to_string("rides/members.html", {"members": members})
-
-    return JsonResponse(response)
+    return render(
+        request, "rides/ts/participant.html", {"is_participant": is_participant, "ride": ride}
+    )
 
 
 @login_required
-def fave(request, pk):
-    if request.META.get("HTTP_X_REQUESTED_WITH") != "XMLHttpRequest":
+def fave(request, ride_id):
+    if request.META.get("HTTP_ACCEPT") != "text/html+partial":
         raise Http404
 
-    ride = get_object_or_404(Ride, pk=pk)
+    ride = get_object_or_404(Ride, pk=ride_id)
 
-    response = {"status": "OK"}
-
+    is_favorite = False
     try:
         fave = UserFavorites.objects.get(user=request.user, ride=ride)
         fave.delete()
     except UserFavorites.DoesNotExist:
         fave = UserFavorites(user=request.user, ride=ride)
         fave.save()
-    else:
-        response["status"] = "NO"
+        is_favorite = True
 
-    return JsonResponse(response)
+    return render(request, "rides/ts/fave.html", {"ride": ride, "is_favorite": is_favorite})
 
 
-def ride_export(request, pk, ext):
-    ride = get_object_or_404(Ride, pk=pk)
+def ride_participants(request, ride_id):
+    if request.META.get("HTTP_ACCEPT") != "text/html+partial":
+        raise Http404
+
+    ride = get_object_or_404(Ride, pk=ride_id)
+
+    return render(request, "rides/ts/participants.html", {"ride": ride})
+
+
+def ride_export(request, ride_id, ext):
+    ride = get_object_or_404(Ride, pk=ride_id)
 
     coords = [pos.split(",") for pos in ride.points.split("|")]
 

@@ -1,0 +1,11 @@
+{% macro participants(ride) -%}
+<ul id="members-list" ts-swap-push="#members-list">
+{% for participant in ride.members.all() %}
+    <li>
+        <a href="{{ participant.get_absolute_url() }}" title="{{ participant.username }}">
+            <img class="photo" src="{{ participant.get_photo() }}">
+        </a>
+    </li>
+{% endfor %}
+</ul>
+{%- endmacro %}

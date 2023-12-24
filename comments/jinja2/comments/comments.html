@@ -1,4 +1,6 @@
+{% macro comments_list(comments) -%}
 {% for comment in comments %}
+<ul id="comments" class="comments">
     <li id="comment-{{ comment.id }}" class="clearfix">
         <a href="{{ comment.user.get_absolute_url() }}">
             <img class="photo" src="{{ comment.user.get_photo() }}" alt="{{ comment.user.get_name() }}">
@@ -17,3 +19,5 @@
         </div>
     </li>
 {% endfor %}
+</ul>
+{%- endmacro %}
