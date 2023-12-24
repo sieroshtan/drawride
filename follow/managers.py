@@ -11,11 +11,11 @@ class FollowingManager(models.Manager):
             return False
 
     def remove_follower(self, follower, followee):
-        try:
-            self.get(follower=follower, followee=followee).delete()
-            return True
-        except models.ObjectDoesNotExist:
-            return False
+        # try:
+        self.get(follower=follower, followee=followee).delete()
+        #     return True
+        # except models.ObjectDoesNotExist:
+        #     return False
 
     def followers(self, user):
         qs = self.filter(followee=user).all()

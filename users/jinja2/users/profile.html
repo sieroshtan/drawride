@@ -1,23 +1,21 @@
 {% extends 'layout.html' %}
 
-{% load i18n %}
-
-{% block title %}{{ profile.get_name }}{% endblock %}
+{% block title %}{{ profile.get_name() }}{% endblock %}
 
 {% block content %}
     {% include 'users/userbar.html' %}
     <div class="tabs">
         <ul>
-            <li class="current"><a href="{{ profile.get_absolute_url }}">{% trans "Own Rides" %}</a></li>
-            <li><a href="{% url 'involved' profile.username %}">{% trans "Involved" %}</a></li>
-            <li><a href="{% url 'favorite' profile.username %}">{% trans "Favorites" %}</a></li>
+            <li class="current"><a href="{{ profile.get_absolute_url() }}">{{ _("My Tours") }}</a></li>
+            <li><a href="{{ url('involved', args=[profile.username]) }}">{{ _("Involved") }}</a></li>
+            <li><a href="{{ url('favorite', args=[profile.username]) }}">{{ _("Favorites") }}</a></li>
         </ul>
     </div>
     {% if user.is_authenticated and user == profile %}
     <div class="sub-tabs">
         <ul>
-            <li class="current"><a href="{{ user.get_absolute_url }}">{% trans "Published" %}</a></li>
-            <li><a href="{% url 'drafts' user.username %}">{% trans "Drafts" %}</a></li>
+            <li class="current"><a href="{{ user.get_absolute_url() }}">{{ _("Published") }}</a></li>
+            <li><a href="{{ url('drafts', args=[user.username]) }}">{{ _("Drafts") }}</a></li>
         </ul>
     </div>
     {% endif %}
@@ -25,17 +23,17 @@
         <ul class="rides-grid clearfix">
             {% for ride in rides %}
                 <li>
-                    <a href="{{ ride.get_absolute_url }}">
-                        <img src="{{ ride.map_static_url }}" alt="{{ ride.title }}">
+                    <a href="{{ ride.get_absolute_url() }}">
+                        <img src="{{ ride.map_static_url() }}" alt="{{ ride.title }}">
                     </a>
                     <div class="details">
-                        <a class="title" href="{{ ride.get_absolute_url }}" title="{{ ride.title }}">{{ ride.title }}</a>
+                        <a class="title" href="{{ ride.get_absolute_url() }}" title="{{ ride.title }}">{{ ride.title }}</a>
                         <ul class="tools clearfix">
                             <li class="members">
-                                <a href="{{ ride.get_absolute_url }}#members" title="{% trans "See members of this ride" %}">{{ ride.members.count }}</a>
+                                <a href="{{ ride.get_absolute_url() }}#members" title="{{ _("See members of this ride") }}">{{ ride.members.count() }}</a>
                             </li>
                             <li class="comments">
-                                <a href="{{ ride.get_absolute_url }}#comments" title="{% trans "View comments on this ride" %}">{{ ride.comments.count }}</a>
+                                <a href="{{ ride.get_absolute_url() }}#comments" title="{{ _("View comments on this ride") }}">{{ ride.comments.count() }}</a>
                             </li>
                         </ul>
                     </div>
@@ -45,16 +43,16 @@
         {% if is_paginated %}
             <div class="pagination">
                 {% if page_obj.has_previous %}
-                    <a href="?page={{ page_obj.previous_page_number }}">← {% trans "Previous" %}</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">← {{ _("Previous") }}</a>
                 {% endif %}
                 {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}">{% trans "Next" %} →</a>
+                    <a href="?page={{ page_obj.next_page_number }}">{{ _("Next") }} →</a>
                 {% endif %}
             </div>
         {% endif %}
     {% else %}
         <div class="null-message">
-            <h2>{% trans "None" %}</h2>
+            <h2>{{ _("None") }}</h2>
         </div>
     {% endif %}
 {% endblock %}
@@ -64,7 +62,7 @@
         <div id="overlay-bg"></div>
         <div id="lightbox">
             <div class="full lightbox-title">
-                <h2>{% trans "Send a Message" %}</h2>
+                <h2>{{ _("Send a Message") }}</h2>
             </div>
         </div>
     </div>

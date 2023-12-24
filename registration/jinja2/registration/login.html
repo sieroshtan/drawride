@@ -1,38 +1,36 @@
 {% extends 'layout.html' %}
 
-{% load i18n %}
-
-{% block title %}{% trans "Log In" context "log in text" %}{% endblock %}
+{% block title %}{{ pgettext("log in text", "Log In") }}{% endblock %}
 
 {% block content %}
     <div class="centered">
         <div class="full">
-            <h1>{% trans "Log In" context "log in text" %}</h1>
+            <h1>{{ pgettext("log in text", "Log In") }}</h1>
         </div>
         {% if form.non_field_errors %}
-            {% for error in form.non_field_errors %}
+            {% for error in form.non_field_errors() %}
                 <p class="error">{{ error }}</p>
             {% endfor %}
         {% endif %}
-        <form action="{% url 'login' %}{% if next %}?next={{next}}{% endif %}" method="post">
-            {% csrf_token %}
+        <form action="{{ url('login') }}{% if next %}?next={{ next }}{% endif %}" method="post">
+            {{ csrf_input }}
             <div class="form-field">
-                {{ form.username.label_tag }}
+                {{ form.username.label_tag() }}
                 {{ form.username }}
-                <span class="help-text">{{ form.username.help_text }}</span>
+                <span class="help-text">{{ form.username.help_text|safe }}</span>
                 {% for error in form.username.errors %}
                     <p class="error">{{ error }}</p>
                 {% endfor %}
             </div>
             <div class="form-field">
-                <label for="id_password">{{ form.password.label }} <a href="{% url 'password_reset' %}">{% trans "Forgot it?" %}</a></label>
+                {{ form.password.label_tag() }}<a href="{{ url('password_reset') }}">{{ _("Forgot it?") }}</a></a>
                 {{ form.password }}
-                <span class="help-text">{{ form.password.help_text }}</span>
+                <span class="help-text">{{ form.password.help_text|safe }}</span>
                 {% for error in form.password.errors %}
                     <p class="error">{{ error }}</p>
                 {% endfor %}
              </div>
-            <input class="button" type="submit" value="{% trans "Log In" context "log in button" %}">
+            <input class="button" type="submit" value="{{ pgettext("button", "Log In") }}">
         </form>
     </div>
 {% endblock %}

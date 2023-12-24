@@ -1,9 +1,6 @@
 {% extends 'layout.html' %}
 
-{% load i18n %}
-{% load static %}
-
-{% block title %}{% trans "Draw" %}{% endblock %}
+{% block title %}{{ _("Draw") }}{% endblock %}
 
 {% block css %}
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.css">
@@ -11,58 +8,58 @@
 
 {% block content %}
     <div class="full">
-        <h1>{% trans "New ride" %}</h1>
+        <h1>{{ _("New ride") }}</h1>
     </div>
     <div id="col-left">
         <div id="map"></div>
     </div>
     <div id="col-right">
-        <form action="{% url 'draw' %}" method="post">
-            {% csrf_token %}
+        <form action="{{ url('draw') }}" method="post">
+            {{ csrf_input }}
             <div class="form-field">
-                {{ form.title.label_tag }}
+                {{ form.title.label_tag() }}
                 {{ form.title }}
                 {% for error in form.title.errors %}
                     <p class="error">{{ error }}</p>
                 {% endfor %}
             </div>
             <div class="form-field">
-                {{ form.start_time.label_tag }}
+                {{ form.start_time.label_tag() }}
                 {{ form.start_time }}
                 {% for error in form.start_time.errors %}
                     <p class="error">{{ error }}</p>
                 {% endfor %}
             </div>
             <div class="form-field">
-                {{ form.end_time.label_tag }}
+                {{ form.end_time.label_tag() }}
                 {{ form.end_time }}
-                <span class="help-text">{{ form.end_time.help_text }}</span>
+                <span class="help-text">{{ form.end_time.help_text|safe }}</span>
                 {% for error in form.end_time.errors %}
                     <p class="error">{{ error }}</p>
                 {% endfor %}
             </div>
             <div class="form-field">
-                {{ form.description.label_tag }}
+                {{ form.description.label_tag() }}
                 {{ form.description }}
                 {% for error in form.description.errors %}
                     <p class="error">{{ error }}</p>
                 {% endfor %}
             </div>
             <div class="form-field">
-                {{ form.distance.label_tag }}
+                {{ form.distance.label_tag() }}
                 {{ form.distance }}
                 {{ form.points }}
             </div>
-            <input class="button" type="submit" value="{% trans "Post" %}">
-            <input class="button" name="is_hide" type="submit" value="{% trans "Save to drafts" %}">
+            <input class="button" type="submit" value="{{ _("Post") }}">
+            <input class="button" name="is_hide" type="submit" value="{{ _("Save to drafts") }}">
         </form>
     </div>
 {% endblock %}
 
 {% block js %}
-    <script async src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}&v=weekly&libraries=geometry&callback=initMap"></script>
+<script async src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}&v=weekly&libraries=geometry&callback=initMap"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
-    <script src="{% static 'js/jquery-ui-timepicker-addon.min.js' %}"></script>
+    <script src="{{ static('js/jquery-ui-timepicker-addon.min.js') }}"></script>
     <script>
         $(function() {
             $('.datetime').datetimepicker({

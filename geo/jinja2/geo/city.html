@@ -1,7 +1,5 @@
 {% extends 'layout.html' %}
 
-{% load i18n %}
-
 {% block title %}{{ city.country.name }}, {{ city.name }}{% endblock %}
 
 {% block content %}
@@ -10,19 +8,19 @@
     </div>
     <div class="tabs">
         <ul>
-            <li class="current"><a href="{% url 'city' city.id %}">{% trans "Rides" %}</a></li>
-            <li><a href="{% url 'city_people' city.id %}">{% trans "People" %}</a></li>
+            <li class="current"><a href="{{ url('city', args=[city.id]) }}">{{ _("Rides") }}</a></li>
+            <li><a href="{{ url('city_people', args=[city.id]) }}">{{ _("People") }}</a></li>
         </ul>
     </div>
-    {% if city.rides.all %}
-        {% with city.rides.all as rides %}
+    {% if city.rides.all() %}
+        {% with rides=city.rides.all() %}
         <ul class="rides-grid clearfix">
             {% include 'rides/grid.html' %}
         </ul>
         {% endwith %}
     {% else %}
         <div class="null-message">
-            <h2>{% trans "None" %}</h2>
+            <h2>{{ _("None") }}</h2>
         </div>
     {% endif %}
 {% endblock %}

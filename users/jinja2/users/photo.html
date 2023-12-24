@@ -1,28 +1,26 @@
 {% extends 'layout.html' %}
 
-{% load i18n %}
-
-{% block title %}{% trans "Change Photo" %}{% endblock %}
+{% block title %}{{ _("Change Photo") }}{% endblock %}
 
 {% block content %}
     <div class="tabs">
         <ul>
-            <li><a href="{% url 'settings' %}">{% trans "Profile" %}</a></li>
-            <li><a href="{% url 'settings_password' %}">{% trans "Password" %}</a></li>
-            <li class="current"><a href="{% url 'settings_photo' %}">{% trans "Photo" %}</a></li>
+            <li><a href="{{ url('settings') }}">{{ _("Profile") }}</a></li>
+            <li><a href="{{ url('settings_password') }}">{{ _("Password") }}</a></li>
+            <li class="current"><a href="{{ url('settings_photo') }}">{{ _("Photo") }}</a></li>
         </ul>
     </div>
-    <img src="{{ user.get_photo }}" alt="{{ user.get_name }}">
-    <form action="{% url 'settings_photo' %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
+    <img src="{{ user.get_photo() }}" alt="{{ user.get_name() }}">
+    <form action="{{ url('settings_photo') }} method="post" enctype="multipart/form-data">
+        {{ csrf_input }}
         <input type="file" name="photo">
-        <p class="help-text">{{ form.photo.help_text }}</p>
+        <p class="help-text">{{ form.photo.help_text|safe }}</p>
         {% for error in form.photo.errors %}
             <p class="error">{{ error }}</p>
         {% endfor %}
-        <input class="button" type="submit" value="{% trans "Save Changes" %}">
+        <input class="button" type="submit" value="{{ _("Save Changes") }}">
         {% if user.photo %}
-            <input class="button silver" name="delete" type="submit" value="{% trans "Delete" %}">
+            <input class="button silver" name="delete" type="submit" value="{{ _("Delete") }}">
         {% endif %}
     </form>
 {% endblock %}

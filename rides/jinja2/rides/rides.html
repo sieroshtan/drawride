@@ -1,26 +1,24 @@
 {% extends 'layout.html' %}
 
-{% load i18n %}
-
-{% block title %}{% trans "Rides" %}{% endblock %}
+{% block title %}{{ _("Rides") }}{% endblock %}
 
 {% block content %}
     <div class="tabs">
         <ul>
             {% if user.is_authenticated %}
-                <li class="current"><a href="{% url 'home' %}">{% trans "Following" %}</a></li>
-                <li><a href="{% url 'popular' %}">{% trans "Popular" %}</a></li>
+                <li class="current"><a href="{{ url('home') }}">{{ _("Following") }}</a></li>
+                <li><a href="{{ url('popular') }}">{{ _("Popular") }}</a></li>
             {% else %}
-                <li class="current"><a href="{% url 'popular' %}">{% trans "Popular" %}</a></li>
+                <li class="current"><a href="{{ url('popular') }}">{{ _("Popular") }}</a></li>
             {% endif %}
-            <li><a href="{% url 'upcoming' %}">{% trans "Upcoming" %}</a></li>
+            <li><a href="{{ url('upcoming') }}">{{ _("Upcoming") }}</a></li>
         </ul>
     </div>
     {% if rides %}
         {% include 'rides/grid.html' %}
     {% else %}
         <div class="null-message">
-            <h2>{% trans "None" %}</h2>
+            <h2>{{ _("None") }}</h2>
         </div>
     {% endif %}
 {% endblock %}

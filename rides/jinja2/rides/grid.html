@@ -1,20 +1,18 @@
-{% load i18n %}
-
 <ul class="rides-grid clearfix">
 {% for ride in rides %}
     <li>
-        <a href="{{ ride.get_absolute_url }}">
-            <img src="{{ ride.map_static_url }}" alt="{{ ride.title }}">
+        <a href="{{ ride.get_absolute_url() }}">
+            <img src="{{ ride.map_static_url() }}" alt="{{ ride.title }}">
         </a>
         <div class="details">
-            <a class="title" href="{{ ride.get_absolute_url }}" title="{{ ride.title }}">{{ ride.title }}</a>
-            {% trans "by" %} <a href="{{ ride.user.get_absolute_url }}">{{ ride.user.get_name }}</a>
+            <a class="title" href="{{ ride.get_absolute_url() }}" title="{{ ride.title }}">{{ ride.title }}</a>
+            {{ _("by") }} <a href="{{ ride.user.get_absolute_url() }}">{{ ride.user.get_name() }}</a>
             <ul class="tools clearfix">
                 <li class="members">
-                    <a href="{{ ride.get_absolute_url }}#members" title="{% trans "See members of this ride" %}">{{ ride.members.count }}</a>
+                    <a href="{{ ride.get_absolute_url() }}#members" title="{{ _("See members of this ride") }}">{{ ride.members.count() }}</a>
                 </li>
                 <li class="comments">
-                    <a href="{{ ride.get_absolute_url }}#comments" title="{% trans "View comments on this ride" %}">{{ ride.comments.count }}</a>
+                    <a href="{{ ride.get_absolute_url() }}#comments" title="{{ _("View comments on this ride") }}">{{ ride.comments.count() }}</a>
                 </li>
             </ul>
         </div>
@@ -24,10 +22,10 @@
 {% if is_paginated %}
     <div class="pagination">
         {% if page_obj.has_previous %}
-            <a href="?page={{ page_obj.previous_page_number }}">← {% trans "Previous" %}</a>
+            <a href="?page={{ page_obj.previous_page_number }}">← {{ _("Previous") }}</a>
         {% endif %}
         {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">{% trans "Next" %} →</a>
+            <a href="?page={{ page_obj.next_page_number }}">{{ _("Next") }} →</a>
         {% endif %}
     </div>
 {% endif %}

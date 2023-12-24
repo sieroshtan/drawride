@@ -6,7 +6,7 @@
     <metadata>
         <name>{{ ride.title }}</name>
         <author>
-            <name>{{ ride.user.get_name }}</name>
+            <name>{{ ride.user.get_name() }}</name>
             <link href="http://drawride.com">
                 <text>drawride</text>
             </link>
@@ -14,11 +14,11 @@
     </metadata>
     <trk>
         <src>http://drawride.com</src>
-        <link href="http://drawride.com{{ ride.get_absolute_url }}">
+        <link href="http://drawride.com{{ ride.get_absolute_url() }}">
             <text>drawride</text>
         </link>
         <trkseg>{% for c in coords %}
-            <trkpt lon="{{ c.1 }}" lat="{{ c.0 }}"></trkpt>{% endfor %}
+            <trkpt lat="{{ c.0 }}" lon="{{ c.1 }}"></trkpt>{% endfor %}
         </trkseg>
     </trk>
 </gpx>

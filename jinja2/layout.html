@@ -1,49 +1,47 @@
-{% load i18n %}
-{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=1240">
     {% block meta %}{% endblock %}
-    <link rel="stylesheet" href="{% static 'css/master.css' %}">
+    <link rel="stylesheet" href="{{ static('css/master.css') }}">
     {% block css %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
 <nav class="header">
     <div class="wrapper header-wrapper clearfix">
-        <a class="logo" href="{% url 'home' %}"></a>
+        <a class="logo" href="{{ url('home') }}"></a>
         <ul class="main">
             <li class="dropdown">
-                <a href="{% url 'home' %}">{% trans "Rides" %}</a>
+                <a href="{{ url('home') }}">{{ _("Rides") }}</a>
                 <ul>
                     {% if user.is_authenticated %}
                         <li>
-                            <a href="">{% trans "Following" %}</a>
+                            <a href="">{{ _("Following") }}</a>
                         </li>
                         <li>
-                            <a href="{% url 'upcoming' %}">{% trans "Upcoming" %}</a>
+                            <a href="{{ url('upcoming') }}">{{ _("Upcoming") }}</a>
                         </li>
                     {% else %}
                         <li>
-                            <a href="{% url 'home' %}">{% trans "Upcoming" %}</a>
+                            <a href="{{ url('home') }}">{{ _("Upcoming") }}</a>
                         </li>
                     {% endif %}
                     <li>
-                        <a href="{% url 'popular' %}">{% trans "Popular" %}</a>
+                        <a href="{{ url('popular') }}">{{ _("Popular") }}</a>
                     </li>
                 </ul>
             </li>
             <li>
-                <a href="{% url 'cities' %}">{% trans "Cities" %}</a>
+                <a href="{{ url('cities') }}">{{ _("Cities") }}</a>
             </li>
             <li>
-                <a href="{% url 'users' %}">{% trans "People" %}</a>
+                <a href="{{ url('users') }}">{{ _("People") }}</a>
             </li>
             {% if user.is_authenticated %}
             <li>
-                <a href="{% url 'draw' %}">{% trans "Draw" %}</a>
+                <a href="{{ url('draw') }}">{{ _("Draw") }}</a>
             </li>
             {% endif %}
         </ul>
@@ -51,23 +49,23 @@
             {% if user.is_authenticated %}
                 <ul class="main user">
                     <li>
-                        <a href="{{ user.get_absolute_url }}">
-                            <span class="name">{{ user.get_name }}</span>
+                        <a href="{{ user.get_absolute_url() }}">
+                            <span class="name">{{ user.get_name() }}</span>
                         </a>
                         <ul>
                             <li>
-                                <a href="{{ user.get_absolute_url }}">{% trans "Rides" %}</a>
+                                <a href="{{ user.get_absolute_url() }}">{{ _("Rides") }}</a>
                             </li>
                             <li>
-                                <a href="{% url 'discussions' %}">{% trans "Messages" %}</a>
+                                <a href="{{ url('discussions') }}">{{ _("Messages") }}</a>
                             </li>
                             <li>
-                                <a href="{% url 'settings' %}">{% trans "Settings" %}</a>
+                                <a href="{{ url('settings') }}">{{ _("Settings") }}</a>
                             </li>
                             <li>
-                                <form method="post" action="{% url 'logout' %}">
-                                    {% csrf_token %}
-                                    <button class="buttonToLink" type="submit">{% trans "Log out" %}</button>
+                                <form method="post" action="{{ url('logout') }}">
+                                    {{ csrf_input }}
+                                    <button class="buttonToLink" type="submit">{{ _("Log out") }}</button>
                                 </form>
                             </li>
                         </ul>
@@ -76,15 +74,15 @@
             {% else %}
                 <ul class="main">
                     <li>
-                        <a href="{% url 'login' %}">{% trans "Log in" %}</a>
+                        <a href="{{ url('login') }}">{{ _("Log in") }}</a>
                     </li>
                     <li>
-                        <a href="{% url 'signup' %}">{% trans "Sign up" %}</a>
+                        <a href="{{ url('signup') }}">{{ _("Sign up") }}</a>
                     </li>
                 </ul>
             {% endif %}
             <div class="search">
-                <form action="{% url 'search' %}" method="get">
+                <form action="{{ url('search') }}" method="get">
                     <input id="query" name="q" placeholder="Search" type="text" value="{% block search_q %}{% endblock %}">
                 </form>
             </div>
@@ -108,25 +106,25 @@
 <footer>
     <div class="wrapper">
         <ul>
-            <li><a href="{% url 'about' %}">{% trans "About" %}</a></li>
+            <li><a href="{{ url('about') }}">{{ _("About") }}</a></li>
             <li class="bullet">•</li>
-            <li><a href="">{% trans "FAQ" %}</a></li>
+            <li><a href="">{{ _("FAQ") }}</a></li>
             <li class="bullet">•</li>
-            <li><a href="">{% trans "Contact" %}</a></li>
+            <li><a href="">{{ _("Contact") }}</a></li>
             <li class="bullet">•</li>
             <li><a href="https://twitter.com/drawride">Twitter</a></li>
             <li class="bullet">•</li>
             <li><a href="https://facebook.com/drawride">Facebook</a></li>
             {% if user.is_authenticated %}
             <li class="last">
-                <a href="{% url 'change_city' %}">{{ user.city.name|default:_("Select a city") }}</a>
+                <a href="{{ url('change_city') }}">{{ user.city.name|default(_("Select a city")) }}</a>
             </li>
             {% endif %}
         </ul>
     </div>
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="{% static 'js/app.js' %}"></script>
+<script src="{{ static('js/app.js') }}"></script>
 {% block js %}{% endblock %}
 {% block overlay %}{% endblock %}
 </body>

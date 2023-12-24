@@ -1,5 +1,3 @@
-import json
-
 from django.views.generic import (
     CreateView,
     DetailView,
@@ -9,7 +7,7 @@ from django.views.generic import (
 )
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, JsonResponse, Http404
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.template.loader import render_to_string
@@ -19,6 +17,7 @@ from follow.models import Follow
 from .models import Ride, RideMembers, UserFavorites
 from .forms import RideForm
 from views.base import AuthRequiredMixin
+from comments.forms import CommentForm
 
 
 class RideDrawView(AuthRequiredMixin, CreateView):
@@ -68,6 +67,7 @@ class RideView(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(RideView, self).get_context_data(**kwargs)
+        context["comment_form"] = CommentForm()
 
         if self.request.user.is_authenticated:
             context["is_member"] = RideMembers.objects.is_member(
@@ -150,7 +150,7 @@ def join(request, pk):
 
     response["members"] = render_to_string("rides/members.html", {"members": members})
 
-    return HttpResponse(json.dumps(response), content_type="application/json")
+    return JsonResponse(response)
 
 
 @login_required
@@ -171,19 +171,18 @@ def fave(request, pk):
     else:
         response["status"] = "NO"
 
-    return HttpResponse(json.dumps(response), content_type="application/json")
+    return JsonResponse(response)
 
 
 def ride_export(request, pk, ext):
     ride = get_object_or_404(Ride, pk=pk)
 
-    points = ride.points.split(",")
-    coords = list(zip(points[::2], points[1::2]))
+    coords = [pos.split(",") for pos in ride.points.split("|")]
 
     xml = render_to_string("rides/exporters/%s.xml" % ext, {"ride": ride, "coords": coords})
 
     response = HttpResponse(xml, content_type="text/%s+xml" % ext)
-    response["Content-Disposition"] = "attachment; filename=route_%s.%s" % (
+    response["Content-Disposition"] = "attachment; filename=tour_%s.%s" % (
         ride.id,
         ext,
     )

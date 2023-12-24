@@ -1,37 +1,50 @@
-{% load i18n %}
-{% load follow %}
-
 <div class="full clearfix">
     <div class="profile-actions clearfix">
         <ul class="profile-tabs">
             <li class="followers">
-                <a href="{% url 'followers' profile.username %}">
-                    <span class="count">{{ profile.followers.count }}</span>
-                    <span class="meta">{% trans "Followers" %}</span>
+                <a href="{{ url('followers', args=[profile.username]) }}">
+                    <span class="count">{{ profile.followers.count() }}</span>
+                    <span class="meta">{{ _("Followers") }}</span>
                 </a>
             </li>
             <li class="following">
-                <a href="{% url 'following' profile.username %}">
-                    <span class="count">{{ profile.following.count }}</span>
-                    <span class="meta">{% trans "Following" %}</span>
+                <a href="{{ url('following', args=[profile.username]) }}">
+                    <span class="count">{{ profile.following.count() }}</span>
+                    <span class="meta">{{ _("Following") }}</span>
                 </a>
             </li>
         </ul>
     </div>
     <div class="userbar">
-        <img src="{{ profile.get_photo }}" class="photo" alt="{{ profile.get_name }}">
-        <h1 class="name"><a href="{{ profile.get_absolute_url }}">{{ profile.get_name }}</a></h1>
+        <img src="{{ profile.get_photo() }}" class="photo" alt="{{ profile.get_name() }}">
+        <h1 class="name"><a href="{{ profile.get_absolute_url() }}">{{ profile.get_name() }}</a></h1>
         <ul class="profile-details">
             {% if profile.city %}
             <li>
-                <a href="{% url 'city' profile.city.id %}" class="locality">{{ profile.city.country.name }}, {{ profile.city.name }}</a>
+                <a href="{{ url('city', args=[profile.city.id]) }}" class="locality">{{ profile.city.country.name }}, {{ profile.city.name }}</a>
             </li>
             {% endif %}
         </ul>
         <div class="profile-options">
             {% if user.is_authenticated and user != profile %}
-                <a id="compose-message" class="button" href="{% url 'compose' profile.username %}">{% trans "Compose message" %}</a>
-                {% follow_button user profile %}
+                <a id="compose-message" class="button" href="{{ url('compose', args=[profile.username]) }}">{{ _("Compose message") }}</a>
+                {% if follows %}
+                    <a class="button unfollow" href="{{ url('unfollow', args=[profile.username]) }}">
+                        <span>{{ _("Following") }}</span>
+                        <span class="hover-text">{{ _("Unfollow") }}</span>
+                    </a>
+                    <a class="button follow hidden" href="{{ url('follow', args=[profile.username]) }}">
+                        <span>{{ _("Follow") }}</span>
+                    </a>
+                {% else %}
+                    <a class="button follow" href="{{ url('follow', args=[profile.username]) }}">
+                        <span>{{ _("Follow") }}</span>
+                    </a>
+                    <a class="button unfollow hidden" href="{{ url('unfollow', args=[profile.username]) }}">
+                        <span>{{ _("Following") }}</span>
+                        <span class="hover-text">{{ _("Unfollow") }}</span>
+                    </a>
+                {% endif %}            
             {% endif %}
         </div>
     </div>

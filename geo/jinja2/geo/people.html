@@ -1,8 +1,6 @@
 {% extends 'layout.html' %}
 
-{% load i18n %}
-
-{% block title %}{{ city.country.name }}, {{ city.name }} / {% trans "People" %}{% endblock %}
+{% block title %}{{ city.country.name }}, {{ city.name }} / {{ _("People") }}{% endblock %}
 
 {% block content %}
     <div class="full">
@@ -10,28 +8,28 @@
     </div>
     <div class="tabs">
         <ul>
-            <li><a href="{% url 'city' city.id %}">{% trans "Rides" %}</a></li>
-            <li class="current"><a href="{% url 'city_people' city.id %}">{% trans "People" %}</a></li>
+            <li><a href="{{ url('city', args=[city.id]) }}">{{ _("Rides") }}</a></li>
+            <li class="current"><a href="{{ url('city_people', args=[city.id]) }}">{{ _("People") }}</a></li>
         </ul>
     </div>
     {% if users %}
         <table class="data">
             <thead>
                 <tr>
-                    <th>{% trans "User" %}</th>
-                    <th>{% trans "Rides" %}</th>
+                    <th>{{ _("User") }}</th>
+                    <th>{{ _("Rides") }}</th>
                 </tr>
             </thead>
             <tbody>
             {% for u in users %}
                 <tr>
                     <td>
-                        <a href="{{ u.get_absolute_url }}">
-                            <img class="photo" src="{{ u.get_photo }}">{{ u.get_name }}
+                        <a href="{{ u.get_absolute_url() }}">
+                            <img class="photo" src="{{ u.get_photo() }}">{{ u.get_name() }}
                         </a>
                     </td>
                     <td>
-                        {{ u.his_rides.count }}
+                        {{ u.his_rides.count() }}
                     </td>
                 </tr>
             {% endfor %}
@@ -39,7 +37,7 @@
         </table>
     {% else %}
         <div class="null-message">
-            <h2>{% trans "None" %}</h2>
+            <h2>{{ _("None") }}</h2>
         </div>
     {% endif %}
 {% endblock %}

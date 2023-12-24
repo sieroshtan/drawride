@@ -1,26 +1,24 @@
 {% extends 'layout.html' %}
 
-{% load i18n comments %}
-
 {% block title %}{{ ride.title }}{% endblock %}
 
 {% block meta %}
-    <meta name="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ ride.get_absolute_url }}">
+    <meta name="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ ride.get_absolute_url() }}">
     <meta name="og:type" content="article">
     <meta name="og:title" content="{{ ride.title }}">
-    <meta name="og:image" content="{{ ride.map_static_url }}">
+    <meta name="og:image" content="{{ ride.map_static_url() }}">
     <meta name="og:description" content="{{ ride.description }}">
 {% endblock %}
 
 {% block content %}
     <div class="ride-title-section full clearfix">
-        <a href="{{ ride.user.get_absolute_url }}">
-            <img src="{{ ride.user.get_photo }}" class="photo" alt="{{ ride.user.get_name }}">
+        <a href="{{ ride.user.get_absolute_url() }}">
+            <img src="{{ ride.user.get_photo() }}" class="photo" alt="{{ ride.user.get_name() }}">
         </a>
         <h1>{{ ride.title }}</h1>
         <div class="ride-byline">
-            {% trans "by" %}
-            <a href="{{ ride.user.get_absolute_url }}">{{ ride.user.get_name }}</a> / {{ ride.created }}
+            {{ _("by") }}
+            <a href="{{ ride.user.get_absolute_url() }}">{{ ride.user.get_name() }}</a> / {{ ride.created }}
         </div>
     </div>
     <div id="col-left">
@@ -31,40 +29,40 @@
             <div class="block">
                 <div class="content">
                     {% if is_member %}
-                        <a class="ride-action-btn join leave" href="{% url 'join' ride.id %}">{% trans "Leave a ride" %}</a>
-                        <a class="ride-action-btn join hidden" href="{% url 'join' ride.id %}">{% trans "Join to ride" %}</a>
+                        <a class="ride-action-btn join leave" href="{{ url('join', args=[ride.id]) }}">{{ _("Leave a ride") }}</a>
+                        <a class="ride-action-btn join hidden" href="{{ url('join', args=[ride.id]) }}">{{ _("Join to ride") }}</a>
                     {% else %}
-                        <a class="ride-action-btn join" href="{% url 'join' ride.id %}">{% trans "Join to ride" %}</a>
-                        <a class="ride-action-btn join leave hidden" href="{% url 'join' ride.id %}">{% trans "Leave a ride" %}</a>
+                        <a class="ride-action-btn join" href="{{ url('join', args=[ride.id]) }}">{{ _("Join to ride") }}</a>
+                        <a class="ride-action-btn join leave hidden" href="{{ url('join', args=[ride.id]) }}">{{ _("Leave a ride") }}</a>
                     {% endif %}
                     {% if is_favorite %}
-                        <a class="ride-action-btn favorite unfave" href="{% url 'fave' ride.id %}">{% trans "Remove from favorites" %}</a>
-                        <a class="ride-action-btn favorite hidden" href="{% url 'fave' ride.id %}">{% trans "Add to favorites" %}</a>
+                        <a class="ride-action-btn favorite unfave" href="{{ url('fave', args=[ride.id]) }}">{{ _("Remove from favorites") }}</a>
+                        <a class="ride-action-btn favorite hidden" href="{{ url('fave', args=[ride.id]) }}">{{ _("Add to favorites") }}</a>
                     {% else %}
-                        <a class="ride-action-btn favorite" href="{% url 'fave' ride.id %}">{% trans "Add to favorites" %}</a>
-                        <a class="ride-action-btn favorite unfave hidden" href="{% url 'fave' ride.id %}">{% trans "Remove from favorites" %}</a>
+                        <a class="ride-action-btn favorite" href="{{ url('fave', args=[ride.id]) }}">{{ _("Add to favorites") }}</a>
+                        <a class="ride-action-btn favorite unfave hidden" href="{{ url('fave', args=[ride.id]) }}">{{ _("Remove from favorites") }}</a>
                     {% endif %}
                 </div>
             </div>
         {% endif %}
         <div class="block">
             <div class="bar">
-                <h4>{% trans "Ride info" %}</h4>
+                <h4>{{ _("Ride info") }}</h4>
             </div>
             <div class="content ride-info">
                 <ul>
                     <li>
-                        <span>{% trans "Location" %}</span><a href="{{ ride.city.get_absolute_url }}">{{ ride.city.country.name }}, {{ ride.city.name }}</a>
+                        <span>{{ _("Location") }}</span><a href="{{ ride.city.get_absolute_url() }}">{{ ride.city.country.name }}, {{ ride.city.name }}</a>
                     </li>
                     <li>
-                        <span>{% trans "Distance" %}</span>{{ ride.distance }} {% trans "km" %}
+                        <span>{{ _("Distance") }}</span>{{ ride.distance }} {{ _("km") }}
                     </li>
                     <li>
-                        <span>{% trans "Start Time" %}</span>{{ ride.start_time }}
+                        <span>{{ _("Start Time") }}</span>{{ ride.start_time }}
                     </li>
                     {% if ride.end_time %}
                     <li>
-                        <span>{% trans "End Time" %}</span>{{ ride.end_time }}
+                        <span>{{ _("End Time") }}</span>{{ ride.end_time }}
                     </li>
                     {% endif %}
                 </ul>
@@ -73,23 +71,23 @@
         {% if ride.description %}
         <div class="block">
             <div class="bar">
-                <h4>{% trans "Description" %}</h4>
+                <h4>{{ _("Description") }}</h4>
             </div>
             <div class="content description">
-                {{ ride.description|linebreaks|urlize }}
+                {{ ride.description }}
             </div>
         </div>
         {% endif %}
         <div class="block" id="members">
             <div class="bar">
-                <h4>{% trans "Ride members" %}</h4>
+                <h4>{{ _("Ride members") }}</h4>
             </div>
             <div class="content members">
                 <ul id="members-list">
-                    {% for member in ride.members.all %}
+                    {% for member in ride.members.all() %}
                         <li>
-                            <a href="{{ member.get_absolute_url }}" title="{{ member.username }}">
-                                <img alt="{{ member.username }}" class="photo" src="{{ member.get_photo }}">
+                            <a href="{{ member.get_absolute_url() }}" title="{{ member.username }}">
+                                <img alt="{{ member.username }}" class="photo" src="{{ member.get_photo() }}">
                             </a>
                         </li>
                     {% endfor %}
@@ -98,44 +96,74 @@
         </div>
         <div class="block">
             <div class="bar">
-                <h4>{% trans "Share" %}</h4>
+                <h4>{{ _("Share") }}</h4>
             </div>
             <div class="content">
-                <a class="social-button twitter" href="http://twitter.com/intent/tweet?text={{ ride.title }} {{ request.scheme }}://{{ request.get_host }}{{ ride.get_absolute_url }}" onclick="window.open(this.href, '', 'width=700,height=400'); return false" target="_blank">Twitter</a>
-                <a class="social-button facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ request.scheme }}://{{ request.get_host }}{{ ride.get_absolute_url }}" onclick="window.open(this.href, '', 'width=700,height=400,toolbar=0,status=0'); return false" target="_blank">Facebook</a>
-                <a class="social-button telegram" href="https://telegram.me/share/url?url={{ request.scheme }}://{{ request.get_host }}{{ ride.get_absolute_url }}" onclick="window.open(this.href, '', 'width=700,height=400'); return false" target="_blank">Telegram</a>
+                <a class="social-button twitter" href="http://twitter.com/intent/tweet?text={{ ride.title }} {{ request.scheme }}://{{ request.get_host }}{{ ride.get_absolute_url() }}" onclick="window.open(this.href, '', 'width=700,height=400'); return false" target="_blank">Twitter</a>
+                <a class="social-button facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ request.scheme }}://{{ request.get_host }}{{ ride.get_absolute_url() }}" onclick="window.open(this.href, '', 'width=700,height=400,toolbar=0,status=0'); return false" target="_blank">Facebook</a>
+                <a class="social-button telegram" href="https://telegram.me/share/url?url={{ request.scheme }}://{{ request.get_host }}{{ ride.get_absolute_url() }}" onclick="window.open(this.href, '', 'width=700,height=400'); return false" target="_blank">Telegram</a>
             </div>
         </div>
         <div class="block">
             <div class="bar">
-                <h4>{% trans "Options" %}</h4>
+                <h4>{{ _("Options") }}</h4>
             </div>
             <div class="content">
-                <a class="ride-option-btn show-lightbox export" href="javascript:void(0)">{% trans "Export route" %}</a>
-                <a class="ride-option-btn go" href="{% url 'navigation' ride.id %}">{% trans "Navigation" %}</a>
+                <a class="ride-option-btn show-lightbox export" href="javascript:void(0)">{{ _("Export route") }}</a>
+                <a class="ride-option-btn go" href="{{ url('navigation', args=[ride.id]) }}">{{ _("Navigation") }}</a>
             </div>
         </div>
         {% if user.is_authenticated and ride.user == user %}
         <div class="block">
             <div class="bar">
-                <h4>{% trans "Manage" %}</h4>
+                <h4>{{ _("Manage") }}</h4>
             </div>
             <div class="content">
-                <a class="ride-manage-btn" href="{% url 'edit' ride.id %}">{% trans "Edit" %}</a>
+                <a class="ride-manage-btn" href="{{ url('edit', args=[ride.id]) }}">{{ _("Edit Tour") }}</a>
             </div>
         </div>
         {% endif %}
     </div>
     <div id="comments-section">
         <ul id="comments" class="comments">
-            {% comments ride %}
+            {% for comment in comments %}
+                <li id="comment-{{ comment.id }}" class="clearfix">
+                    <a href="{{ comment.user.get_absolute_url() }}">
+                        <img class="photo" src="{{ comment.user.get_photo() }}" alt="{{ comment.user.get_name() }}">
+                    </a>
+                    <div class="rightside">
+                        <div class="comment-meta">
+                            <a href="{{ comment.user.get_absolute_url() }}" class="name">{{ comment.user.get_name() }}</a>
+                            <span class="posted">{{ comment.date_created }}</span>
+                        </div>
+                        <div class="comment-body">
+                            {{ comment.text|urlize }}
+                        </div>
+                    </div>
+                    <div class="permalink">
+                        <a href="#comment-{{ comment.id }}" title="{{ _("Permalink to this comment") }}">#</a>
+                    </div>
+                </li>
+            {% endfor %}        
         </ul>
         {% if user.is_authenticated %}
-            {% comments_form user ride %}
+            <ul class="comments form">
+                <li class="clearfix">
+                    <img class="photo" src="{{ user.get_photo() }}" alt="{{ user.get_name() }}">
+                    <div class="rightside">
+                        <form action="{{ url('post_comment', args=[ride.id]) }}" method="post" id="form-post-comment" class="simple-form">
+                            {{ csrf_input }}
+                            <div class="form-field">
+                                {{ comment_form.text }}
+                            </div>
+                            <input class="button" type="submit" value="{{ _("Post Comment") }}">
+                        </form>
+                    </div>
+                </li>
+            </ul>        
         {% else %}
-            {% url 'login' as l_url %}
             <h2>
-                {% blocktrans %}Please <a href="{{ l_url }}">log in</a> to post comments.{% endblocktrans %}
+                {{ _("Please <a href=\"%(link)s\">log in</a> to post comments.", link=url('login')) }}
             </h2>
         {% endif %}
     </div>
@@ -146,14 +174,14 @@
         <div id="overlay-bg"></div>
         <div id="lightbox">
             <div class="full lightbox-title">
-                <h2>{% trans "Choose export destination" %}</h2>
+                <h2>{{ _("Choose export destination") }}</h2>
             </div>
             <ul class="list-buttons">
                 <li>
-                    <a class="button" href="{% url 'export' ride.id 'gpx' %}">{% trans "Download GPX file" %}</a>
+                    <a class="button" href="{{ url('export', args=[ride.id, 'gpx']) }}">{{ _("Download GPX file") }}</a>
                 </li>
                 <li>
-                    <a class="button" href="{% url 'export' ride.id 'kml' %}">{% trans "Download KML file" %}</a>
+                    <a class="button" href="{{ url('export', args=[ride.id, 'kml']) }}">{{ _("Download KML file") }}</a>
                 </li>
             </ul>
         </div>
@@ -181,12 +209,10 @@
                 zoomControlOptions: {
                     position: google.maps.ControlPosition.RIGHT_TOP,
                 },
-
                 zoom: 11,
-                center: {lat: {{ user.city.lat }}, lng: {{ user.city.lng }}},
             });
 
-            let pointsStr = '{{ ride.points_string }}';
+            let pointsStr = '{{ ride.points_string() }}';
             var path = [];
 
             if (pointsStr.length > 0) {

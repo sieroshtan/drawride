@@ -12,8 +12,10 @@
             <description>{{ ride.description }}</description>
             <styleUrl>#street</styleUrl>
             <LineString>
-                <coordinates>{% for c in coords %}
-                    {{ c.1 }},{{ c.0 }}{% endfor %}
+                <coordinates>
+                    {% for c in coords %}
+                        {{ c.1 }},{{ c.0 }}
+                    {% endfor %}
                 </coordinates>
             </LineString>
         </Placemark>

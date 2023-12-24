@@ -1,43 +1,41 @@
 {% extends 'layout.html' %}
 
-{% load i18n %}
-
-{% block title %}{{ profile.get_name }} / {% trans "Following" %}{% endblock %}
+{% block title %}{{ profile.get_name() }} / {{ _("Following") }}{% endblock %}
 
 {% block content %}
     {% include 'users/userbar.html' %}
     <div class="tabs">
         <ul>
-            <li><a href="{% url 'followers' profile.username %}">{% trans "Followers" %}</a></li>
-            <li class="current"><a href="{% url 'following' profile.username %}">{% trans "Following" %}</a></li>
+            <li><a href="{{ url('followers', args=[profile.username]) }}">{{ _("Followers") }}</a></li>
+            <li class="current"><a href="{{ url('following', args=[profile.username]) }}">{{ _("Following") }}</a></li>
         </ul>
     </div>
     {% if following %}
         <table class="data">
             <thead>
                 <tr>
-                    <th>{% trans "User" %}</th>
-                    <th>{% trans "Location" %}</th>
-                    <th>{% trans "Rides" %}</th>
+                    <th>{{ _("User") }}</th>
+                    <th>{{ _("Location") }}</th>
+                    <th>{{ _("Rides") }}</th>
                 </tr>
             </thead>
             <tbody>
-            {% for f in following %}
+            {% for followee in following %}
                 <tr>
                     <td>
-                        <a href="{{ f.get_absolute_url }}">
-                            <img class="photo" src="{{ f.get_photo }}">{{ f.get_name }}
+                        <a href="{{ followee.get_absolute_url() }}">
+                            <img class="photo" src="{{ followee.get_photo() }}">{{ followee.get_name() }}
                         </a>
                     </td>
                     <td>
-                        {% if f.city %}
-                            <a href="{% url 'city' f.city.id %}">{{ f.city.country.name }}, {{ f.city.name }}</a>
+                        {% if followee.city %}
+                            <a href="{{ url('city', args=[followee.city.id]) }}">{{ followee.city.country.name }}, {{ followee.city.name }}</a>
                         {% else %}
-                            {% trans "Earth" %}
+                            {{ _("Earth") }}
                         {% endif %}
                     </td>
                     <td>
-                        {{ f.his_rides.count }}
+                        {{ followee.his_rides.count() }}
                     </td>
                 </tr>
             {% endfor %}
@@ -45,7 +43,7 @@
         </table>
     {% else %}
         <div class="null-message">
-            <h2>{% trans "None" %}</h2>
+            <h2>{{ _("None") }}</h2>
         </div>
     {% endif %}
 {% endblock %}

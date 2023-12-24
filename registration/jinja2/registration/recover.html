@@ -1,28 +1,26 @@
 {% extends 'layout.html' %}
 
-{% load i18n %}
-
-{% block title %}{% trans "Recover password" %}{% endblock %}
+{% block title %}{{ _("Recover password") }}{% endblock %}
 
 {% block content %}
     <div class="centered">
         <div class="full">
-            <h1>{% trans "Recover password" %}</h1>
+            <h1>{{ _("Recover password") }}</h1>
         </div>
         <p>
-            {% trans "Please enter your email to reset your password. You’ll receive an email with instructions." %}
+            {{ _("Please enter your email to reset your password. You’ll receive an email with instructions.") }}
         </p>
         <div class="form-inline">
             <form action="" method="post">
-                {% csrf_token %}
+                {{ csrf_input }}
                 <div class="form-field">
-                    {{ form.email.label_tag }}
+                    {{ form.email.label_tag() }}
                     {{ form.email }}
                     {% for error in form.email.errors %}
                         <p class="error">{{ error }}</p>
                     {% endfor %}
                 </div>
-                <input class="button" type="submit" value="{% trans "Recover" %}">
+                <input class="button" type="submit" value="{{ _("Recover") }}">
             </form>
         </div>
     </div>
