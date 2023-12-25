@@ -396,29 +396,6 @@ img.photo {
     background: #d7564b;
 }
 
-.close {
-    font-family: inherit;
-    padding: 0;
-    margin: 0;
-    cursor: pointer;
-    background: transparent;
-    font-size: 1.5em;
-    border: 0;
-    float: right;
-    font-weight: bold;
-    line-height: 0.8em;
-    color: black;
-    text-shadow: 0 1px 0 white;
-    opacity: 0.4;
-}
-
-.close:hover {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-    opacity: 0.6;
-}
-
 /* footer */
 
 footer {

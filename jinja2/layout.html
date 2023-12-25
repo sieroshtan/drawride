@@ -90,10 +90,10 @@
     </div>
 </nav>
 {% if messages %}
-    <ul id="notices">
+    <ul id="notices" ts-action="remove" ts-trigger="load delay 3000">
     {% for message in messages %}
         <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-            {{ message }}<button class="close" type="button">×</button>
+            {{ message }}
         </li>
     {% endfor %}
     </ul>

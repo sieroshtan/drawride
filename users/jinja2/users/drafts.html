@@ -6,7 +6,7 @@
     {% include 'users/userbar.html' %}
     <div class="tabs">
         <ul>
-            <li class="current"><a href="{{ profile.get_absolute_url() }}">{{ _("My Tours") }}</a></li>
+            <li class="current"><a href="{{ profile.get_absolute_url() }}">{{ _("Tours") }}</a></li>
             <li><a href="{{ url('involved', args=[profile.username]) }}">{{ _("Involved") }}</a></li>
             <li><a href="{{ url('favorite', args=[profile.username]) }}">{{ _("Favorites") }}</a></li>
         </ul>
