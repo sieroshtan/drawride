@@ -11,7 +11,7 @@
         </ul>
     </div>
     <img src="{{ user.get_photo() }}" alt="{{ user.get_name() }}">
-    <form action="{{ url('settings_photo') }} method="post" enctype="multipart/form-data">
+    <form action="{{ url('settings_photo') }}" method="post" enctype="multipart/form-data">
         {{ csrf_input }}
         <input type="file" name="photo">
         <p class="help-text">{{ form.photo.help_text|safe }}</p>
