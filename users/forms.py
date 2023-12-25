@@ -10,7 +10,7 @@ User = get_user_model()
 class SettingsForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ("name", "email", "gender", "bio")
+        fields = ("name", "lang", "email", "gender", "bio")
 
 
 class PhotoForm(forms.ModelForm):

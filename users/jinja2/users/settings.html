@@ -37,6 +37,14 @@
             {% endfor %}
         </div>
         <div class="form-field">
+            {{ form.lang.label_tag() }}
+            {{ form.lang }}
+            <p class="help-text">{{ form.lang.help_text|safe }}</p>
+            {% for error in form.lang.errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
+        </div>
+        <div class="form-field">
             {{ form.bio.label_tag() }}
             {{ form.bio }}
             <p class="help-text">{{ form.bio.help_text|safe }}</p>

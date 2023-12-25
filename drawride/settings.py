@@ -58,7 +58,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "drawride.urls"
-from django.template.backends.jinja2 import Jinja2
 
 TEMPLATES = [
     {
@@ -67,13 +66,19 @@ TEMPLATES = [
             BASE_DIR / "jinja2",
         ],
         "APP_DIRS": True,
-        "" "OPTIONS": {
+        "OPTIONS": {
             "environment": "drawride.jinja2.environment",
             "context_processors": [
                 "main.context_processors.api_keys",
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+                "django.template.context_processors.tz",
+            ],
+            "extensions": [
+                "jinja2.ext.i18n",
+                "drawride.jinja2.DjangoL10n",
             ],
         },
     },
@@ -115,6 +120,8 @@ TIME_ZONE = "UTC"
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
 
 LOCALE_PATHS = [
@@ -155,14 +162,13 @@ MAP_STATIC_URL = (
     % GOOGLE_MAPS_API_KEY
 )
 
-FORMAT_MODULE_PATH = "formats"
+# from django.utils.formats
+FORMAT_MODULE_PATH = "drawride.formats"
 
 # Email settings
 EMAIL_HOST = "localhost"
 EMAIL_PORT = 8025
 DEFAULT_FROM_EMAIL = "info@drawride.com"
-
-DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 # Local settings
 try:

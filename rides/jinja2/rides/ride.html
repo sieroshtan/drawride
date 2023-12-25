@@ -6,7 +6,7 @@
 {% block title %}{{ ride.title }}{% endblock %}
 
 {% block meta %}
-    <meta name="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ ride.get_absolute_url() }}">
+    <meta name="og:url" content="{{ request.scheme }}://{{ request.get_host() }}{{ ride.get_absolute_url() }}">
     <meta name="og:type" content="article">
     <meta name="og:title" content="{{ ride.title }}">
     <meta name="og:image" content="{{ ride.map_static_url() }}">
@@ -83,9 +83,11 @@
                 <h4>{{ _("Share") }}</h4>
             </div>
             <div class="content">
-                <a class="social-button twitter" href="http://twitter.com/intent/tweet?text={{ ride.title }} {{ request.scheme }}://{{ request.get_host }}{{ ride.get_absolute_url() }}" onclick="window.open(this.href, '', 'width=700,height=400'); return false" target="_blank">Twitter</a>
-                <a class="social-button facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ request.scheme }}://{{ request.get_host }}{{ ride.get_absolute_url() }}" onclick="window.open(this.href, '', 'width=700,height=400,toolbar=0,status=0'); return false" target="_blank">Facebook</a>
-                <a class="social-button telegram" href="https://telegram.me/share/url?url={{ request.scheme }}://{{ request.get_host }}{{ ride.get_absolute_url() }}" onclick="window.open(this.href, '', 'width=700,height=400'); return false" target="_blank">Telegram</a>
+                {% with share_text=_("Planned an awesome route with #drawride"), share_url=request.scheme ~ "://" ~ request.get_host() ~ ride.get_absolute_url() %}
+                <a class="social-button twitter" href="https://twitter.com/intent/tweet?text={{ share_text|urlencode }} {{ share_url }}" onclick="window.open(this.href, '', 'width=700,height=400'); return false" target="_blank">Twitter</a>
+                <a class="social-button facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ share_url }}&title={{ share_text|urlencode }}" onclick="window.open(this.href, '', 'width=700,height=400,toolbar=0,status=0'); return false" target="_blank">Facebook</a>
+                <a class="social-button telegram" href="https://t.me/share/url?url={{ share_url }}" onclick="window.open(this.href, '', 'width=700,height=400'); return false" target="_blank">Telegram</a>
+                {% endwith %}
             </div>
         </div>
         <div class="block">

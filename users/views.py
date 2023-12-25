@@ -25,7 +25,8 @@ class ProfileBaseMixin(object):
     def get_context_data(self, *args, **kwargs):
         context = super(ProfileBaseMixin, self).get_context_data(**kwargs)
         context["profile"] = self.get_user()
-        context["follows"] = Follow.objects.follows(self.request.user, self.get_user())
+        if self.request.user.is_authenticated:
+            context["follows"] = Follow.objects.follows(self.request.user, self.get_user())
         context["message_form"] = MessageForm()
         return context
 

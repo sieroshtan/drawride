@@ -39,7 +39,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=255, blank=True)
     gender = models.CharField(default="n", max_length=1, choices=GENDER_CHOICES)
     bio = models.TextField(max_length=1000, blank=True)
-    lang = models.CharField(max_length=2, choices=LANGUAGES, blank=True)
+    lang = models.CharField(default="en", max_length=2, choices=LANGUAGES)
     photo = models.ImageField(upload_to=get_file_path)
     city = models.ForeignKey(City, on_delete=models.CASCADE, null=True, blank=True)
 

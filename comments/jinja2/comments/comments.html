@@ -11,7 +11,9 @@
                 <span class="posted">{{ comment.date_created }}</span>
             </div>
             <div class="comment-body">
-                {{ comment.text }}
+                {% for line in comment.text.split('\n') %}
+                    <p>{{ line }}</p>
+                {% endfor %}
             </div>
         </div>
         <div class="permalink">
