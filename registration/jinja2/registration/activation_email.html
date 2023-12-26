@@ -1,4 +1,3 @@
-{% autoescape off %}
-    {{ url('registration_activate' activation_key as a_url %}
-    {% blocktrans %}Hi!<br><br>Thank You for registering. Please verify your email address by clicking the link below:<br><br><a href="http://drawride.com{{ a_url }}">http://drawride.com{{ a_url }}</a><br><br>If you received this message in error, please ignore it.<br><br>Thanks.{% endblocktrans %}
-{% endautoescape %}
+{% trans activation_url=url('registration_activate', args=[activation_key]) %}
+    Hi!<br><br>Thank You for registering. Please verify your email address by clicking the link below:<br><br><a href="http://drawride.com{{ activation_url }}">http://drawride.com{{ activation_url }}</a><br><br>If you received this message in error, please ignore it.<br><br>Thanks.
+{% endtrans %}

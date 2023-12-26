@@ -40,6 +40,8 @@ class ActivationView(RedirectView):
 
 
 class PasswordResetViewCustom(PasswordResetView):
+    email_template_name = "registration/reset_email.html"
+    subject_template_name = "registration/password_reset_subject.txt"
     template_name = "registration/recover.html"
     success_url = "/"
 
