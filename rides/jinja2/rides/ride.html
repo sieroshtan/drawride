@@ -2,6 +2,7 @@
 
 {% from 'rides/buttons.html' import fave_btn, participant_btn %}
 {% from 'rides/participants.html' import participants %}
+{% from 'comments/comments.html' import comments_form %}
 
 {% block title %}{{ ride.title }}{% endblock %}
 
@@ -21,7 +22,7 @@
         <h1>{{ ride.title }}</h1>
         <div class="ride-byline">
             {{ _("by") }}
-            <a href="{{ ride.user.get_absolute_url() }}">{{ ride.user.get_name() }}</a> / {{ ride.created }}
+            <a href="{{ ride.user.get_absolute_url() }}">{{ ride.user.get_name() }}</a> / {{ ride.created_at }}
         </div>
     </div>
     <div id="col-left">
@@ -48,12 +49,14 @@
                     <li>
                         <span>{{ _("Distance") }}</span>{{ ride.distance }} {{ _("km") }}
                     </li>
+                    {% if ride.start_date %}
                     <li>
-                        <span>{{ _("Start Time") }}</span>{{ ride.start_time }}
+                        <span>{{ _("Start Date") }}</span>{{ ride.start_date }}
                     </li>
-                    {% if ride.end_time %}
+                    {% endif %}
+                    {% if ride.end_date %}
                     <li>
-                        <span>{{ _("End Time") }}</span>{{ ride.end_time }}
+                        <span>{{ _("End Date") }}</span>{{ ride.end_date }}
                     </li>
                     {% endif %}
                 </ul>
@@ -65,7 +68,9 @@
                 <h4>{{ _("Description") }}</h4>
             </div>
             <div class="content description">
-                {{ ride.description }}
+                {% for line in ride.description.split('\n') %}
+                    <p>{{ line }}</p>
+                {% endfor %}
             </div>
         </div>
         {% endif %}
@@ -113,20 +118,7 @@
     <div id="comments-section">
         <ul id="comments" class="comments" ts-req="{{ url('ride_comments', args=[ride.id]) }}" ts-trigger="load"></ul>
         {% if user.is_authenticated %}
-            <ul class="comments form">
-                <li class="clearfix">
-                    <img class="photo" src="{{ user.get_photo() }}" alt="{{ user.get_name() }}">
-                    <div class="rightside">
-                        <form action="{{ url('post_comment', args=[ride.id]) }}" method="post" id="form-post-comment" class="simple-form" ts-req="" ts-target="#comments">
-                            {{ csrf_input }}
-                            <div class="form-field">
-                                <textarea name="text" cols="40" rows="3" placeholder="Enter your comment here..." required="" id="id_text"></textarea>
-                            </div>
-                            <input class="button" type="submit" value="{{ _("Post Comment") }}" ts-action="remove" ts-targer="#id_text">
-                        </form>
-                    </div>
-                </li>
-            </ul>        
+            {{ comments_form(user, csrf_input, comment_form, ride) }}
         {% else %}
             <h2>
                 {{ _("Please <a href=\"%(link)s\">log in</a> to post comments.", link=url('login')) }}

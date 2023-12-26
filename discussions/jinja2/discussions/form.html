@@ -1,4 +1,8 @@
-<form action="{{ url('compose', args=[profile.username]) }}" method="post" class="simple-form" ts-req="">
+<form action="{{ url('compose', args=[profile.username]) }}" method="post" class="simple-form" ts-req=""
+      ts-req-after="
+      target '#id_text', attr value '';
+      target '#overlay', class- visible
+">
     {{ csrf_input }}
     <div class="form-field">
         {{ message_form.text }}
@@ -6,5 +10,5 @@
             <p class="error">{{ error }}</p>
         {% endfor %}
     </div>
-    <input type="submit" value="{{ _("Send") }}" ts-action="class- visible" ts-target="#overlay" ts-trigger="click">
+    <input type="submit" value="{{ _("Send") }}">
 </form>

@@ -1,8 +1,8 @@
 from django.views.generic import CreateView, ListView
 from django.views.decorators.http import require_http_methods
 from django.urls import reverse
-from django.http import Http404, JsonResponse
-from django.shortcuts import get_object_or_404
+from django.http import Http404
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from .forms import MessageForm
@@ -25,7 +25,7 @@ def compose(request, username):
         message.to_user = to_user
         message.save()
 
-    return JsonResponse({}, status=204)
+    return render(request, "discussions/ts/compose.html")
 
 
 class DiscussionsView(AuthRequiredMixin, ListView):

@@ -7,7 +7,7 @@ from registration.views import PasswordResetViewCustom, PasswordResetConfirmView
 urlpatterns = [
     path("signup/", SignUpView.as_view(), name="signup"),
     re_path(
-        r"^activate/(?P<activation_key>\w+)$",
+        r"^activate/(?P<activation_key>[a-f0-9]+)$",
         ActivationView.as_view(),
         name="registration_activate",
     ),

@@ -13,9 +13,10 @@ class Ride(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="his_rides"
     )
     title = models.CharField(max_length=45)
-    created = models.DateTimeField(auto_now_add=True)
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField(null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    start_date = models.DateField(null=True)
+    end_date = models.DateField(null=True)
     points = models.TextField()
     distance = models.FloatField()
     description = models.CharField(max_length=1000, blank=True)

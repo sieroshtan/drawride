@@ -24,16 +24,16 @@ class RideForm(forms.ModelForm):
         widget=forms.Textarea(attrs={"rows": "7"}),
     )
 
-    start_time = forms.DateTimeField(
-        label=_("Start Time"),
-        widget=forms.DateTimeInput(format="%Y-%m-%d %H:%M", attrs={"class": "datetime"}),
+    start_date = forms.DateField(
+        label=_("Start Date"),
+        required=False,
+        help_text=_("Optional"),
     )
 
-    end_time = forms.DateTimeField(
-        label=_("End Time"),
+    end_date = forms.DateField(
+        label=_("End Date"),
         required=False,
-        widget=forms.DateTimeInput(format="%Y-%m-%d %H:%M", attrs={"class": "datetime"}),
-        help_text=_("Optional field"),
+        help_text=_("Optional"),
     )
 
     class Meta:

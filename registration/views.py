@@ -1,15 +1,13 @@
-from django.views.generic import CreateView, RedirectView
-from django.contrib.auth.views import PasswordResetView
+from django.views.generic import CreateView, RedirectView, DetailView
 from django.contrib.auth import login
 from django.contrib import messages
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView
 from django.conf import settings
 from .forms import RegistrationForm, SetNewPasswordForm
-
-User = get_user_model()
 
 
 class SignUpView(CreateView):
@@ -31,11 +29,12 @@ class ActivationView(RedirectView):
     permanent = False
 
     def get_redirect_url(self, activation_key, *args, **kwargs):
-        activated_user = User.activation.activate_user(activation_key)
-        if activated_user:
-            messages.success(self.request, _("Your email address has been confirmed. Thanks!"))
-            activated_user.backend = "django.contrib.auth.backends.ModelBackend"
-            login(self.request, activated_user)
+        user = get_object_or_404(get_user_model(), activation_key=self.kwargs["activation_key"])
+        user.activate()
+
+        messages.success(self.request, _("Your email address has been confirmed. Thanks!"))
+        login(self.request, user)
+
         return reverse_lazy("home")
 
 

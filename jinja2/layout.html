@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ static('css/master.css') }}">
     {% block css %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
+    <script defer src="{{ static('js/twinspark.min.js') }}"></script>
 </head>
 <body>
 <nav class="header">
@@ -123,7 +124,6 @@
         </ul>
     </div>
 </footer>
-<script src="{{ static('js/twinspark.min.js') }}"></script>
 {% block js %}{% endblock %}
 {% block overlay %}{% endblock %}
 </body>

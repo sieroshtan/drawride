@@ -11,15 +11,13 @@ from views.base import AuthRequiredMixin
 from follow.models import Follow
 from discussions.forms import MessageForm
 
-User = get_user_model()
-
 
 class ProfileBaseMixin(object):
     user = None
 
     def get_user(self):
         if self.user is None:
-            self.user = get_object_or_404(User, username=self.kwargs["slug"])
+            self.user = get_object_or_404(get_user_model(), username=self.kwargs["slug"])
         return self.user
 
     def get_context_data(self, *args, **kwargs):
@@ -32,7 +30,7 @@ class ProfileBaseMixin(object):
 
 
 class UsersView(ListView):
-    model = User
+    model = get_user_model()
     context_object_name = "users"
     template_name = "users/users.html"
 

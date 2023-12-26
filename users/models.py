@@ -67,3 +67,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_absolute_url(self):
         return reverse("profile", args=(self.username,))
+
+    def activate(self):
+        self.is_active = True
+        self.activation_key = None
+        self.save()

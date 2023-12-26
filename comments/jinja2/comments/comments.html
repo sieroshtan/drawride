@@ -1,6 +1,6 @@
 {% macro comments_list(comments) -%}
-{% for comment in comments %}
 <ul id="comments" class="comments">
+{% for comment in comments %}
     <li id="comment-{{ comment.id }}" class="clearfix">
         <a href="{{ comment.user.get_absolute_url() }}">
             <img class="photo" src="{{ comment.user.get_photo() }}" alt="{{ comment.user.get_name() }}">
@@ -21,5 +21,22 @@
         </div>
     </li>
 {% endfor %}
+</ul>
+{%- endmacro %}
+
+{% macro comments_form(user, csrf_input, form, ride) -%}
+<ul class="comments form">
+    <li class="clearfix">
+        <img class="photo" src="{{ user.get_photo() }}" alt="{{ user.get_name() }}">
+        <div class="rightside">
+            <form action="{{ url('post_comment', args=[ride.id]) }}" method="post" class="simple-form" ts-req-after="target '#id_text', attr value ''" ts-req="" ts-target="#comments">
+                {{ csrf_input }}
+                <div class="form-field">
+                    {{ form.text }}
+                </div>
+                <input class="button" type="submit" value="{{ _("Post Comment") }}">
+            </form>
+        </div>
+    </li>
 </ul>
 {%- endmacro %}

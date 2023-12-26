@@ -4,12 +4,10 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 
-User = get_user_model()
-
 
 class SettingsForm(forms.ModelForm):
     class Meta:
-        model = User
+        model = get_user_model()
         fields = ("name", "lang", "email", "gender", "bio")
 
 
@@ -60,5 +58,5 @@ class PhotoForm(forms.ModelForm):
         return user
 
     class Meta:
-        model = User
+        model = get_user_model()
         fields = ("photo",)

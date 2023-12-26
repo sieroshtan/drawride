@@ -13,7 +13,7 @@ class RideManager(models.Manager):
         return popular_rides
 
     def upcoming(self, user):
-        upcoming_rides = self.rides().filter(start_time__gte=timezone.now()).order_by("start_time")
+        upcoming_rides = self.rides().filter(start_date__gte=timezone.now()).order_by("start_date")
         if user.is_authenticated and user.city:
             return upcoming_rides.filter(city=user.city)
         return upcoming_rides

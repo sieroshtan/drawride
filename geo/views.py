@@ -6,8 +6,6 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from .models import Country, City
 
-User = get_user_model()
-
 
 class CitiesView(ListView):
     model = Country
@@ -29,7 +27,7 @@ class CityPeopleView(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(CityPeopleView, self).get_context_data(**kwargs)
-        context["users"] = User.objects.filter(city=self.object)
+        context["users"] = get_user_model().objects.filter(city=self.object)
         return context
 
 
